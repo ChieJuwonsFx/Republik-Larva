@@ -14,7 +14,7 @@ namespace Republik_Larva
             ApplicationConfiguration.Initialize();
 
             // Menjalankan Form sendEmail sebagai form utama
-            Application.Run(new sendEmail());
+            Application.Run(new V_Dashboard());
         }
     }
 }

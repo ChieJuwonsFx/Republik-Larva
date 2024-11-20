@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Republik_Larva.Views
 {
-    public partial class akun : Form
+    public partial class V_AddProduk : Form
     {
-        public akun()
+        public V_AddProduk()
         {
             InitializeComponent();
         }

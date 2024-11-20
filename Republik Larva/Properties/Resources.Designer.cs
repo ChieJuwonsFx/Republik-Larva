@@ -73,6 +73,16 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kelolaProduk {
+            get {
+                object obj = ResourceManager.GetObject("kelolaProduk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sendEMail {
             get {
                 object obj = ResourceManager.GetObject("sendEMail", resourceCulture);

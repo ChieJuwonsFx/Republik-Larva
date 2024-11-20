@@ -1,6 +1,6 @@
 ﻿namespace Republik_Larva.Views
 {
-    partial class sendEmail
+    partial class V_SendEmail
     {
         /// <summary>
         ///  Required designer variable.

@@ -1,6 +1,6 @@
 ﻿namespace Republik_Larva.Views
 {
-    partial class transaksi
+    partial class V_AddProduk
     {
         /// <summary>
         /// Required designer variable.

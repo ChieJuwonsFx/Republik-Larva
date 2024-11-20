@@ -1,13 +1,18 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
+using Republik_Larva.Controller;
+using Republik_Larva.Controllers;
 
 namespace Republik_Larva.Views
 {
-    public partial class sendEmail : Form
+    public partial class V_SendEmail : Form
     {
-        public sendEmail()
+        private Route Route;
+
+        public V_SendEmail()
         {
             InitializeComponent();
+            Route = new Route(this);
         }
         private void sendEmail_Load(object sender, EventArgs e)
         {
@@ -60,39 +65,21 @@ namespace Republik_Larva.Views
                 MessageBox.Show($"Gagal mengirim email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnAkun_Click(object sender, EventArgs e)
-        {
-            //Form form = new akun();
-            //form.Show();
-            //this.Hide();
-        }
-
-        private void btnProduk_Click(object sender, EventArgs e)
-        {
-            //Form form = new produk();
-            //form.Show();
-            //this.Hide();
-        }
-
-        private void btnTransaksi_Click(object sender, EventArgs e)
-        {
-            //Form form = new transaksi();
-            //form.Show();
-            //this.Hide();
-        }
-
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            Form form = new dashboard();
-            form.Show();
-            this.Hide();
+            Route.NavigateTo(new V_Dashboard());
         }
-        //private void btnEmail_Click(object sender, EventArgs e)
-        //{
-        //    //Form form = new dashboard();
-        //    //form.Show();
-        //    //this.Hide();
-        //}
+        private void btnProduk_Click(object sender, EventArgs e)
+        {
+            Route.NavigateTo(new V_Produk());
+        }
+        private void btnAkun_Click(object sender, EventArgs e)
+        {
+            Route.NavigateTo(new V_Akun());
+        }
+        private void btnTransaksi_Click(object sender, EventArgs e)
+        {
+            Route.NavigateTo(new V_Transaksi());
+        }
     }
 }
