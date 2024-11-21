@@ -32,7 +32,7 @@ namespace Republik_Larva.Views
             {
                 dataGridProduk.AllowUserToAddRows = false;
 
-                DataTable ProdukData = C_Produk.All();
+                DataTable ProdukData = M_Produk.All();
                 if (ProdukData == null || ProdukData.Rows.Count == 0)
                 {
                     MessageBox.Show("Error: Gagal mengambil data produk atau tidak ada data.");
@@ -100,7 +100,7 @@ namespace Republik_Larva.Views
                     // Ganti "id" dengan "produk_id"
                     int produkId = Convert.ToInt32(dataGridProduk.Rows[e.RowIndex].Cells["produk_id"].Value);
 
-                    DataTable produkData = C_Produk.getProdukById(produkId);
+                    DataTable produkData = M_Produk.getProdukById(produkId);
 
                     if (produkData.Rows.Count > 0)
                     {
@@ -131,7 +131,7 @@ namespace Republik_Larva.Views
             else if (e.ColumnIndex == dataGridProduk.Columns["Delete"].Index)
             {
                 int produkId = Convert.ToInt32(dataGridProduk.Rows[e.RowIndex].Cells["produk_id"].Value);
-                C_Produk.DeleteProduk(produkId);
+                M_Produk.DeleteProduk(produkId);
                 LoadDataProduk();
             }
         }

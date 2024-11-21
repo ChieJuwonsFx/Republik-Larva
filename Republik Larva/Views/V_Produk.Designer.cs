@@ -38,6 +38,7 @@
             dataGridProduk.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridProduk.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridProduk.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            dataGridProduk.BorderStyle = BorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -47,6 +48,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridProduk.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridProduk.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridProduk.GridColor = SystemColors.HighlightText;
             dataGridProduk.Location = new Point(201, 282);
             dataGridProduk.Name = "dataGridProduk";
             dataGridProduk.RowHeadersWidth = 51;

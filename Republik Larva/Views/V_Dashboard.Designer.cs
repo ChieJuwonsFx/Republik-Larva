@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V_Dashboard));
             btnProduk = new Button();
             btnTransaksi = new Button();
             btnEmail = new Button();
@@ -82,18 +83,18 @@
             btnAkun.UseVisualStyleBackColor = false;
             btnAkun.Click += btnAkun_Click;
             // 
-            // dashboard
+            // V_Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.dashboard;
-            ClientSize = new Size(1920, 1080);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(1920, 937);
             Controls.Add(btnAkun);
             Controls.Add(btnEmail);
             Controls.Add(btnTransaksi);
             Controls.Add(btnProduk);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "dashboard";
+            Name = "V_Dashboard";
             Text = "Form1";
             ResumeLayout(false);
         }

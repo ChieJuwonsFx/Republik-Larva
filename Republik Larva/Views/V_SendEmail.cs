@@ -2,6 +2,7 @@
 using MimeKit;
 using Republik_Larva.Controller;
 using Republik_Larva.Controllers;
+//using System.Net.Mail;
 
 namespace Republik_Larva.Views
 {
@@ -54,7 +55,7 @@ namespace Republik_Larva.Views
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-                smtp.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo"); // Ganti dengan password aplikasi
+                smtp.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo"); 
                 smtp.Send(email);
                 smtp.Disconnect(true);
 

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Republik_Larva.Views;
+using Republik_Larva.Controller;
 
 namespace Republik_Larva.Views
 {
@@ -21,6 +22,14 @@ namespace Republik_Larva.Views
             InitializeComponent();
             Route = new Route(this);
         }
+
+        //C_Dashboard Controller;
+        //public V_Dashboard(C_Dashboard c_Dashboard)
+        //{
+        //    InitializeComponent();
+        //    Controller = c_Dashboard;
+        //}
+
 
         private void btnEmail_Click(object sender, EventArgs e)
         {

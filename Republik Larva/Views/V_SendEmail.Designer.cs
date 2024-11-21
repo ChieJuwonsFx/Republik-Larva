@@ -180,7 +180,7 @@
         private TextBox txtSubject;
         private TextBox txtPesanEmail;
         private Button btnSendEmail;
-        private Label lblFooter;
+        //private Label lblFooter;
         private Button btnDashboard;
         private Button btnTransaksi;
         private Button btnProduk;
