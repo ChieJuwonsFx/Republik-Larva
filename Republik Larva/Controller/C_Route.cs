@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Republik_Larva.Controller;
 using System.Windows.Forms;
 
-namespace Republik_Larva.Controllers
+namespace Republik_Larva.Controller
 {
-    public class Route
+    public class C_Route
     {
-        private Form currentForm;
-
-        // Konstruktor untuk inisialisasi form saat ini
-        public Route(Form CurrentForm)
+        public Form currentForm;
+        public C_Route(Form CurrentForm)
         {
             currentForm = CurrentForm;
         }

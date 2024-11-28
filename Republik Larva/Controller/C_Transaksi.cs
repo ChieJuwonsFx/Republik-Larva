@@ -11,16 +11,15 @@ using Republik_Larva.Controller;
 
 namespace Republik_Larva.Controller
 {
-    public class C_Produk : C_MessageBox
+    public class C_Transaksi : C_MessageBox
     {
         C_MainForm C_MainForm;
-        V_Produk view_produk;
-        M_Produk M_Produk = new M_Produk();
-        public C_Produk(C_MainForm controller)
+        V_Transaksi view_transaksi;
+        public C_Transaksi(C_MainForm controller)
         {
             C_MainForm = controller;
-            view_produk = new V_Produk(this);
-            C_MainForm.moveView(view_produk);
+            view_transaksi = new V_Transaksi(this);
+            C_MainForm.moveView(view_transaksi);
         }
     }
 }

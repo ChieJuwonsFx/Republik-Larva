@@ -1,5 +1,4 @@
-﻿using Republik_Larva.Controllers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,12 +14,12 @@ namespace Republik_Larva.Views
 {
     public partial class V_Dashboard : Form
     {
-        private Route Route;
+        private C_Route Route;
 
         public V_Dashboard()
         {
             InitializeComponent();
-            Route = new Route(this);
+            Route = new C_Route(this);
         }
 
         //C_Dashboard Controller;
@@ -33,20 +32,20 @@ namespace Republik_Larva.Views
 
         private void btnEmail_Click(object sender, EventArgs e)
         {
-            Route.NavigateTo(new V_SendEmail());
+            //Route.NavigateTo(new V_SendEmail1());
         }
 
         private void btnProduk_Click(object sender, EventArgs e)
         {
-            Route.NavigateTo(new V_Produk());
+            //Route.NavigateTo(new V_Produk());
         }
         private void btnAkun_Click(object sender, EventArgs e)
         {
-            Route.NavigateTo(new V_Akun());
+            //Route.NavigateTo(new V_Akun());
         }
         private void btnTransaksi_Click(object sender, EventArgs e)
         {
-            Route.NavigateTo(new V_Transaksi());
+            //Route.NavigateTo(new V_Transaksi());
         }
     }
 }

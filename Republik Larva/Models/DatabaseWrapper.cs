@@ -72,20 +72,6 @@ namespace Republik_Larva.Models
                 throw new Exception(e.Message);
             }
         }
-        public static bool ValidateLogin(string username, string password)
-        {
-            string query = "SELECT COUNT(*) FROM admin WHERE username = @username AND password = @password";
-            NpgsqlParameter[] parameters = {
-            new NpgsqlParameter("@username", username),
-            new NpgsqlParameter("@password", password)
-        };
-
-            DataTable result = queryExecutor(query, parameters);
-
-            // Mengembalikan true jika ada hasil yang cocok, false jika tidak
-            return result.Rows[0][0].ToString() == "1";
-        }
-
     }
 }
 

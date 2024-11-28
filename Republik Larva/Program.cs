@@ -1,3 +1,4 @@
+using Republik_Larva.Controller;
 using Republik_Larva.Views;
 
 namespace Republik_Larva
@@ -7,7 +8,7 @@ namespace Republik_Larva
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new V_Dashboard());
+            Application.Run(new V_Login());
         }
     }
 }

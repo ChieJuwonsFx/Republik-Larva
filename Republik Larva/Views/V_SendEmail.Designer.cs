@@ -2,13 +2,13 @@
 {
     partial class V_SendEmail
     {
-        /// <summary>
-        ///  Required designer variable.
+        /// <summary> 
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
+        /// <summary> 
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -20,170 +20,86 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            txtNamaTujuan = new TextBox();
-            txtEmailTujuan = new TextBox();
-            txtSubject = new TextBox();
-            txtPesanEmail = new TextBox();
-            btnSendEmail = new Button();
-            btnDashboard = new Button();
-            btnTransaksi = new Button();
-            btnProduk = new Button();
-            btnAkun = new Button();
+            namaTujuan = new TextBox();
+            emailTujuan = new TextBox();
+            subject = new TextBox();
+            pesan = new RichTextBox();
             SuspendLayout();
             // 
-            // txtNamaTujuan
+            // namaTujuan
             // 
-            txtNamaTujuan.BorderStyle = BorderStyle.None;
-            txtNamaTujuan.Cursor = Cursors.IBeam;
-            txtNamaTujuan.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNamaTujuan.ForeColor = Color.Black;
-            txtNamaTujuan.Location = new Point(502, 282);
-            txtNamaTujuan.Name = "txtNamaTujuan";
-            txtNamaTujuan.Size = new Size(924, 36);
-            txtNamaTujuan.TabIndex = 1;
-            txtNamaTujuan.TextChanged += txtNamaTujuan_TextChanged;
+            namaTujuan.BorderStyle = BorderStyle.None;
+            namaTujuan.Cursor = Cursors.IBeam;
+            namaTujuan.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            namaTujuan.Location = new Point(489, 206);
+            namaTujuan.Name = "namaTujuan";
+            namaTujuan.Size = new Size(917, 36);
+            namaTujuan.TabIndex = 0;
+            namaTujuan.TextChanged += namaTujuan_TextChanged;
             // 
-            // txtEmailTujuan
+            // emailTujuan
             // 
-            txtEmailTujuan.BorderStyle = BorderStyle.None;
-            txtEmailTujuan.Cursor = Cursors.IBeam;
-            txtEmailTujuan.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtEmailTujuan.ForeColor = Color.Black;
-            txtEmailTujuan.Location = new Point(502, 406);
-            txtEmailTujuan.Name = "txtEmailTujuan";
-            txtEmailTujuan.Size = new Size(924, 36);
-            txtEmailTujuan.TabIndex = 3;
-            txtEmailTujuan.TextChanged += txtEmailTujuan_TextChanged;
+            emailTujuan.BorderStyle = BorderStyle.None;
+            emailTujuan.Cursor = Cursors.IBeam;
+            emailTujuan.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            emailTujuan.Location = new Point(489, 331);
+            emailTujuan.Name = "emailTujuan";
+            emailTujuan.Size = new Size(917, 36);
+            emailTujuan.TabIndex = 1;
+            emailTujuan.TextChanged += emailTujuan_TextChanged;
             // 
-            // txtSubject
+            // subject
             // 
-            txtSubject.BorderStyle = BorderStyle.None;
-            txtSubject.Cursor = Cursors.IBeam;
-            txtSubject.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSubject.Location = new Point(502, 529);
-            txtSubject.Name = "txtSubject";
-            txtSubject.Size = new Size(924, 36);
-            txtSubject.TabIndex = 5;
-            txtSubject.TextChanged += txtSubject_TextChanged;
+            subject.BorderStyle = BorderStyle.None;
+            subject.Cursor = Cursors.IBeam;
+            subject.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            subject.Location = new Point(489, 456);
+            subject.Name = "subject";
+            subject.Size = new Size(917, 36);
+            subject.TabIndex = 2;
+            subject.TextChanged += subject_TextChanged;
             // 
-            // txtPesanEmail
+            // pesan
             // 
-            txtPesanEmail.BorderStyle = BorderStyle.None;
-            txtPesanEmail.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPesanEmail.Location = new Point(502, 648);
-            txtPesanEmail.Multiline = true;
-            txtPesanEmail.Name = "txtPesanEmail";
-            txtPesanEmail.ScrollBars = ScrollBars.Vertical;
-            txtPesanEmail.Size = new Size(924, 184);
-            txtPesanEmail.TabIndex = 7;
-            txtPesanEmail.TextChanged += txtPesanEmail_TextChanged;
+            pesan.BorderStyle = BorderStyle.None;
+            pesan.Cursor = Cursors.IBeam;
+            pesan.Location = new Point(489, 575);
+            pesan.Name = "pesan";
+            pesan.ScrollBars = RichTextBoxScrollBars.Vertical;
+            pesan.Size = new Size(917, 186);
+            pesan.TabIndex = 3;
+            pesan.Text = "";
+            pesan.TextChanged += pesan_TextChanged;
             // 
-            // btnSendEmail
+            // V_SendEmail
             // 
-            btnSendEmail.BackColor = Color.Transparent;
-            btnSendEmail.BackgroundImageLayout = ImageLayout.None;
-            btnSendEmail.Cursor = Cursors.Hand;
-            btnSendEmail.FlatAppearance.BorderSize = 0;
-            btnSendEmail.FlatStyle = FlatStyle.Flat;
-            btnSendEmail.Location = new Point(847, 884);
-            btnSendEmail.Name = "btnSendEmail";
-            btnSendEmail.Size = new Size(259, 72);
-            btnSendEmail.TabIndex = 8;
-            btnSendEmail.UseVisualStyleBackColor = false;
-            btnSendEmail.Click += btn_sendEmail_Click;
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.BackColor = Color.Transparent;
-            btnDashboard.BackgroundImageLayout = ImageLayout.None;
-            btnDashboard.Cursor = Cursors.Hand;
-            btnDashboard.FlatAppearance.BorderSize = 0;
-            btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Location = new Point(708, 25);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(201, 72);
-            btnDashboard.TabIndex = 9;
-            btnDashboard.UseVisualStyleBackColor = false;
-            btnDashboard.Click += btnDashboard_Click;
-            // 
-            // btnTransaksi
-            // 
-            btnTransaksi.BackColor = Color.Transparent;
-            btnTransaksi.BackgroundImageLayout = ImageLayout.None;
-            btnTransaksi.Cursor = Cursors.Hand;
-            btnTransaksi.FlatAppearance.BorderSize = 0;
-            btnTransaksi.FlatStyle = FlatStyle.Flat;
-            btnTransaksi.Location = new Point(930, 25);
-            btnTransaksi.Name = "btnTransaksi";
-            btnTransaksi.Size = new Size(201, 72);
-            btnTransaksi.TabIndex = 10;
-            btnTransaksi.UseVisualStyleBackColor = false;
-            btnTransaksi.Click += btnTransaksi_Click;
-            // 
-            // btnProduk
-            // 
-            btnProduk.BackColor = Color.Transparent;
-            btnProduk.BackgroundImageLayout = ImageLayout.None;
-            btnProduk.Cursor = Cursors.Hand;
-            btnProduk.FlatAppearance.BorderSize = 0;
-            btnProduk.FlatStyle = FlatStyle.Flat;
-            btnProduk.Location = new Point(1158, 25);
-            btnProduk.Name = "btnProduk";
-            btnProduk.Size = new Size(216, 72);
-            btnProduk.TabIndex = 11;
-            btnProduk.UseVisualStyleBackColor = false;
-            btnProduk.Click += btnProduk_Click;
-            // 
-            // btnAkun
-            // 
-            btnAkun.BackColor = Color.Transparent;
-            btnAkun.BackgroundImageLayout = ImageLayout.None;
-            btnAkun.Cursor = Cursors.Hand;
-            btnAkun.FlatAppearance.BorderSize = 0;
-            btnAkun.FlatStyle = FlatStyle.Flat;
-            btnAkun.Location = new Point(1656, 25);
-            btnAkun.Name = "btnAkun";
-            btnAkun.Size = new Size(201, 72);
-            btnAkun.TabIndex = 12;
-            btnAkun.UseVisualStyleBackColor = false;
-            btnAkun.Click += btnAkun_Click;
-            // 
-            // sendEmail
-            // 
-            BackgroundImage = Properties.Resources.sendEMail;
-            BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(1920, 1080);
-            Controls.Add(btnAkun);
-            Controls.Add(btnProduk);
-            Controls.Add(btnTransaksi);
-            Controls.Add(btnDashboard);
-            Controls.Add(btnSendEmail);
-            Controls.Add(txtPesanEmail);
-            Controls.Add(txtSubject);
-            Controls.Add(txtEmailTujuan);
-            Controls.Add(txtNamaTujuan);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "sendEmail";
-            Text = "Kirim Email";
-            Load += sendEmail_Load;
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.sendEmail;
+            Controls.Add(pesan);
+            Controls.Add(subject);
+            Controls.Add(emailTujuan);
+            Controls.Add(namaTujuan);
+            Name = "V_SendEmail";
+            Size = new Size(1920, 937);
+            Load += V_SendEmail_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private TextBox txtNamaTujuan;
-        private TextBox txtEmailTujuan;
-        private TextBox txtSubject;
-        private TextBox txtPesanEmail;
-        private Button btnSendEmail;
-        //private Label lblFooter;
-        private Button btnDashboard;
-        private Button btnTransaksi;
-        private Button btnProduk;
-        private Button btnAkun;
+
+        private TextBox namaTujuan;
+        private TextBox emailTujuan;
+        private TextBox subject;
+        private RichTextBox pesan;
     }
 }

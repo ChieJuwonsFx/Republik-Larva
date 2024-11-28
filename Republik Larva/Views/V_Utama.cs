@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Republik_Larva.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,10 @@ using System.Windows.Forms;
 
 namespace Republik_Larva.Views
 {
-    public partial class V_AddProduk : Form
+    public partial class V_Utama : UserControl
     {
-        public V_AddProduk()
+        C_Dashboard c_Dashboard;
+        public V_Utama()
         {
             InitializeComponent();
         }

@@ -7,14 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Republik_Larva.Controller;
 
 namespace Republik_Larva.Views
 {
-    public partial class V_Transaksi : Form
+    public partial class V_Akun : UserControl
     {
-        public V_Transaksi()
+        C_Akun c_Akun;
+        public V_Akun(C_Akun controller)
         {
             InitializeComponent();
+            c_Akun = controller;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
