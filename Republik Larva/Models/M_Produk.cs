@@ -1,27 +1,23 @@
 ﻿using Npgsql;
 using System;
-using System.Collections.Generic;
+using Republik_Larva.Models;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Republik_Larva.Models
 {
-    internal class M_Produk : DatabaseWrapper
+    public class MProduk : DatabaseWrapper
     {
         private static string table = "produk";
 
         public static DataTable All()
         {
             string query = @"
-                SELECT produk_id, nama_produk, harga, stok
+                SELECT produk_id, nama_produk, harga, stok, gambar
                 FROM produk";
 
-            DataTable dataMahasiswa = queryExecutor(query);
-            return dataMahasiswa;
+            DataTable dataProduk = queryExecutor(query);
+            return dataProduk;
         }
 
         public static DataTable getProdukById(int id)
@@ -40,30 +36,31 @@ namespace Republik_Larva.Models
             return dataProduk;
         }
 
-
-        public static void AddMahasiswa(M_Produk produkBaru)
+        public static void AddProduk(MProduk produkBaru)
         {
-            string query = $"INSERT INTO {table} (nama_produk, harga, stok) VALUES(@nama, @harga, @stok)";
+            string query = $"INSERT INTO {table} (nama_produk, harga, stok, gambar) VALUES(@nama, @harga, @stok, @gambar)";
 
             NpgsqlParameter[] parameters =
             {
-                    new NpgsqlParameter("@nama", produkBaru.nama_produk),
-                    new NpgsqlParameter("@harga", produkBaru.harga),
-                    new NpgsqlParameter("@stok", produkBaru.stok)
-                };
+                new NpgsqlParameter("@nama", produkBaru.nama_produk),
+                new NpgsqlParameter("@harga", produkBaru.harga),
+                new NpgsqlParameter("@stok", produkBaru.stok),
+                new NpgsqlParameter("@gambar", produkBaru.gambar ?? (object)DBNull.Value) 
+            };
 
             commandExecutor(query, parameters);
         }
 
-        public static void UpdateProduk(M_Produk produk)
+        public static void UpdateProduk(MProduk produk)
         {
-            string query = $"UPDATE {table} SET nama_produk = @nama, harga = @harga, stok = @stok WHERE produk_id = @id";
+            string query = $"UPDATE {table} SET nama_produk = @nama, harga = @harga, stok = @stok, gambar = @gambar WHERE produk_id = @id";
 
             NpgsqlParameter[] parameters =
             {
                 new NpgsqlParameter("@nama", produk.nama_produk),
                 new NpgsqlParameter("@harga", produk.harga),
                 new NpgsqlParameter("@stok", produk.stok),
+                new NpgsqlParameter("@gambar", produk.gambar ?? (object)DBNull.Value),
                 new NpgsqlParameter("@id", produk.produk_id)
             };
 
@@ -87,8 +84,9 @@ namespace Republik_Larva.Models
         [Required]
         public string nama_produk { get; set; }
         [Required]
-        public string harga { get; set; }
+        public int harga { get; set; }
         [Required]
-        public string stok { get; set; }
+        public int stok { get; set; }
+        public byte[] gambar { get; set; }
     }
 }

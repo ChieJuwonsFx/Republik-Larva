@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             btnClose = new Button();
+            nama = new Label();
+            username = new Label();
             SuspendLayout();
             // 
             // btnClose
@@ -47,11 +49,35 @@
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
             // 
+            // nama
+            // 
+            nama.BackColor = Color.Transparent;
+            nama.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            nama.Location = new Point(827, 386);
+            nama.Name = "nama";
+            nama.Size = new Size(276, 44);
+            nama.TabIndex = 1;
+            nama.Text = "label1";
+            nama.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // username
+            // 
+            username.BackColor = Color.Transparent;
+            username.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            username.Location = new Point(858, 433);
+            username.Name = "username";
+            username.Size = new Size(211, 30);
+            username.TabIndex = 2;
+            username.Text = "label2";
+            username.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // V_Akun
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.akun;
+            Controls.Add(username);
+            Controls.Add(nama);
             Controls.Add(btnClose);
             Name = "V_Akun";
             Size = new Size(1920, 937);
@@ -61,5 +87,7 @@
         #endregion
 
         private Button btnClose;
+        private Label nama;
+        private Label username;
     }
 }

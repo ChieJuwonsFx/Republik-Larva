@@ -24,5 +24,7 @@ namespace Republik_Larva.Views
         {
             Application.Exit();
         }
+
+
     }
 }

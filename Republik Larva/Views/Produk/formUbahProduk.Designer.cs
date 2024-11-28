@@ -1,6 +1,6 @@
-﻿namespace Republik_Larva.Views
+﻿namespace Republik_Larva.Views.Produk
 {
-    partial class V_Produk
+    partial class formUbahProduk
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,31 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnProduk = new FlowLayoutPanel();
-            SuspendLayout();
-            // 
-            // pnProduk
-            // 
-            pnProduk.BackColor = Color.Transparent;
-            pnProduk.Location = new Point(98, 184);
-            pnProduk.Name = "pnProduk";
-            pnProduk.Size = new Size(1702, 550);
-            pnProduk.Padding = new System.Windows.Forms.Padding(10);
-            pnProduk.TabIndex = 1;
-            // 
-            // V_Produk
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.semuaProduk;
-            Controls.Add(pnProduk);
-            Name = "V_Produk";
-            Size = new Size(1920, 937);
-            ResumeLayout(false);
+            components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion
-
-        private FlowLayoutPanel pnProduk;
     }
 }

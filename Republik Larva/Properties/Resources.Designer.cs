@@ -203,6 +203,46 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap editDataAkun {
+            get {
+                object obj = ResourceManager.GetObject("editDataAkun", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap editDataAkunHover {
+            get {
+                object obj = ResourceManager.GetObject("editDataAkunHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap editProduk {
+            get {
+                object obj = ResourceManager.GetObject("editProduk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap isiProduk {
+            get {
+                object obj = ResourceManager.GetObject("isiProduk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap kelolaAkunFokus {
             get {
                 object obj = ResourceManager.GetObject("kelolaAkunFokus", resourceCulture);
@@ -276,6 +316,26 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap konfirmHover {
             get {
                 object obj = ResourceManager.GetObject("konfirmHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lihatSemuaAdmin {
+            get {
+                object obj = ResourceManager.GetObject("lihatSemuaAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lihatSemuaAdminHover {
+            get {
+                object obj = ResourceManager.GetObject("lihatSemuaAdminHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,6 +443,16 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap semuaProduk {
+            get {
+                object obj = ResourceManager.GetObject("semuaProduk", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sendEmail {
             get {
                 object obj = ResourceManager.GetObject("sendEmail", resourceCulture);
@@ -406,6 +476,26 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap sendEmailHover {
             get {
                 object obj = ResourceManager.GetObject("sendEmailHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tambahAdminBaru {
+            get {
+                object obj = ResourceManager.GetObject("tambahAdminBaru", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tambahAdminBaruHover {
+            get {
+                object obj = ResourceManager.GetObject("tambahAdminBaruHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

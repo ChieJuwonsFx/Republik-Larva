@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Republik_Larva.Models
 {
-    internal class DatabaseWrapper
+    public class DatabaseWrapper
     {
         private static readonly string DB_HOST = "localhost";
         private static readonly string DB_DATABASE = "Maggot";
