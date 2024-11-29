@@ -16,6 +16,7 @@ namespace Republik_Larva.Views
     {
         C_MainForm mainForm;
         C_Route Route;
+        public int LoggedInAdminId { get; set; }
         public V_MainForm()
         {
             InitializeComponent();
@@ -42,10 +43,18 @@ namespace Republik_Larva.Views
 
         private void btnAkun_Click(object sender, EventArgs e)
         {
+            if (LoggedInAdminId == 0)
+            {
+                MessageBox.Show("Anda harus login terlebih dahulu.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             mainForm.menu_focus = typeof(V_Akun).Name;
             mainForm.resetButton();
             btnAkun.BackgroundImage = Properties.Resources.kelolaAkunFokus;
-            C_Akun controller_akun = new C_Akun(mainForm);
+
+            // Kirim id_admin dari admin yang sedang login
+            C_Akun controller_akun = new C_Akun(mainForm, LoggedInAdminId);
         }
 
         private void btnProduk_Click(object sender, EventArgs e)

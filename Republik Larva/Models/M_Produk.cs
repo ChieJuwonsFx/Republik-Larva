@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Republik_Larva.Models
 {
-    public class MProduk : DatabaseWrapper
+    public class M_Produk : DatabaseWrapper
     {
         private static string table = "produk";
 
@@ -36,7 +36,7 @@ namespace Republik_Larva.Models
             return dataProduk;
         }
 
-        public static void AddProduk(MProduk produkBaru)
+        public static void AddProduk(M_Produk produkBaru)
         {
             string query = $"INSERT INTO {table} (nama_produk, harga, stok, gambar) VALUES(@nama, @harga, @stok, @gambar)";
 
@@ -51,7 +51,7 @@ namespace Republik_Larva.Models
             commandExecutor(query, parameters);
         }
 
-        public static void UpdateProduk(MProduk produk)
+        public static void UpdateProduk(M_Produk produk)
         {
             string query = $"UPDATE {table} SET nama_produk = @nama, harga = @harga, stok = @stok, gambar = @gambar WHERE produk_id = @id";
 

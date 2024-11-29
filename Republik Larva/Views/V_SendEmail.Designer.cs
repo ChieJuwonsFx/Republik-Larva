@@ -32,6 +32,7 @@
             emailTujuan = new TextBox();
             subject = new TextBox();
             pesan = new RichTextBox();
+            btnSendEmail = new Button();
             SuspendLayout();
             // 
             // namaTujuan
@@ -71,6 +72,7 @@
             // 
             pesan.BorderStyle = BorderStyle.None;
             pesan.Cursor = Cursors.IBeam;
+            pesan.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             pesan.Location = new Point(489, 575);
             pesan.Name = "pesan";
             pesan.ScrollBars = RichTextBoxScrollBars.Vertical;
@@ -79,11 +81,28 @@
             pesan.Text = "";
             pesan.TextChanged += pesan_TextChanged;
             // 
+            // btnSendEmail
+            // 
+            btnSendEmail.BackColor = Color.Transparent;
+            btnSendEmail.BackgroundImageLayout = ImageLayout.Stretch;
+            btnSendEmail.Cursor = Cursors.Hand;
+            btnSendEmail.FlatAppearance.BorderSize = 0;
+            btnSendEmail.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnSendEmail.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnSendEmail.FlatStyle = FlatStyle.Flat;
+            btnSendEmail.Location = new Point(835, 808);
+            btnSendEmail.Name = "btnSendEmail";
+            btnSendEmail.Size = new Size(250, 70);
+            btnSendEmail.TabIndex = 4;
+            btnSendEmail.UseVisualStyleBackColor = false;
+            btnSendEmail.Click += btnSendEmail_Click;
+            // 
             // V_SendEmail
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.sendEmail;
+            Controls.Add(btnSendEmail);
             Controls.Add(pesan);
             Controls.Add(subject);
             Controls.Add(emailTujuan);
@@ -101,5 +120,6 @@
         private TextBox emailTujuan;
         private TextBox subject;
         private RichTextBox pesan;
+        private Button btnSendEmail;
     }
 }

@@ -17,7 +17,7 @@ namespace Republik_Larva.Controller
     {
         C_MainForm C_MainForm;
         V_Produk view_produk;
-        MProduk M_Produk = new MProduk();
+        M_Produk M_Produk = new M_Produk();
         public C_Produk(C_MainForm controller)
         {
             C_MainForm = controller;
@@ -26,7 +26,7 @@ namespace Republik_Larva.Controller
         }
         public DataTable GetProdukList()
         {
-            return MProduk.All();
+            return M_Produk.All();
         }
     }
 }

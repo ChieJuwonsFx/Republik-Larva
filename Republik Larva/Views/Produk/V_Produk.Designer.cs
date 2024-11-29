@@ -36,8 +36,8 @@
             pnProduk.BackColor = Color.Transparent;
             pnProduk.Location = new Point(98, 184);
             pnProduk.Name = "pnProduk";
+            pnProduk.Padding = new Padding(10);
             pnProduk.Size = new Size(1702, 550);
-            pnProduk.Padding = new System.Windows.Forms.Padding(10);
             pnProduk.TabIndex = 1;
             // 
             // V_Produk

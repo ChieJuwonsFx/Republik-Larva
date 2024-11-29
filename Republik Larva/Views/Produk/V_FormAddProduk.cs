@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Republik_Larva.Views.Produk
 {
-    public partial class formAddProduk : UserControl
+    public partial class V_FormAddProduk : UserControl
     {
-        public formAddProduk()
+        public V_FormAddProduk()
         {
             InitializeComponent();
         }

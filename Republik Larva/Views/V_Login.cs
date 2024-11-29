@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Republik_Larva.Controller;
-using Republik_Larva.Models;
-using static Republik_Larva.Models.M_Login;
 
 namespace Republik_Larva.Views
 {
     public partial class V_Login : Form
     {
+        private C_Login c_Login;
+
         public V_Login()
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(V_Login_KeyDown);
+
+            c_Login = new C_Login(this); // Inisialisasi controller dengan view ini
         }
 
         private void btnLogin_MouseEnter(object sender, EventArgs e)
@@ -39,25 +34,7 @@ namespace Republik_Larva.Views
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            btnLogin.BackgroundImage = Properties.Resources.loginClick;
-            C_MessageBox c_MessageBox = new C_MessageBox();
-            M_Login logincontext = new M_Login();
-            dataLogin login = logincontext.Validate(username.Text, password.Text);
-            V_MainForm dashboard = new V_MainForm();
-            if (login != null)
-            {
-                c_MessageBox.show_message_box("Login berhasil!");
-                this.Hide();
-                dashboard.Show();
-            }
-            else if (string.IsNullOrEmpty(username.Text) || string.IsNullOrEmpty(password.Text))
-            {
-                c_MessageBox.show_message_box("Username & Password tidak boleh kosong!");
-            }
-            else
-            {
-                c_MessageBox.show_message_box("Username atau Password salah. Masukkan dengan benar!");
-            }
+            c_Login.HandleLogin(username.Text, password.Text); // Delegasikan logika ke controller
         }
 
         public void ClearTextBox()
@@ -71,14 +48,12 @@ namespace Republik_Larva.Views
             password.PasswordChar = '*';
         }
 
-        // Event handler untuk KeyDown pada form
         private void V_Login_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Enter)
             {
-                btnLogin.PerformClick(); 
-                e.Handled = true; 
+                btnLogin.PerformClick();
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {

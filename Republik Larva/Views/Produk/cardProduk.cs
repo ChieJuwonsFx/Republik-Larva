@@ -10,27 +10,28 @@ namespace Republik_Larva.Views.Produk
 {
     public partial class cardProduk : UserControl
     {
-        internal MProduk ProdukData;
+        internal M_Produk ProdukData;
 
         public cardProduk()
         {
             InitializeComponent();
         }
 
-        public void SetProdukData(MProduk produk)
+        public void SetProdukData(M_Produk produk)
         {
             ProdukData = produk;
 
-            namaProduk.Text = produk.nama_produk ?? "Produk Tidak Diketahui";
-            harga.Text = $"Harga: {produk.harga.ToString() ?? "0"}";
-            stok.Text = $"Stok: {produk.stok.ToString() ?? "Tidak Ada"}";
+            namaProduk.Text = produk.nama_produk;
+            harga.Text = $"Harga: {produk.harga.ToString()}";
+            stok.Text = $"Stok: {produk.stok.ToString()}";
 
             if (produk.gambar != null && produk.gambar.Length > 0)
             {
-                using (var ms = new MemoryStream(produk.gambar))
-                {
-                    imageProduk.Image = Image.FromStream(ms);
-                }
+                imageProduk.Image = new Bitmap(new MemoryStream(produk.gambar));
+                //using (var ms = new memorystream(produk.gambar))
+                //{
+                //    imageproduk.image = image.fromstream(ms);
+                //}
             }
             else
             {

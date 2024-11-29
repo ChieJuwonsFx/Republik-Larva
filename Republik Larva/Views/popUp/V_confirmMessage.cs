@@ -66,7 +66,7 @@ namespace Republik_Larva.Views.popUp
 
         private void V_confirmMessage_Load(object sender, EventArgs e)
         {
-            huya.Text = message;
+            label1.Text = message;
         }
     }
 }

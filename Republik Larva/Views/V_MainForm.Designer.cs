@@ -62,16 +62,18 @@
             btnDashboard.BackgroundImageLayout = ImageLayout.Center;
             btnDashboard.Cursor = Cursors.Hand;
             btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnDashboard.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Location = new Point(668, 2);
+            btnDashboard.Location = new Point(668, 0);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(243, 107);
             btnDashboard.TabIndex = 2;
             btnDashboard.UseVisualStyleBackColor = false;
             btnDashboard.Click += btnDashboard_Click;
             btnDashboard.MouseEnter += btnDashboard_MouseEnter;
-            btnDashboard.MouseHover += btnDashboard_MouseHover;
             btnDashboard.MouseLeave += btnDashboard_MouseLeave;
+            btnDashboard.MouseHover += btnDashboard_MouseHover;
             // 
             // btnTransaksi
             // 
@@ -79,16 +81,18 @@
             btnTransaksi.BackgroundImageLayout = ImageLayout.Stretch;
             btnTransaksi.Cursor = Cursors.Hand;
             btnTransaksi.FlatAppearance.BorderSize = 0;
+            btnTransaksi.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnTransaksi.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnTransaksi.FlatStyle = FlatStyle.Flat;
-            btnTransaksi.Location = new Point(904, 1);
+            btnTransaksi.Location = new Point(904, 0);
             btnTransaksi.Name = "btnTransaksi";
             btnTransaksi.Size = new Size(243, 107);
             btnTransaksi.TabIndex = 3;
             btnTransaksi.UseVisualStyleBackColor = false;
             btnTransaksi.Click += btnTransaksi_Click;
             btnTransaksi.MouseEnter += btnTransaksi_MouseEnter;
-            btnTransaksi.MouseHover += btnTransaksi_MouseHover;
             btnTransaksi.MouseLeave += btnTransaksi_MouseLeave;
+            btnTransaksi.MouseHover += btnTransaksi_MouseHover;
             // 
             // btnProduk
             // 
@@ -96,16 +100,18 @@
             btnProduk.BackgroundImageLayout = ImageLayout.Stretch;
             btnProduk.Cursor = Cursors.Hand;
             btnProduk.FlatAppearance.BorderSize = 0;
+            btnProduk.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnProduk.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnProduk.FlatStyle = FlatStyle.Flat;
-            btnProduk.Location = new Point(1135, 2);
+            btnProduk.Location = new Point(1135, 0);
             btnProduk.Name = "btnProduk";
             btnProduk.Size = new Size(252, 107);
             btnProduk.TabIndex = 4;
             btnProduk.UseVisualStyleBackColor = false;
             btnProduk.Click += btnProduk_Click;
             btnProduk.MouseEnter += btnProduk_MouseEnter;
-            btnProduk.MouseHover += btnProduk_MouseHover;
             btnProduk.MouseLeave += btnProduk_MouseLeave;
+            btnProduk.MouseHover += btnProduk_MouseHover;
             // 
             // btnSendEmail
             // 
@@ -113,6 +119,8 @@
             btnSendEmail.BackgroundImageLayout = ImageLayout.Stretch;
             btnSendEmail.Cursor = Cursors.Hand;
             btnSendEmail.FlatAppearance.BorderSize = 0;
+            btnSendEmail.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnSendEmail.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnSendEmail.FlatStyle = FlatStyle.Flat;
             btnSendEmail.Location = new Point(1390, 0);
             btnSendEmail.Name = "btnSendEmail";
@@ -121,8 +129,8 @@
             btnSendEmail.UseVisualStyleBackColor = false;
             btnSendEmail.Click += btnSendEmail_Click;
             btnSendEmail.MouseEnter += btnSendEmail_MouseEnter;
-            btnSendEmail.MouseHover += btnSendEmail_MouseHover;
             btnSendEmail.MouseLeave += btnSendEmail_MouseLeave;
+            btnSendEmail.MouseHover += btnSendEmail_MouseHover;
             // 
             // btnAkun
             // 
@@ -130,16 +138,18 @@
             btnAkun.BackgroundImageLayout = ImageLayout.Stretch;
             btnAkun.Cursor = Cursors.Hand;
             btnAkun.FlatAppearance.BorderSize = 0;
+            btnAkun.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnAkun.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnAkun.FlatStyle = FlatStyle.Flat;
-            btnAkun.Location = new Point(1635, 1);
+            btnAkun.Location = new Point(1635, 0);
             btnAkun.Name = "btnAkun";
             btnAkun.Size = new Size(252, 107);
             btnAkun.TabIndex = 6;
             btnAkun.UseVisualStyleBackColor = false;
             btnAkun.Click += btnAkun_Click;
             btnAkun.MouseEnter += btnAkun_MouseEnter;
-            btnAkun.MouseHover += btnAkun_MouseHover;
             btnAkun.MouseLeave += btnAkun_MouseLeave;
+            btnAkun.MouseHover += btnAkun_MouseHover;
             // 
             // V_MainForm
             // 

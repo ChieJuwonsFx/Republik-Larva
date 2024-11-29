@@ -233,6 +233,16 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap formTambahAdmin {
+            get {
+                object obj = ResourceManager.GetObject("formTambahAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap isiProduk {
             get {
                 object obj = ResourceManager.GetObject("isiProduk", resourceCulture);
@@ -476,6 +486,26 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap sendEmailHover {
             get {
                 object obj = ResourceManager.GetObject("sendEmailHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap simpan {
+            get {
+                object obj = ResourceManager.GetObject("simpan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap simpanHover {
+            get {
+                object obj = ResourceManager.GetObject("simpanHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,6 +1,6 @@
 ﻿namespace Republik_Larva.Views.Produk
 {
-    partial class formUbahProduk
+    partial class V_FormAddProduk
     {
         /// <summary> 
         /// Required designer variable.

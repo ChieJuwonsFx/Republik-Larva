@@ -18,35 +18,38 @@ namespace Republik_Larva.Views.Produk
             harga = new Label();
             btnEditProduk = new Button();
             stok = new Label();
-
             ((System.ComponentModel.ISupportInitialize)imageProduk).BeginInit();
             SuspendLayout();
-
+            // 
             // imageProduk
+            // 
             imageProduk.Location = new Point(29, 33);
             imageProduk.Name = "imageProduk";
             imageProduk.Size = new Size(369, 273);
             imageProduk.TabIndex = 0;
             imageProduk.TabStop = false;
             imageProduk.Click += imageProduk_Click;
-
+            // 
             // namaProduk
-            namaProduk.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            // 
+            namaProduk.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             namaProduk.Location = new Point(29, 329);
             namaProduk.Name = "namaProduk";
             namaProduk.Size = new Size(369, 42);
             namaProduk.TabIndex = 1;
             namaProduk.TextAlign = ContentAlignment.MiddleLeft;
-
+            // 
             // harga
-            harga.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            // 
+            harga.Font = new Font("Segoe UI", 13.8F);
             harga.Location = new Point(29, 373);
             harga.Name = "harga";
             harga.Size = new Size(369, 34);
             harga.TabIndex = 2;
             harga.TextAlign = ContentAlignment.MiddleLeft;
-
+            // 
             // btnEditProduk
+            // 
             btnEditProduk.BackgroundImage = Properties.Resources.editProduk;
             btnEditProduk.BackgroundImageLayout = ImageLayout.Stretch;
             btnEditProduk.FlatAppearance.BorderSize = 0;
@@ -57,15 +60,17 @@ namespace Republik_Larva.Views.Produk
             btnEditProduk.TabIndex = 3;
             btnEditProduk.UseVisualStyleBackColor = true;
             btnEditProduk.Click += btnEditProduk_Click;
-
+            // 
             // stok
-            stok.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            // 
+            stok.Font = new Font("Segoe UI", 10.2F);
             stok.Location = new Point(33, 414);
             stok.Name = "stok";
             stok.Size = new Size(369, 25);
             stok.TabIndex = 4;
-
+            // 
             // cardProduk
+            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.cardProduk;
@@ -74,6 +79,7 @@ namespace Republik_Larva.Views.Produk
             Controls.Add(harga);
             Controls.Add(namaProduk);
             Controls.Add(imageProduk);
+            Margin = new Padding(30, 30, 3, 3);
             Name = "cardProduk";
             Size = new Size(430, 550);
             ((System.ComponentModel.ISupportInitialize)imageProduk).EndInit();

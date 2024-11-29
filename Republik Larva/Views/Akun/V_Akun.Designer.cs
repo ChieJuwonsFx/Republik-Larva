@@ -31,13 +31,15 @@
             btnClose = new Button();
             nama = new Label();
             username = new Label();
+            btnLogout = new Button();
+            btnTambahAdmin = new Button();
             SuspendLayout();
             // 
             // btnClose
             // 
             btnClose.BackColor = Color.Transparent;
-            btnClose.BackgroundImage = Properties.Resources.close;
             btnClose.BackgroundImageLayout = ImageLayout.Stretch;
+            btnClose.Cursor = Cursors.Hand;
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnClose.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -48,6 +50,8 @@
             btnClose.TabIndex = 0;
             btnClose.UseVisualStyleBackColor = false;
             btnClose.Click += btnClose_Click;
+            btnClose.MouseEnter += btnClose_MouseEnter;
+            btnClose.MouseLeave += btnClose_MouseLeave;
             // 
             // nama
             // 
@@ -57,7 +61,6 @@
             nama.Name = "nama";
             nama.Size = new Size(276, 44);
             nama.TabIndex = 1;
-            nama.Text = "label1";
             nama.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // username
@@ -68,19 +71,55 @@
             username.Name = "username";
             username.Size = new Size(211, 30);
             username.TabIndex = 2;
-            username.Text = "label2";
             username.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.Transparent;
+            btnLogout.BackgroundImageLayout = ImageLayout.Stretch;
+            btnLogout.Cursor = Cursors.Hand;
+            btnLogout.FlatAppearance.BorderSize = 0;
+            btnLogout.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnLogout.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Location = new Point(1555, 804);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(271, 76);
+            btnLogout.TabIndex = 3;
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // btnTambahAdmin
+            // 
+            btnTambahAdmin.BackColor = Color.Transparent;
+            btnTambahAdmin.BackgroundImageLayout = ImageLayout.Stretch;
+            btnTambahAdmin.Cursor = Cursors.Hand;
+            btnTambahAdmin.FlatAppearance.BorderSize = 0;
+            btnTambahAdmin.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnTambahAdmin.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnTambahAdmin.FlatStyle = FlatStyle.Flat;
+            btnTambahAdmin.Location = new Point(1142, 553);
+            btnTambahAdmin.Name = "btnTambahAdmin";
+            btnTambahAdmin.Size = new Size(303, 98);
+            btnTambahAdmin.TabIndex = 4;
+            btnTambahAdmin.UseVisualStyleBackColor = false;
+            btnTambahAdmin.Click += btnTambahAdmin_Click;
+            btnTambahAdmin.MouseEnter += btnTambahAdmin_MouseEnter;
+            btnTambahAdmin.MouseLeave += btnTambahAdmin_MouseLeave;
             // 
             // V_Akun
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.akun;
+            Controls.Add(btnTambahAdmin);
+            Controls.Add(btnLogout);
             Controls.Add(username);
             Controls.Add(nama);
             Controls.Add(btnClose);
             Name = "V_Akun";
             Size = new Size(1920, 937);
+            Load += V_Akun_Load;
             ResumeLayout(false);
         }
 
@@ -89,5 +128,7 @@
         private Button btnClose;
         private Label nama;
         private Label username;
+        private Button btnLogout;
+        private Button btnTambahAdmin;
     }
 }

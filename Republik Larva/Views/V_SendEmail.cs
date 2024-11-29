@@ -22,7 +22,7 @@ namespace Republik_Larva.Views
         {
             InitializeComponent();
         }
-        private void btn_sendEmail_Click(object sender, EventArgs e)
+        private void btnSendEmail_Click(object sender, EventArgs e)
         {
             try
             {
@@ -52,6 +52,8 @@ namespace Republik_Larva.Views
                 MessageBox.Show($"Gagal mengirim email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
 
         private void namaTujuan_TextChanged(object sender, EventArgs e)
         {

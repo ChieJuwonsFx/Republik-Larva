@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Label huya;
             konfirm = new Button();
             batal = new Button();
-            huya = new Label();
+            label1 = new Label();
             SuspendLayout();
             // 
             // konfirm
@@ -46,6 +45,8 @@
             konfirm.TabIndex = 0;
             konfirm.UseVisualStyleBackColor = false;
             konfirm.Click += konfirm_Click;
+            konfirm.MouseEnter += konfirm_MouseEnter;
+            konfirm.MouseLeave += konfirm_MouseLeave;
             // 
             // batal
             // 
@@ -59,17 +60,20 @@
             batal.TabIndex = 1;
             batal.UseVisualStyleBackColor = false;
             batal.Click += batal_Click;
+            batal.MouseLeave += batal_MouseLeave;
+            batal.MouseEnter += batal_MouseEnter;
             // 
-            // huya
+            // label1
             // 
-            huya.BackColor = Color.Transparent;
-            huya.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            huya.Location = new Point(40, 216);
-            huya.Name = "huya";
-            huya.Size = new Size(684, 74);
-            huya.TabIndex = 2;
-            huya.Text = "Message";
-            huya.TextAlign = ContentAlignment.MiddleCenter;
+            label1.BackColor = Color.Transparent;
+            label1.FlatStyle = FlatStyle.Flat;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(33, 221);
+            label1.Name = "label1";
+            label1.Size = new Size(684, 74);
+            label1.TabIndex = 3;
+            label1.Text = "label1";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // V_confirmMessage
             // 
@@ -77,9 +81,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.confirmMessage;
             ClientSize = new Size(754, 469);
-            Controls.Add(huya);
             Controls.Add(batal);
             Controls.Add(konfirm);
+            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "V_confirmMessage";
             StartPosition = FormStartPosition.CenterScreen;
@@ -90,8 +94,8 @@
 
         #endregion
 
-        private Button konfirm;
-        private Button batal;
-        private Label huya;
+        public Button konfirm;
+        public Button batal;
+        private Label label1;
     }
 }

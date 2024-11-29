@@ -10,7 +10,7 @@ namespace Republik_Larva.Views
     public partial class V_Produk : UserControl
     {
         private C_Produk _controller;
-        MProduk MProduk;
+        M_Produk MProduk;
         public V_Produk(C_Produk controller)
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace Republik_Larva.Views
             int yOffset = 10;
             foreach (DataRow row in produkTable.Rows)
             {
-                MProduk produk = new MProduk
+                M_Produk produk = new M_Produk
                 {
                     nama_produk = row["nama_produk"].ToString(),
                     harga = Convert.ToInt32(row["harga"]),
@@ -40,18 +40,14 @@ namespace Republik_Larva.Views
                     gambar = row["gambar"] as byte[]
                 };
 
-
-                // Membuat kartu produk
-                var kartu = new cardProduk
+                cardProduk kartu = new cardProduk
                 {
                     Location = new Point(10, yOffset),
                     Size = new Size(430, 550)
                 };
 
-                // Set data produk ke kartu
                 kartu.SetProdukData(produk);
 
-                // Menambahkan kartu ke panel
                 pnProduk.Controls.Add(kartu);
 
                 yOffset += kartu.Height + 10;
