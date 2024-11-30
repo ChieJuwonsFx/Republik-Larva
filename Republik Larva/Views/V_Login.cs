@@ -7,14 +7,14 @@ namespace Republik_Larva.Views
     public partial class V_Login : Form
     {
         private C_Login c_Login;
-
+        private C_MainForm mainForm;
         public V_Login()
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(V_Login_KeyDown);
 
-            c_Login = new C_Login(this); // Inisialisasi controller dengan view ini
+            c_Login = new C_Login(this);
         }
 
         private void btnLogin_MouseEnter(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace Republik_Larva.Views
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            c_Login.HandleLogin(username.Text, password.Text); // Delegasikan logika ke controller
+            c_Login.HandleLogin(username.Text, password.Text);
         }
 
         public void ClearTextBox()

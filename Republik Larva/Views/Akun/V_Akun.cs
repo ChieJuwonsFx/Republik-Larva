@@ -11,6 +11,7 @@ namespace Republik_Larva.Views
         private C_Akun c_Akun;
         private DataAkun akun;
         private V_TambahAdmin tambahAdmin;
+        private C_MainForm mainForm;
 
         public V_Akun(C_Akun controller, DataAkun akun)
         {
@@ -68,6 +69,11 @@ namespace Republik_Larva.Views
         private void btnTambahAdmin_MouseLeave(object sender, EventArgs e)
         {
             btnTambahAdmin.BackgroundImage = Properties.Resources.tambahAdminBaru;
+        }
+
+        private void btnEditAdmin_Click(object sender, EventArgs e)
+        {
+            c_Akun.editAdminView();
         }
     }
 }

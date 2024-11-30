@@ -256,8 +256,17 @@
   <data name="tambahAdminBaruHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tambahAdminBaruHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="formEditAdmin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\formEditAdmin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="formTambahAdmin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\formTambahAdmin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kirim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kirim.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kirimHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kirimHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="simpan" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\simpan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

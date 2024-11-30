@@ -45,7 +45,7 @@ namespace Republik_Larva.Views
         {
             if (LoggedInAdminId == 0)
             {
-                MessageBox.Show("Anda harus login terlebih dahulu.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mainForm.show_message_box("Anda harus login terlebih dahulu.");
                 return;
             }
 
@@ -53,7 +53,6 @@ namespace Republik_Larva.Views
             mainForm.resetButton();
             btnAkun.BackgroundImage = Properties.Resources.kelolaAkunFokus;
 
-            // Kirim id_admin dari admin yang sedang login
             C_Akun controller_akun = new C_Akun(mainForm, LoggedInAdminId);
         }
 

@@ -33,6 +33,7 @@
             username = new Label();
             btnLogout = new Button();
             btnTambahAdmin = new Button();
+            btnEditAdmin = new Button();
             SuspendLayout();
             // 
             // btnClose
@@ -107,11 +108,28 @@
             btnTambahAdmin.MouseEnter += btnTambahAdmin_MouseEnter;
             btnTambahAdmin.MouseLeave += btnTambahAdmin_MouseLeave;
             // 
+            // btnEditAdmin
+            // 
+            btnEditAdmin.BackColor = Color.Transparent;
+            btnEditAdmin.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEditAdmin.Cursor = Cursors.Hand;
+            btnEditAdmin.FlatAppearance.BorderSize = 0;
+            btnEditAdmin.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnEditAdmin.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnEditAdmin.FlatStyle = FlatStyle.Flat;
+            btnEditAdmin.Location = new Point(826, 553);
+            btnEditAdmin.Name = "btnEditAdmin";
+            btnEditAdmin.Size = new Size(286, 98);
+            btnEditAdmin.TabIndex = 5;
+            btnEditAdmin.UseVisualStyleBackColor = false;
+            btnEditAdmin.Click += btnEditAdmin_Click;
+            // 
             // V_Akun
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.akun;
+            Controls.Add(btnEditAdmin);
             Controls.Add(btnTambahAdmin);
             Controls.Add(btnLogout);
             Controls.Add(username);
@@ -130,5 +148,6 @@
         private Label username;
         private Button btnLogout;
         private Button btnTambahAdmin;
+        private Button btnEditAdmin;
     }
 }

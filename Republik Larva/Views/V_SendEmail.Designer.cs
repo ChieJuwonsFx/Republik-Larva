@@ -96,6 +96,8 @@
             btnSendEmail.TabIndex = 4;
             btnSendEmail.UseVisualStyleBackColor = false;
             btnSendEmail.Click += btnSendEmail_Click;
+            btnSendEmail.MouseEnter += btnSendEmail_MouseEnter;
+            btnSendEmail.MouseLeave += btnSendEmail_MouseLeave;
             // 
             // V_SendEmail
             // 
@@ -113,6 +115,8 @@
             ResumeLayout(false);
             PerformLayout();
         }
+
+
 
         #endregion
 

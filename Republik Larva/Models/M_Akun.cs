@@ -77,8 +77,31 @@ namespace Republik_Larva.Models
                 return false;
             }
         }
+        public bool UpdateAdmin(int id, string namaAdmin, string password)
+        {
+            try
+            {
+                string query = "UPDATE admin SET nama_admin = @namaAdmin, password = @password WHERE admin_id = @id";
+
+                List<NpgsqlParameter> parameters = new List<NpgsqlParameter>
+                {
+                    new NpgsqlParameter("@namaAdmin", namaAdmin),
+                    new NpgsqlParameter("@password", password),
+                    new NpgsqlParameter("@id", id)
+                };
+
+                queryExecutor(query, parameters.ToArray());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error updating admin: " + ex.Message); // Untuk debugging
+                return false;
+            }
+        }
     }
-    public class DataAkun
+
+        public class DataAkun
     {
         public int admin_id { get; set; }
         public string nama_admin { get; set; }

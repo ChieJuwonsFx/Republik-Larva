@@ -52,8 +52,14 @@ namespace Republik_Larva.Views
                 MessageBox.Show($"Gagal mengirim email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        
+        private void btnSendEmail_MouseLeave(object sender, EventArgs e)
+        {
+            btnSendEmail.BackgroundImage = Properties.Resources.kirim;
+        }
+        private void btnSendEmail_MouseEnter(object sender, EventArgs e)
+        {
+            btnSendEmail.BackgroundImage = Properties.Resources.kirimHover;
+        }
 
         private void namaTujuan_TextChanged(object sender, EventArgs e)
         {

@@ -13,7 +13,6 @@ namespace Republik_Larva.Controller
             this.mainForm = main_form;
             moveView(new V_Utama());
         }
-
         public void moveView(UserControl view)
         {
             mainForm.panelUtama.Controls.Clear();

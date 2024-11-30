@@ -9,13 +9,13 @@ namespace Republik_Larva.Controller
     {
         private V_Login view;
         private M_Akun model;
+        private C_MainForm mainForm;
 
         public C_Login(V_Login loginView)
         {
             view = loginView;
             model = new M_Akun();
         }
-
         public void HandleLogin(string username, string password)
         {
             DataAkun login = model.Validate(username, password);
