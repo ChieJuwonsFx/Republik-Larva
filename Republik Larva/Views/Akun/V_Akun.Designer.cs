@@ -34,6 +34,7 @@
             btnLogout = new Button();
             btnTambahAdmin = new Button();
             btnEditAdmin = new Button();
+            btnLihatSemua = new Button();
             SuspendLayout();
             // 
             // btnClose
@@ -125,14 +126,31 @@
             btnEditAdmin.TabIndex = 5;
             btnEditAdmin.UseVisualStyleBackColor = false;
             btnEditAdmin.Click += btnEditAdmin_Click;
-            btnEditAdmin.MouseLeave += btnEditAdmin_MouseLeave;
             btnEditAdmin.MouseEnter += btnEditAdmin_MouseEnter;
+            btnEditAdmin.MouseLeave += btnEditAdmin_MouseLeave;
+            // 
+            // btnLihatSemua
+            // 
+            btnLihatSemua.BackColor = Color.Transparent;
+            btnLihatSemua.BackgroundImageLayout = ImageLayout.Stretch;
+            btnLihatSemua.Cursor = Cursors.Hand;
+            btnLihatSemua.FlatAppearance.BorderSize = 0;
+            btnLihatSemua.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnLihatSemua.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnLihatSemua.FlatStyle = FlatStyle.Flat;
+            btnLihatSemua.Location = new Point(475, 553);
+            btnLihatSemua.Name = "btnLihatSemua";
+            btnLihatSemua.Size = new Size(321, 98);
+            btnLihatSemua.TabIndex = 6;
+            btnLihatSemua.UseVisualStyleBackColor = false;
+            btnLihatSemua.Click += btnLihatSemua_Click;
             // 
             // V_Akun
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.akun;
+            Controls.Add(btnLihatSemua);
             Controls.Add(btnEditAdmin);
             Controls.Add(btnTambahAdmin);
             Controls.Add(btnLogout);
@@ -153,5 +171,6 @@
         private Button btnLogout;
         private Button btnTambahAdmin;
         private Button btnEditAdmin;
+        private Button btnLihatSemua;
     }
 }

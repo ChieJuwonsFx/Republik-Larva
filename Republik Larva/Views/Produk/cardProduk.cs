@@ -28,10 +28,6 @@ namespace Republik_Larva.Views.Produk
             if (produk.gambar != null && produk.gambar.Length > 0)
             {
                 imageProduk.Image = new Bitmap(new MemoryStream(produk.gambar));
-                //using (var ms = new memorystream(produk.gambar))
-                //{
-                //    imageproduk.image = image.fromstream(ms);
-                //}
             }
             else
             {

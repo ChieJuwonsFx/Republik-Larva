@@ -6,6 +6,16 @@ namespace Republik_Larva.Models
 {
     public class M_Akun : DatabaseWrapper
     {
+        private static string table = "admin";
+        public static DataTable All()
+        {
+            string query = @"
+                SELECT admin_id, nama_admin, username
+                FROM admin";
+
+            DataTable dataAdmin = queryExecutor(query);
+            return dataAdmin;
+        }
         public DataAkun Validate(string username, string password)
         {
             DataAkun login = null;
@@ -99,9 +109,30 @@ namespace Republik_Larva.Models
                 return false;
             }
         }
+        public bool HapusAdmin(int adminId)
+        {
+            try
+            {
+                string query = "DELETE FROM admin WHERE admin_id = @id";
+
+                NpgsqlParameter[] parameters = {
+                    new NpgsqlParameter("@id", adminId)
+                };
+
+                queryExecutor(query, parameters);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error deleting admin: " + ex.Message);
+                return false;
+            }
+        }
+
+
     }
 
-        public class DataAkun
+    public class DataAkun
     {
         public int admin_id { get; set; }
         public string nama_admin { get; set; }

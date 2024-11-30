@@ -274,4 +274,16 @@
   <data name="simpanHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\simpanHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AllAdmin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AllAdmin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cardAdmin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cardAdmin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hapusAdmin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hapusAdmin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hapusAdminHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hapusAdminHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

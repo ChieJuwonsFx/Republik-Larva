@@ -73,6 +73,16 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AllAdmin {
+            get {
+                object obj = ResourceManager.GetObject("AllAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap batal {
             get {
                 object obj = ResourceManager.GetObject("batal", resourceCulture);
@@ -106,6 +116,16 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap bg {
             get {
                 object obj = ResourceManager.GetObject("bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cardAdmin {
+            get {
+                object obj = ResourceManager.GetObject("cardAdmin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +266,26 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap formTambahAdmin {
             get {
                 object obj = ResourceManager.GetObject("formTambahAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hapusAdmin {
+            get {
+                object obj = ResourceManager.GetObject("hapusAdmin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hapusAdminHover {
+            get {
+                object obj = ResourceManager.GetObject("hapusAdminHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

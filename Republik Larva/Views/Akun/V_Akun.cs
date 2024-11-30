@@ -83,5 +83,10 @@ namespace Republik_Larva.Views
         {
             btnEditAdmin.BackgroundImage = Properties.Resources.editDataAkun;
         }
+
+        private void btnLihatSemua_Click(object sender, EventArgs e)
+        {
+            c_Akun.AllAdminView();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Republik_Larva.Models;
 using Republik_Larva.Views.Akun;
 using Republik_Larva.Views;
+using System.Data;
 
 public class C_Akun : C_MessageBox
 {
@@ -12,6 +13,7 @@ public class C_Akun : C_MessageBox
     private DataAkun akun;
     private V_TambahAdmin view_tambah;
     private V_EditAdmin view_edit;
+    private V_AllAdmin view_all;
 
     private int idAdmin;  
     public C_Akun(C_MainForm controller, int id_admin)
@@ -102,9 +104,15 @@ public class C_Akun : C_MessageBox
         bool isUpdated = mAkun.UpdateAdmin(id, namaAdmin, password);
         return isUpdated;
     }
-
-
-
+    public void AllAdminView()
+    {
+        view_all = new V_AllAdmin(this);
+        C_MainForm.moveView(view_all);
+    }
+    public DataTable GetAkunList()
+    {
+        return M_Akun.All();
+    }
     public void logout()
     {
         if (show_confirm_message_box("Apakah Anda Yakin?"))
