@@ -104,6 +104,7 @@ public class C_Akun : C_MessageBox
     }
 
 
+
     public void logout()
     {
         if (show_confirm_message_box("Apakah Anda Yakin?"))
