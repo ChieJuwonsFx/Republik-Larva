@@ -100,17 +100,6 @@ public class C_Akun : C_MessageBox
 
         M_Akun mAkun = new M_Akun();
         bool isUpdated = mAkun.UpdateAdmin(id, namaAdmin, password);
-
-        if (isUpdated)
-        {
-            show_message_box("Data admin berhasil diperbarui.");
-        }
-        else
-        {
-            show_message_box("Gagal memperbarui data admin. Coba lagi.");
-        }
-        view_akun = new V_Akun(this, akun);
-        C_MainForm.moveView(view_akun);
         return isUpdated;
     }
 

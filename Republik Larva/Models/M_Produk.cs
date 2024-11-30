@@ -47,7 +47,6 @@ namespace Republik_Larva.Models
                 new NpgsqlParameter("@stok", produkBaru.stok),
                 new NpgsqlParameter("@gambar", produkBaru.gambar ?? (object)DBNull.Value) 
             };
-
             commandExecutor(query, parameters);
         }
 

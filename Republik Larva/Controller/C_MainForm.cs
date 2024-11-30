@@ -7,7 +7,7 @@ namespace Republik_Larva.Controller
     public class C_MainForm : C_MessageBox
     {
         public V_MainForm mainForm;
-        public string menu_focus = typeof(V_Dashboard).Name;
+        public string menu_focus = typeof(V_Utama).Name;
         public C_MainForm(V_MainForm main_form)
         {
             this.mainForm = main_form;

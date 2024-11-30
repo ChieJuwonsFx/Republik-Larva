@@ -89,6 +89,8 @@
             btnLogout.TabIndex = 3;
             btnLogout.UseVisualStyleBackColor = false;
             btnLogout.Click += btnLogout_Click;
+            btnLogout.MouseEnter += btnLogout_MouseEnter;
+            btnLogout.MouseLeave += btnLogout_MouseLeave;
             // 
             // btnTambahAdmin
             // 
@@ -123,6 +125,8 @@
             btnEditAdmin.TabIndex = 5;
             btnEditAdmin.UseVisualStyleBackColor = false;
             btnEditAdmin.Click += btnEditAdmin_Click;
+            btnEditAdmin.MouseLeave += btnEditAdmin_MouseLeave;
+            btnEditAdmin.MouseEnter += btnEditAdmin_MouseEnter;
             // 
             // V_Akun
             // 

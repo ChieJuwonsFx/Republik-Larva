@@ -41,7 +41,14 @@ namespace Republik_Larva.Views.Akun
             c_Akun.editAdmin(adminData.admin_id, namaAdmin, password, konfirmPassword);
             c_Akun.balikAkun();
         }
-
+        private void btnSimpan_MouseEnter(object sender, EventArgs e)
+        {
+            btnSimpan.BackgroundImage = Properties.Resources.simpanHover;
+        }
+        private void btnSimpan_MouseLeave(object sender, EventArgs e)
+        {
+            btnSimpan.BackgroundImage = Properties.Resources.simpan;
+        }
         private void password_TextChanged(object sender, EventArgs e)
         {
             password.PasswordChar = '*';

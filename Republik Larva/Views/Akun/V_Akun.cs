@@ -75,5 +75,13 @@ namespace Republik_Larva.Views
         {
             c_Akun.editAdminView();
         }
+        private void btnEditAdmin_MouseEnter(object sender, EventArgs e)
+        {
+            btnEditAdmin.BackgroundImage = Properties.Resources.editDataAkunHover;
+        }
+        private void btnEditAdmin_MouseLeave(object sender, EventArgs e)
+        {
+            btnEditAdmin.BackgroundImage = Properties.Resources.editDataAkun;
+        }
     }
 }

@@ -91,6 +91,8 @@
             btnSimpan.TabIndex = 4;
             btnSimpan.UseVisualStyleBackColor = false;
             btnSimpan.Click += btnSimpan_Click;
+            btnSimpan.MouseEnter += btnSimpan_MouseEnter;
+            btnSimpan.MouseLeave += btnSimpan_MouseLeave;
             // 
             // V_EditAdmin
             // 
