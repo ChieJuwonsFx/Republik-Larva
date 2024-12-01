@@ -54,5 +54,18 @@ namespace Republik_Larva.Views.Akun
         {
             lblKonfirmPassword.PasswordChar = '*';
         }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            c_Akun.balikAkun();
+        }
+        private void btnKembali_MouseLeave(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+        }
+        private void btnKembali_MouseEnter(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
+        }
     }
 }

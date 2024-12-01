@@ -33,6 +33,7 @@
             lblPassword = new TextBox();
             lblKonfirmPassword = new TextBox();
             btnSimpan = new Button();
+            btnKembali = new Button();
             SuspendLayout();
             // 
             // lblNamaAdmin
@@ -85,17 +86,35 @@
             btnSimpan.FlatAppearance.BorderSize = 0;
             btnSimpan.FlatStyle = FlatStyle.Flat;
             btnSimpan.Location = new Point(835, 752);
-            btnSimpan.Name = "button1";
+            btnSimpan.Name = "btnSimpan";
             btnSimpan.Size = new Size(250, 70);
             btnSimpan.TabIndex = 4;
             btnSimpan.UseVisualStyleBackColor = false;
-            btnSimpan.Click += this.btnSimpan_Click;
+            btnSimpan.Click += btnSimpan_Click;
+            // 
+            // btnKembali
+            // 
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+            btnKembali.Cursor = Cursors.Hand;
+            btnKembali.FlatAppearance.BorderSize = 0;
+            btnKembali.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKembali.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnKembali.FlatStyle = FlatStyle.Flat;
+            btnKembali.Location = new Point(100, 812);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(216, 74);
+            btnKembali.TabIndex = 5;
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
+            btnKembali.MouseEnter += btnKembali_MouseEnter;
+            btnKembali.MouseLeave += btnKembali_MouseLeave;
             // 
             // V_TambahAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.formTambahAdmin;
+            Controls.Add(btnKembali);
             Controls.Add(btnSimpan);
             Controls.Add(lblKonfirmPassword);
             Controls.Add(lblPassword);
@@ -114,5 +133,6 @@
         private TextBox lblPassword;
         private TextBox lblKonfirmPassword;
         private Button btnSimpan;
+        private Button btnKembali;
     }
 }

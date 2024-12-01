@@ -33,6 +33,7 @@
             konfirmPassword = new TextBox();
             username = new Label();
             btnSimpan = new Button();
+            btnKembali = new Button();
             SuspendLayout();
             // 
             // namaAdmin
@@ -94,11 +95,29 @@
             btnSimpan.MouseEnter += btnSimpan_MouseEnter;
             btnSimpan.MouseLeave += btnSimpan_MouseLeave;
             // 
+            // btnKembali
+            // 
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+            btnKembali.Cursor = Cursors.Hand;
+            btnKembali.FlatAppearance.BorderSize = 0;
+            btnKembali.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKembali.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnKembali.FlatStyle = FlatStyle.Flat;
+            btnKembali.Location = new Point(91, 808);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(216, 74);
+            btnKembali.TabIndex = 5;
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
+            btnKembali.MouseEnter += btnKembali_MouseEnter;
+            btnKembali.MouseLeave += btnKembali_MouseLeave;
+            // 
             // V_EditAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.formEditAdmin;
+            Controls.Add(btnKembali);
             Controls.Add(btnSimpan);
             Controls.Add(username);
             Controls.Add(konfirmPassword);
@@ -117,5 +136,6 @@
         private TextBox konfirmPassword;
         private Label username;
         private Button btnSimpan;
+        private Button btnKembali;
     }
 }

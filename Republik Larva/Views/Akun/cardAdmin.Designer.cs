@@ -111,6 +111,6 @@
         private Label username;
         private Label adminId;
         private Label label1;
-        private Button btnHapus;
+        public Button btnHapus;
     }
 }

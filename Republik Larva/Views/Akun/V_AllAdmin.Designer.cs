@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             pnAdmin = new FlowLayoutPanel();
+            btnKembali = new Button();
             SuspendLayout();
             // 
             // pnAdmin
@@ -43,12 +44,31 @@
             pnAdmin.Size = new Size(1702, 578);
             pnAdmin.TabIndex = 1;
             // 
+            // btnKembali
+            // 
+            btnKembali.BackColor = Color.Transparent;
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+            btnKembali.Cursor = Cursors.Hand;
+            btnKembali.FlatAppearance.BorderSize = 0;
+            btnKembali.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnKembali.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnKembali.FlatStyle = FlatStyle.Flat;
+            btnKembali.Location = new Point(103, 802);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(216, 74);
+            btnKembali.TabIndex = 2;
+            btnKembali.UseVisualStyleBackColor = false;
+            btnKembali.Click += btnKembali_Click;
+            btnKembali.MouseEnter += btnKembali_MouseEnter;
+            btnKembali.MouseLeave += btnKembali_MouseLeave;
+            // 
             // V_AllAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackgroundImage = Properties.Resources.AllAdmin;
+            Controls.Add(btnKembali);
             Controls.Add(pnAdmin);
             Name = "V_AllAdmin";
             Size = new Size(1920, 937);
@@ -58,5 +78,6 @@
         #endregion
 
         private FlowLayoutPanel pnAdmin;
+        private Button btnKembali;
     }
 }

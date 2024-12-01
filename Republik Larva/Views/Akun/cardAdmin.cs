@@ -21,7 +21,6 @@ namespace Republik_Larva.Views.Akun
         public void SetAkunData(DataAkun admin)
         {
             adminData = admin;
-
             namaAdmin.Text = admin.nama_admin;
             username.Text = admin.username;
             adminId.Text = $"{admin.admin_id}";

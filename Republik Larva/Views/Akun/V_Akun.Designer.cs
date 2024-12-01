@@ -144,6 +144,8 @@
             btnLihatSemua.TabIndex = 6;
             btnLihatSemua.UseVisualStyleBackColor = false;
             btnLihatSemua.Click += btnLihatSemua_Click;
+            btnLihatSemua.MouseEnter += btnLihatSemua_MouseEnter;
+            btnLihatSemua.MouseLeave += btnLihatSemua_MouseLeave;
             // 
             // V_Akun
             // 

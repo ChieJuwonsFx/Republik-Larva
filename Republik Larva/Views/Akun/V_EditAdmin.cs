@@ -27,7 +27,7 @@ namespace Republik_Larva.Views.Akun
             {
                 namaAdmin.Text = adminData.nama_admin;
                 username.Text = adminData.username;
-                password.Text = adminData.password; 
+                password.Text = adminData.password;
                 konfirmPassword.Text = adminData.password;
             }
         }
@@ -56,6 +56,19 @@ namespace Republik_Larva.Views.Akun
         private void konfirmPassword_TextChanged(object sender, EventArgs e)
         {
             konfirmPassword.PasswordChar = '*';
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            c_Akun.balikAkun();
+        }
+        private void btnKembali_MouseLeave(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+        }
+        private void btnKembali_MouseEnter(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
         }
     }
 }

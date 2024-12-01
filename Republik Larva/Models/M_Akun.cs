@@ -7,11 +7,13 @@ namespace Republik_Larva.Models
     public class M_Akun : DatabaseWrapper
     {
         private static string table = "admin";
+
         public static DataTable All()
         {
             string query = @"
-                SELECT admin_id, nama_admin, username
-                FROM admin";
+            SELECT admin_id, nama_admin, username
+            FROM admin
+            WHERE isActive = true";  // Menambahkan filter hanya yang aktif
 
             DataTable dataAdmin = queryExecutor(query);
             return dataAdmin;
@@ -113,7 +115,7 @@ namespace Republik_Larva.Models
         {
             try
             {
-                string query = "DELETE FROM admin WHERE admin_id = @id";
+                string query = "UPDATE admin SET isActive = false WHERE admin_id = @id";
 
                 NpgsqlParameter[] parameters = {
                     new NpgsqlParameter("@id", adminId)
@@ -128,8 +130,6 @@ namespace Republik_Larva.Models
                 return false;
             }
         }
-
-
     }
 
     public class DataAkun
@@ -138,5 +138,6 @@ namespace Republik_Larva.Models
         public string nama_admin { get; set; }
         public string username { get; set; }
         public string password { get; set; }
+        public string isActive { get; set; }
     }
 }
