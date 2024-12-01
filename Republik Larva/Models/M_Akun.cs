@@ -72,7 +72,7 @@ namespace Republik_Larva.Models
         {
             try
             {
-                string query = "INSERT INTO admin (nama_admin, username, password) VALUES (@namaAdmin, @username, @password)";
+                string query = "INSERT INTO admin (nama_admin, username, password, isActive) VALUES (@namaAdmin, @username, @password, true)";
 
                 NpgsqlParameter[] parameters = {
                     new NpgsqlParameter("@namaAdmin", namaAdmin),

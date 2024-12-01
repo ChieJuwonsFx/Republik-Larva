@@ -292,4 +292,37 @@
   <data name="kembaliHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kembaliHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="belumBayar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\belumBayar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="belumBayarHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\belumBayarHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="formTambahProduk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\formTambahProduk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lihatSemuaTransaksi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lihatSemuaTransaksi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lihatSemuaTransaksiHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lihatSemuaTransaksiHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="riwayatTransaksi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\riwayatTransaksi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="riwayatTransaksiHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\riwayatTransaksiHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tambahTransaksi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tambahTransaksi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tambahTransaksiHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tambahTransaksiHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transaksi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaksi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="formTambahTransaksi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\formTambahTransaksi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -91,6 +91,8 @@
             btnSimpan.TabIndex = 4;
             btnSimpan.UseVisualStyleBackColor = false;
             btnSimpan.Click += btnSimpan_Click;
+            btnSimpan.MouseLeave += btnSimpan_MouseLeave;
+            btnSimpan.MouseEnter += btnSimpan_MouseEnter;
             // 
             // btnKembali
             // 

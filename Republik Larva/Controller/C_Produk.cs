@@ -28,5 +28,10 @@ namespace Republik_Larva.Controller
         {
             return M_Produk.All();
         }
+        public void balikProduk()
+        {
+            view_produk = new V_Produk(this);
+            C_MainForm.moveView(view_produk);
+        }
     }
 }

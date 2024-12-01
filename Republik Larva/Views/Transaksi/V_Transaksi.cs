@@ -13,10 +13,31 @@ namespace Republik_Larva.Views
 {
     public partial class V_Transaksi : UserControl
     {
-        C_Transaksi c_Transaksi;
+        private C_Transaksi c_Transaksi; 
         public V_Transaksi(C_Transaksi c_Transaksi)
         {
             InitializeComponent();
+            this.c_Transaksi = c_Transaksi; 
+        }
+
+        private void btnTambahTransaksi_Click(object sender, EventArgs e)
+        {
+            c_Transaksi.tambahTransaksiView();
+        }
+
+        private void btnRiwayat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBelumBayar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLihatSemua_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
