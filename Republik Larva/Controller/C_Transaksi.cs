@@ -21,11 +21,14 @@ namespace Republik_Larva.Controller
         private C_MessageBox c_MessageBox;
         V_Transaksi view_transaksi;
         V_TambahTransaksi tambah_transaksi;
+        M_Transaksi transaksiModel;
         M_Transaksi M_Produk = new M_Transaksi();
         public C_Transaksi(C_MainForm controller)
         {
             C_MainForm = controller;
             c_MessageBox = new C_MessageBox();
+
+            transaksiModel = new M_Transaksi();  // Inisialisasi objek transaksiModel
 
             view_transaksi = new V_Transaksi(this);
             C_MainForm.moveView(view_transaksi);
@@ -40,5 +43,42 @@ namespace Republik_Larva.Controller
             tambah_transaksi = new V_TambahTransaksi(this);
             C_MainForm.moveView(tambah_transaksi);
         }
+        public void ProsesTransaksi(string NamaCustomer, string email, string statusPembayaran, string metodePembayaran,
+                                    DataTable produkTerpilih, int adminId)
+        {
+            try
+            {
+                if (transaksiModel == null)
+                    throw new Exception("Model transaksi belum diinisialisasi.");
+
+                if (produkTerpilih == null || produkTerpilih.Rows.Count == 0)
+                    throw new Exception("Tidak ada produk yang dipilih.");
+
+                int customerId = transaksiModel.TambahAtauAmbilCustomer(NamaCustomer, email);
+
+                int totalHarga = 0;
+                foreach (DataRow row in produkTerpilih.Rows)
+                {
+                    int jumlah = Convert.ToInt32(row["jumlah"]);
+                    int harga = Convert.ToInt32(row["harga"]);
+                    totalHarga += jumlah * harga;
+                }
+
+                int transaksiId = transaksiModel.SimpanTransaksi(statusPembayaran, metodePembayaran, totalHarga, customerId, adminId);
+
+                foreach (DataRow row in produkTerpilih.Rows)
+                {
+                    int produkId = Convert.ToInt32(row["produk_id"]);
+                    int jumlah = Convert.ToInt32(row["jumlah"]);
+                    int totalHargaItem = Convert.ToInt32(row["total_harga"]);
+                    transaksiModel.SimpanDetailTransaksi(transaksiId, produkId, jumlah, totalHargaItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Gagal memproses transaksi: " + ex.Message);
+            }
+        }
+
     }
 }

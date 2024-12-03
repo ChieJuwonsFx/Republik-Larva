@@ -165,6 +165,9 @@ namespace Republik_Larva.Views.Transaksi
             previewList.Items.Clear();
             int subtotal = 0;
 
+            previewList.Items.Add("Nama Produk".PadRight(20) + "Qty".PadLeft(5) + "Harga".PadLeft(10) + "Total".PadLeft(10));
+            previewList.Items.Add(new string('-', 50));
+
             foreach (Control control in flowLayoutPanel1.Controls)
             {
                 if (control is Panel panel)
@@ -195,28 +198,72 @@ namespace Republik_Larva.Views.Transaksi
 
                                 subtotal += totalHarga;
 
-                                previewList.Items.Add($"{productName} - {quantity} x {harga} = {totalHarga}");
+                                string line = productName.PadRight(20) +
+                                              quantity.ToString().PadLeft(10) +
+                                              harga.ToString().PadLeft(10) +
+                                              totalHarga.ToString().PadLeft(10);
+
+                                previewList.Items.Add(line);
                             }
                         }
                     }
                 }
             }
 
-            previewList.Items.Add($"Subtotal = {subtotal}");
+            previewList.Items.Add(new string('-', 50));
+            previewList.Items.Add("Subtotal".PadRight(35) + "Rp" + subtotal.ToString().PadLeft(18));
         }
-
 
         private void BtnSimpan_Click(object sender, EventArgs e)
         {
-            string statusPembayaranValue = statusPembayaran.SelectedItem.ToString();
-            string metodePembayaranValue = metodePembayaran.SelectedItem.ToString();
+            try
+            {
+                string NamaCustomer = namaCustomer.Text;
+                string emailCustomer = email.Text;
+                string statusPembayaranValue = statusPembayaran.SelectedItem.ToString();
+                string metodePembayaranValue = metodePembayaran.SelectedItem.ToString();
 
-            int totalHarga = CalculateTotalHarga();
+                DataTable produkTerpilih = new DataTable();
+                produkTerpilih.Columns.Add("produk_id", typeof(int));
+                produkTerpilih.Columns.Add("jumlah", typeof(int));
+                produkTerpilih.Columns.Add("harga", typeof(int));
+                produkTerpilih.Columns.Add("total_harga", typeof(int));
 
-            transaksiModel.SimpanTransaksi(statusPembayaranValue, metodePembayaranValue, totalHarga, 1, 1); 
+                foreach (Control control in flowLayoutPanel1.Controls)
+                {
+                    if (control is Panel panel)
+                    {
+                        foreach (Control subControl in panel.Controls)
+                        {
+                            if (subControl is FlowLayoutPanel flowPanel)
+                            {
+                                CheckBox checkBox = flowPanel.Controls.OfType<CheckBox>().FirstOrDefault();
+                                NumericUpDown numericUpDown = flowPanel.Controls.OfType<NumericUpDown>().FirstOrDefault();
 
-            c_Transaksi.show_confirm_message_box("Transaksi berhasil disimpan!");
+                                if (checkBox != null && numericUpDown != null && checkBox.Checked)
+                                {
+                                    int produkId = (int)checkBox.Tag;
+                                    int jumlah = (int)numericUpDown.Value;
+                                    int harga = Convert.ToInt32(checkBox.Text.Split('-')[1].Replace("Rp", "").Trim());
+                                    int totalHarga = jumlah * harga;
+
+                                    produkTerpilih.Rows.Add(produkId, jumlah, harga, totalHarga);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                c_Transaksi.ProsesTransaksi(NamaCustomer, emailCustomer, statusPembayaranValue, metodePembayaranValue, produkTerpilih, 1);
+                c_Transaksi.show_confirm_message_box("Transaksi berhasil disimpan!");
+                c_Transaksi.balikTransaksi();
+            }
+            catch (Exception ex)
+            {
+                c_Transaksi.show_confirm_message_box("Terjadi kesalahan: " + ex.Message);
+            }
         }
+
 
         private int CalculateTotalHarga()
         {
@@ -237,5 +284,69 @@ namespace Republik_Larva.Views.Transaksi
             }
             return total;
         }
+
+        private void btnSimpan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string NamaCustomer = namaCustomer.Text;
+                string emailCustomer = email.Text;
+                string statusPembayaranValue = statusPembayaran.SelectedItem?.ToString();
+                string metodePembayaranValue = metodePembayaran.SelectedItem?.ToString();
+
+                if (string.IsNullOrEmpty(NamaCustomer) || string.IsNullOrEmpty(emailCustomer) ||
+                    string.IsNullOrEmpty(statusPembayaranValue) || string.IsNullOrEmpty(metodePembayaranValue))
+                {
+                    c_Transaksi.show_confirm_message_box("Mohon lengkapi semua data transaksi!");
+                    return;
+                }
+
+                DataTable produkTerpilih = new DataTable();
+                produkTerpilih.Columns.Add("produk_id", typeof(int));
+                produkTerpilih.Columns.Add("jumlah", typeof(int));
+                produkTerpilih.Columns.Add("harga", typeof(int));
+                produkTerpilih.Columns.Add("total_harga", typeof(int));
+
+                foreach (Control control in flowLayoutPanel1.Controls)
+                {
+                    if (control is Panel panel)
+                    {
+                        foreach (Control subControl in panel.Controls)
+                        {
+                            if (subControl is FlowLayoutPanel flowPanel)
+                            {
+                                CheckBox checkBox = flowPanel.Controls.OfType<CheckBox>().FirstOrDefault();
+                                NumericUpDown numericUpDown = flowPanel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+
+                                if (checkBox != null && numericUpDown != null && checkBox.Checked)
+                                {
+                                    int produkId = (int)checkBox.Tag;
+                                    int jumlah = (int)numericUpDown.Value;
+                                    int harga = Convert.ToInt32(checkBox.Text.Split('-')[1].Replace("Rp", "").Trim());
+                                    int totalHarga = jumlah * harga;
+
+                                    produkTerpilih.Rows.Add(produkId, jumlah, harga, totalHarga);
+                                }
+                            }
+                        }
+                    }
+                }
+                c_Transaksi.ProsesTransaksi(
+                    NamaCustomer,
+                    emailCustomer,
+                    statusPembayaranValue,
+                    metodePembayaranValue,
+                    produkTerpilih,
+                    1
+                );
+
+                MessageBox.Show("Transaksi berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

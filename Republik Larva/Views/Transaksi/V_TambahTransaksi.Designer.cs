@@ -34,6 +34,7 @@
             email = new TextBox();
             metodePembayaran = new ComboBox();
             listPreview = new ListBox();
+            btnSimpan = new Button();
             SuspendLayout();
             // 
             // statusPembayaran
@@ -86,21 +87,36 @@
             // 
             // listPreview
             // 
+            listPreview.BackColor = Color.FromArgb(230, 215, 184);
             listPreview.BorderStyle = BorderStyle.None;
             listPreview.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             listPreview.FormattingEnabled = true;
             listPreview.ItemHeight = 37;
-            listPreview.Location = new Point(1327, 115);
+            listPreview.Location = new Point(1309, 112);
             listPreview.Name = "listPreview";
-            listPreview.Size = new Size(500, 333);
+            listPreview.Size = new Size(531, 333);
             listPreview.TabIndex = 5;
-            listPreview.BackColor  = Color.FromArgb(230, 215, 184);
+            // 
+            // btnSimpan
+            // 
+            btnSimpan.BackColor = Color.Transparent;
+            btnSimpan.FlatAppearance.BorderSize = 0;
+            btnSimpan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnSimpan.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnSimpan.FlatStyle = FlatStyle.Flat;
+            btnSimpan.Location = new Point(177, 802);
+            btnSimpan.Name = "btnSimpan";
+            btnSimpan.Size = new Size(250, 70);
+            btnSimpan.TabIndex = 6;
+            btnSimpan.UseVisualStyleBackColor = false;
+            btnSimpan.Click += btnSimpan_Click;
             // 
             // V_TambahTransaksi
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.formTambahTransaksi;
+            Controls.Add(btnSimpan);
             Controls.Add(listPreview);
             Controls.Add(metodePembayaran);
             Controls.Add(email);
@@ -121,5 +137,6 @@
         private TextBox email;
         private ComboBox metodePembayaran;
         public ListBox listPreview;
+        private Button btnSimpan;
     }
 }
