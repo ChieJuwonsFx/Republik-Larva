@@ -64,8 +64,6 @@ public class C_Akun : C_MessageBox
 
     public void editAdminView()
     {
-        Console.WriteLine("ID yang diterima di editAdminView: " + idAdmin);
-
         if (idAdmin <= 0)
         {
             show_message_box($"ID Admin tidak valid.");

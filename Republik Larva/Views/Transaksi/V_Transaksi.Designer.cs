@@ -86,6 +86,7 @@
             // btnTambahTransaksi
             // 
             btnTambahTransaksi.BackColor = Color.Transparent;
+            btnTambahTransaksi.Cursor = Cursors.Hand;
             btnTambahTransaksi.FlatAppearance.BorderSize = 0;
             btnTambahTransaksi.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnTambahTransaksi.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -96,6 +97,8 @@
             btnTambahTransaksi.TabIndex = 4;
             btnTambahTransaksi.UseVisualStyleBackColor = false;
             btnTambahTransaksi.Click += btnTambahTransaksi_Click;
+            btnTambahTransaksi.MouseEnter += btnTambahTransaksi_MouseEnter;
+            btnTambahTransaksi.MouseLeave += btnTambahTransaksi_MouseLeave;
             // 
             // btnRiwayat
             // 
@@ -157,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
+
 
         #endregion
 

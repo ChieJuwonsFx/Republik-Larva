@@ -26,67 +26,6 @@ namespace Republik_Larva.Views.Transaksi
             metodePembayaran.DataSource = transaksiModel.GetMetodePembayaran();
         }
 
-        //private void LoadProduk()
-        //{
-        //    var transaksiModel = new M_Transaksi();
-        //    DataTable produkTable = transaksiModel.GetProduk();
-
-        //    flowLayoutPanel1.Controls.Clear(); 
-
-        //    int produkPerBaris = 3;
-        //    FlowLayoutPanel barisPanel = null;
-
-        //    for (int i = 0; i < produkTable.Rows.Count; i++)
-        //    {
-        //        if (i % produkPerBaris == 0)
-        //        {
-        //            barisPanel = new FlowLayoutPanel
-        //            {
-        //                Size = new Size(flowLayoutPanel1.Width - 20, 70),
-        //                FlowDirection = FlowDirection.LeftToRight,
-        //                WrapContents = false,
-        //                AutoSize = true
-        //            };
-        //            flowLayoutPanel1.Controls.Add(barisPanel);
-        //        }
-
-        //        DataRow row = produkTable.Rows[i];
-
-        //        Panel produkPanel = new Panel
-        //        {
-        //            Size = new Size(280, 60),
-        //            Margin = new Padding(10)
-        //        };
-
-        //        CheckBox checkBox = new CheckBox
-        //        {
-        //            Text = $"{row["nama_produk"]} - Rp{row["harga"]}",
-        //            Font = new Font("Segoe UI", 12),
-        //            AutoSize = false,
-        //            Size = new Size(180, 30),
-        //            Location = new Point(10, 15),
-        //            Tag = row["produk_id"]
-        //        };
-
-        //        produkPanel.Controls.Add(checkBox);
-
-        //        NumericUpDown numericUpDown = new NumericUpDown
-        //        {
-        //            Minimum = 0,
-        //            Maximum = 100,
-        //            Value = 0,
-        //            Font = new Font("Segoe UI", 12),
-        //            Size = new Size(80, 30),
-        //            Location = new Point(200, 15) 
-        //        };
-
-        //        produkPanel.Controls.Add(checkBox);
-        //        produkPanel.Controls.Add(numericUpDown);
-
-        //        barisPanel.Controls.Add(produkPanel);
-        //    }
-        //}
-
         private void LoadProduk()
         {
             M_Transaksi transaksiModel = new M_Transaksi();
@@ -254,9 +193,8 @@ namespace Republik_Larva.Views.Transaksi
                     }
                 }
 
-                c_Transaksi.ProsesTransaksi(NamaCustomer, emailCustomer, statusPembayaranValue, metodePembayaranValue, produkTerpilih, 1);
-                c_Transaksi.show_confirm_message_box("Transaksi berhasil disimpan!");
-                c_Transaksi.balikTransaksi();
+                c_Transaksi.ProsesTransaksi(NamaCustomer, emailCustomer, statusPembayaranValue, metodePembayaranValue, produkTerpilih);
+
             }
             catch (Exception ex)
             {
@@ -336,11 +274,10 @@ namespace Republik_Larva.Views.Transaksi
                     emailCustomer,
                     statusPembayaranValue,
                     metodePembayaranValue,
-                    produkTerpilih,
-                    1
+                    produkTerpilih
                 );
-
-                MessageBox.Show("Transaksi berhasil disimpan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                c_Transaksi.show_message_box("Transaksi berhasil disimpan!");
+                c_Transaksi.balikTransaksi();
             }
             catch (Exception ex)
             {

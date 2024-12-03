@@ -23,12 +23,15 @@ namespace Republik_Larva.Controller
         V_TambahTransaksi tambah_transaksi;
         M_Transaksi transaksiModel;
         M_Transaksi M_Produk = new M_Transaksi();
-        public C_Transaksi(C_MainForm controller)
+        private int idAdmin;
+
+        public C_Transaksi(C_MainForm controller, int id_admin)
         {
             C_MainForm = controller;
             c_MessageBox = new C_MessageBox();
 
-            transaksiModel = new M_Transaksi();  // Inisialisasi objek transaksiModel
+            transaksiModel = new M_Transaksi();
+            this.idAdmin = id_admin;
 
             view_transaksi = new V_Transaksi(this);
             C_MainForm.moveView(view_transaksi);
@@ -44,7 +47,7 @@ namespace Republik_Larva.Controller
             C_MainForm.moveView(tambah_transaksi);
         }
         public void ProsesTransaksi(string NamaCustomer, string email, string statusPembayaran, string metodePembayaran,
-                                    DataTable produkTerpilih, int adminId)
+                                    DataTable produkTerpilih)
         {
             try
             {
@@ -64,7 +67,7 @@ namespace Republik_Larva.Controller
                     totalHarga += jumlah * harga;
                 }
 
-                int transaksiId = transaksiModel.SimpanTransaksi(statusPembayaran, metodePembayaran, totalHarga, customerId, adminId);
+                int transaksiId = transaksiModel.SimpanTransaksi(statusPembayaran, metodePembayaran, totalHarga, customerId, idAdmin);
 
                 foreach (DataRow row in produkTerpilih.Rows)
                 {

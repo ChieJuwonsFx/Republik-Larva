@@ -69,7 +69,7 @@ namespace Republik_Larva.Views
             mainForm.menu_focus = typeof(V_Transaksi).Name;
             mainForm.resetButton();
             btnTransaksi.BackgroundImage = Properties.Resources.transaksiFokus;
-            C_Transaksi controller_transaksi = new C_Transaksi(mainForm);
+            C_Transaksi controller_transaksi = new C_Transaksi(mainForm, LoggedInAdminId);
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)

@@ -129,6 +129,7 @@
             PerformLayout();
         }
 
+
         #endregion
 
         private ComboBox statusPembayaran;
