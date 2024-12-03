@@ -1,12 +1,5 @@
 ﻿using Republik_Larva.Controller;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Republik_Larva.Views.Transaksi
@@ -19,30 +12,16 @@ namespace Republik_Larva.Views.Transaksi
         {
             InitializeComponent();
             c_Transaksi = controller;
-
             c_Transaksi.TampilkanSemuaTransaksi(dataGridView1);
-
-            AdjustColumnWidths();
+            AturKolomDataGridView();
         }
-        private void AdjustColumnWidths()
+
+        private void AturKolomDataGridView()
         {
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
-                if (column.Name == "ID")
-                {
-                    column.FillWeight = 10; // Lebar lebih kecil
-                }
-                else if (column.Name == "Nama")
-                {
-                    column.FillWeight = 30; // Lebar lebih besar
-                }
-                else
-                {
-                    column.FillWeight = 20; // Lebar standar
-                }
+                column.FillWeight = 100;
             }
         }
-
-
     }
 }
