@@ -165,9 +165,9 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Label jumlahTransaksi;
-        private Label totalPenghasilan;
-        private Label jumlahMaggot;
+        public Label jumlahTransaksi;
+        public Label totalPenghasilan;
+        public Label jumlahMaggot;
         private Button btnTambahTransaksi;
         private Button btnRiwayat;
         private Button btnBelumBayar;

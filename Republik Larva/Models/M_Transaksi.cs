@@ -142,5 +142,29 @@ namespace Republik_Larva.Models
 
             commandExecutor(query, parameters);
         }
+        public int GetJumlahTransaksiBulanIni()
+        {
+            string query = "SELECT COUNT(*) FROM transaksi WHERE EXTRACT(MONTH FROM tanggal_transaksi) = EXTRACT(MONTH FROM CURRENT_DATE)";
+            DataTable result = queryExecutor(query);
+            return result.Rows.Count > 0 ? Convert.ToInt32(result.Rows[0][0]) : 0;
+        }
+        public int GetTotalPenghasilanBulanIni()
+        {
+            string query = "SELECT SUM(total_harga) FROM transaksi WHERE EXTRACT(MONTH FROM tanggal_transaksi) = EXTRACT(MONTH FROM CURRENT_DATE)";
+            DataTable result = queryExecutor(query);
+            return result.Rows.Count > 0 && !DBNull.Value.Equals(result.Rows[0][0]) ? Convert.ToInt32(result.Rows[0][0]) : 0;
+        }
+        public int GetTotalProdukMaggotTerjualBulanIni()
+        {
+            string query = @"
+            SELECT SUM(detail_transaksi.jumlah)
+            FROM detail_transaksi
+            JOIN produk ON detail_transaksi.produk_id_produk = produk.produk_id
+            JOIN transaksi ON detail_transaksi.transaksi_transaksi_id = transaksi.transaksi_id
+            WHERE produk.nama_produk = 'Maggot'
+              AND EXTRACT(MONTH FROM transaksi.tanggal_transaksi) = EXTRACT(MONTH FROM CURRENT_DATE)";
+            DataTable result = queryExecutor(query);
+            return result.Rows.Count > 0 && !DBNull.Value.Equals(result.Rows[0][0]) ? Convert.ToInt32(result.Rows[0][0]) : 0;
+        }
     }
 }

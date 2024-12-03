@@ -19,6 +19,13 @@ namespace Republik_Larva.Views
             InitializeComponent();
             this.c_Transaksi = c_Transaksi; 
         }
+        public void UpdateDashboard(int JumlahTransaksi, int TotalPenghasilan, int TotalMaggotTerjual)
+        {
+            jumlahTransaksi.Text = JumlahTransaksi.ToString();
+            totalPenghasilan.Text = "Rp " + TotalPenghasilan.ToString("N0");
+            jumlahMaggot.Text = TotalMaggotTerjual.ToString();
+        }
+
 
         private void btnTambahTransaksi_Click(object sender, EventArgs e)
         {

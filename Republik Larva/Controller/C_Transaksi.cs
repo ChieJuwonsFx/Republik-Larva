@@ -35,6 +35,7 @@ namespace Republik_Larva.Controller
 
             view_transaksi = new V_Transaksi(this);
             C_MainForm.moveView(view_transaksi);
+            UpdateTransaksiBulanIni();
         }
         public void balikTransaksi()
         {
@@ -82,6 +83,13 @@ namespace Republik_Larva.Controller
                 throw new Exception("Gagal memproses transaksi: " + ex.Message);
             }
         }
+        public void UpdateTransaksiBulanIni()
+        {
+            int jumlahTransaksi = transaksiModel.GetJumlahTransaksiBulanIni();
+            int totalPenghasilan = transaksiModel.GetTotalPenghasilanBulanIni();
+            int totalMaggotTerjual = transaksiModel.GetTotalProdukMaggotTerjualBulanIni();
 
+            view_transaksi.UpdateDashboard(jumlahTransaksi, totalPenghasilan, totalMaggotTerjual);
+        }
     }
 }
