@@ -51,7 +51,7 @@ namespace Republik_Larva.Views
 
         private void btnLihatSemua_Click(object sender, EventArgs e)
         {
-
+            c_Transaksi.semuaTransaksiView();
         }
     }
 }

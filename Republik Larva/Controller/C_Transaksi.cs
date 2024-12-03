@@ -23,6 +23,7 @@ namespace Republik_Larva.Controller
         V_TambahTransaksi tambah_transaksi;
         M_Transaksi transaksiModel;
         M_Transaksi M_Produk = new M_Transaksi();
+        V_LihatSemua view_semua;
         private int idAdmin;
 
         public C_Transaksi(C_MainForm controller, int id_admin)
@@ -41,6 +42,11 @@ namespace Republik_Larva.Controller
         {
             view_transaksi = new V_Transaksi(this);
             C_MainForm.moveView(view_transaksi);
+        }
+        public void semuaTransaksiView()
+        {
+            view_semua = new V_LihatSemua(this);
+            C_MainForm.moveView(view_semua);
         }
         public void tambahTransaksiView()
         {
@@ -91,5 +97,28 @@ namespace Republik_Larva.Controller
 
             view_transaksi.UpdateDashboard(jumlahTransaksi, totalPenghasilan, totalMaggotTerjual);
         }
+        public void TampilkanSemuaTransaksi(DataGridView gridView)
+        {
+            try
+            {
+                DataTable data = transaksiModel.GetSemuaTransaksi();
+                gridView.DataSource = data;
+
+                // Atur kolom DataGridView agar lebih rapi
+                gridView.Columns["transaksi_id"].HeaderText = "ID Transaksi";
+                gridView.Columns["tanggal_transaksi"].HeaderText = "Tanggal";
+                gridView.Columns["total_harga"].HeaderText = "Total Harga";
+                gridView.Columns["metode_pembayaran"].HeaderText = "Metode Pembayaran";
+                gridView.Columns["status_bayar"].HeaderText = "Status Pembayaran";
+                gridView.Columns["nama_customer"].HeaderText = "Nama Customer";
+                gridView.Columns["nama_admin"].HeaderText = "Nama Admin";
+                gridView.Columns["produk"].HeaderText = "Produk (Jumlah)";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat memuat data transaksi: " + ex.Message);
+            }
+        }
+
     }
 }

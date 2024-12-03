@@ -166,5 +166,33 @@ namespace Republik_Larva.Models
             DataTable result = queryExecutor(query);
             return result.Rows.Count > 0 && !DBNull.Value.Equals(result.Rows[0][0]) ? Convert.ToInt32(result.Rows[0][0]) : 0;
         }
+        public DataTable GetSemuaTransaksi()
+        {
+            string query = @"
+            SELECT 
+                t.transaksi_id,
+                t.tanggal_transaksi,
+                t.total_harga,
+                t.metode_pembayaran,
+                t.status_bayar,
+                c.nama_customer,
+                a.nama_admin,
+                STRING_AGG(CONCAT(d.nama_produk, ' (', d.jumlah, ')'), ', ') AS produk
+            FROM transaksi t
+            JOIN customer c ON t.customer_customer_id = c.customer_id
+            JOIN admin a ON t.admin_admin_id = a.admin_id
+            JOIN (
+                SELECT 
+                    dt.transaksi_transaksi_id,
+                    p.nama_produk,
+                    dt.jumlah
+                FROM detail_transaksi dt
+                JOIN produk p ON dt.produk_id_produk = p.produk_id
+            ) d ON t.transaksi_id = d.transaksi_transaksi_id
+            GROUP BY t.transaksi_id, c.nama_customer, a.nama_admin
+            ORDER BY t.tanggal_transaksi DESC";
+            return queryExecutor(query);
+        }
+
     }
 }
