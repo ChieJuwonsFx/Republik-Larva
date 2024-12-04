@@ -42,6 +42,7 @@ namespace Republik_Larva.Controller
         {
             view_transaksi = new V_Transaksi(this);
             C_MainForm.moveView(view_transaksi);
+            UpdateTransaksiBulanIni();
         }
         public void semuaTransaksiView()
         {
@@ -104,7 +105,27 @@ namespace Republik_Larva.Controller
                 DataTable data = transaksiModel.GetSemuaTransaksi();
                 gridView.DataSource = data;
 
-                // Atur kolom DataGridView agar lebih rapi
+                gridView.Columns["transaksi_id"].HeaderText = "ID Transaksi";
+                gridView.Columns["tanggal_transaksi"].HeaderText = "Tanggal";
+                gridView.Columns["total_harga"].HeaderText = "Total Harga";
+                gridView.Columns["metode_pembayaran"].HeaderText = "Metode Pembayaran";
+                gridView.Columns["status_bayar"].HeaderText = "Status Pembayaran";
+                gridView.Columns["nama_customer"].HeaderText = "Nama Customer";
+                gridView.Columns["nama_admin"].HeaderText = "Nama Admin";
+                gridView.Columns["produk"].HeaderText = "Produk (Jumlah)";
+            }
+            catch (Exception ex)
+            {
+                show_message_box("Terjadi kesalahan saat memuat data transaksi: ");
+            }
+        }
+        public void TampilkanTransaksiSebulan(DataGridView gridView)
+        {
+            try
+            {
+                DataTable data = transaksiModel.GetTransaksiSebulan();
+                gridView.DataSource = data;
+
                 gridView.Columns["transaksi_id"].HeaderText = "ID Transaksi";
                 gridView.Columns["tanggal_transaksi"].HeaderText = "Tanggal";
                 gridView.Columns["total_harga"].HeaderText = "Total Harga";
@@ -119,6 +140,5 @@ namespace Republik_Larva.Controller
                 MessageBox.Show("Terjadi kesalahan saat memuat data transaksi: " + ex.Message);
             }
         }
-
     }
 }

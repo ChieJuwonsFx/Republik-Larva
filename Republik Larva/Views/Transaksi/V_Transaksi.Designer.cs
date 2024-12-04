@@ -46,9 +46,10 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(295, 439);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1327, 241);
             dataGridView1.TabIndex = 0;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 
             // jumlahTransaksi
             // 
@@ -141,6 +142,8 @@
             btnLihatSemua.TabIndex = 7;
             btnLihatSemua.UseVisualStyleBackColor = false;
             btnLihatSemua.Click += btnLihatSemua_Click;
+            btnLihatSemua.MouseLeave += btnLihatSemua_MouseLeave;
+            btnLihatSemua.MouseEnter += btnLihatSemua_MouseEnter;
             // 
             // V_Transaksi
             // 
@@ -160,7 +163,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
-
 
         #endregion
 

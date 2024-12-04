@@ -1,4 +1,5 @@
 ﻿using Republik_Larva.Controller;
+using Republik_Larva.Models;
 using System;
 using System.Windows.Forms;
 
@@ -22,6 +23,19 @@ namespace Republik_Larva.Views.Transaksi
             {
                 column.FillWeight = 100;
             }
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            c_Transaksi.balikTransaksi();
+        }
+        private void btnKembali_MouseLeave(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+        }
+        private void btnKembali_MouseEnter(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
         }
     }
 }

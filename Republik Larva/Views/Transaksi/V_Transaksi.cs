@@ -1,4 +1,5 @@
 ﻿using Republik_Larva.Controller;
+using Republik_Larva.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,9 @@ namespace Republik_Larva.Views
         public V_Transaksi(C_Transaksi c_Transaksi)
         {
             InitializeComponent();
-            this.c_Transaksi = c_Transaksi; 
+            this.c_Transaksi = c_Transaksi;
+            c_Transaksi.TampilkanTransaksiSebulan(dataGridView1);
+            AturKolomDataGridView();
         }
         public void UpdateDashboard(int JumlahTransaksi, int TotalPenghasilan, int TotalMaggotTerjual)
         {
@@ -25,7 +28,13 @@ namespace Republik_Larva.Views
             totalPenghasilan.Text = "Rp " + TotalPenghasilan.ToString("N0");
             jumlahMaggot.Text = TotalMaggotTerjual.ToString();
         }
-
+        private void AturKolomDataGridView()
+        {
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.FillWeight = 100;
+            }
+        }
 
         private void btnTambahTransaksi_Click(object sender, EventArgs e)
         {
@@ -52,6 +61,14 @@ namespace Republik_Larva.Views
         private void btnLihatSemua_Click(object sender, EventArgs e)
         {
             c_Transaksi.semuaTransaksiView();
+        }
+        private void btnLihatSemua_MouseEnter(object sender, EventArgs e)
+        {
+            btnLihatSemua.BackgroundImage = Properties.Resources.lihatSemuaTransaksiHover;
+        }
+        private void btnLihatSemua_MouseLeave(object sender, EventArgs e)
+        {
+            btnLihatSemua.BackgroundImage = Properties.Resources.lihatSemuaTransaksi;
         }
     }
 }
