@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-
             jumlahTransaksi = new Label();
             totalPenghasilan = new Label();
             jumlahMaggot = new Label();
             btnTambahTransaksi = new Button();
-            btnRiwayat = new Button();
+            btnBatalkan = new Button();
             btnBelumBayar = new Button();
             btnLihatSemua = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -42,15 +41,16 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.BackgroundColor = Color.FromArgb(245, 242, 214);
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(295, 439);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1327, 241);
             dataGridView1.TabIndex = 0;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             // 
             // jumlahTransaksi
             // 
@@ -102,19 +102,19 @@
             btnTambahTransaksi.MouseEnter += btnTambahTransaksi_MouseEnter;
             btnTambahTransaksi.MouseLeave += btnTambahTransaksi_MouseLeave;
             // 
-            // btnRiwayat
+            // btnBatalkan
             // 
-            btnRiwayat.BackColor = Color.Transparent;
-            btnRiwayat.FlatAppearance.BorderSize = 0;
-            btnRiwayat.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnRiwayat.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btnRiwayat.FlatStyle = FlatStyle.Flat;
-            btnRiwayat.Location = new Point(616, 759);
-            btnRiwayat.Name = "btnRiwayat";
-            btnRiwayat.Size = new Size(330, 111);
-            btnRiwayat.TabIndex = 5;
-            btnRiwayat.UseVisualStyleBackColor = false;
-            btnRiwayat.Click += btnRiwayat_Click;
+            btnBatalkan.BackColor = Color.Transparent;
+            btnBatalkan.FlatAppearance.BorderSize = 0;
+            btnBatalkan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnBatalkan.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnBatalkan.FlatStyle = FlatStyle.Flat;
+            btnBatalkan.Location = new Point(616, 759);
+            btnBatalkan.Name = "btnBatalkan";
+            btnBatalkan.Size = new Size(330, 111);
+            btnBatalkan.TabIndex = 5;
+            btnBatalkan.UseVisualStyleBackColor = false;
+            btnBatalkan.Click += btnBatalkan_Click;
             // 
             // btnBelumBayar
             // 
@@ -143,8 +143,8 @@
             btnLihatSemua.TabIndex = 7;
             btnLihatSemua.UseVisualStyleBackColor = false;
             btnLihatSemua.Click += btnLihatSemua_Click;
-            btnLihatSemua.MouseLeave += btnLihatSemua_MouseLeave;
             btnLihatSemua.MouseEnter += btnLihatSemua_MouseEnter;
+            btnLihatSemua.MouseLeave += btnLihatSemua_MouseLeave;
             // 
             // V_Transaksi
             // 
@@ -153,7 +153,7 @@
             BackgroundImage = Properties.Resources.transaksi;
             Controls.Add(btnLihatSemua);
             Controls.Add(btnBelumBayar);
-            Controls.Add(btnRiwayat);
+            Controls.Add(btnBatalkan);
             Controls.Add(btnTambahTransaksi);
             Controls.Add(jumlahMaggot);
             Controls.Add(totalPenghasilan);
@@ -172,7 +172,7 @@
         public Label totalPenghasilan;
         public Label jumlahMaggot;
         private Button btnTambahTransaksi;
-        private Button btnRiwayat;
+        private Button btnBatalkan;
         private Button btnBelumBayar;
         private Button btnLihatSemua;
     }

@@ -113,6 +113,16 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap batalkanTransaksi {
+            get {
+                object obj = ResourceManager.GetObject("batalkanTransaksi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap belumBayar {
             get {
                 object obj = ResourceManager.GetObject("belumBayar", resourceCulture);
@@ -136,6 +146,26 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap bg {
             get {
                 object obj = ResourceManager.GetObject("bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnBatalkanTransaksi {
+            get {
+                object obj = ResourceManager.GetObject("btnBatalkanTransaksi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btnBatalkanTransaksiHover {
+            get {
+                object obj = ResourceManager.GetObject("btnBatalkanTransaksiHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -596,26 +626,6 @@ namespace Republik_Larva.Properties {
         internal static System.Drawing.Bitmap okMessage {
             get {
                 object obj = ResourceManager.GetObject("okMessage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap riwayatTransaksi {
-            get {
-                object obj = ResourceManager.GetObject("riwayatTransaksi", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap riwayatTransaksiHover {
-            get {
-                object obj = ResourceManager.GetObject("riwayatTransaksiHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

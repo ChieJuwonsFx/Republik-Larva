@@ -35,6 +35,7 @@ namespace Republik_Larva.Controller
         private C_MessageBox c_MessageBox;
         V_Transaksi view_transaksi;
         V_TambahTransaksi tambah_transaksi;
+        V_BatalkanTransaksi batal_transaksi;
         M_Transaksi transaksiModel;
         M_Transaksi M_Produk = new M_Transaksi();
         V_LihatSemua view_semua;
@@ -67,6 +68,63 @@ namespace Republik_Larva.Controller
         {
             tambah_transaksi = new V_TambahTransaksi(this);
             C_MainForm.moveView(tambah_transaksi);
+        }
+        public void batalkanTransaksiView()
+        {
+            batal_transaksi = new V_BatalkanTransaksi(this);
+            C_MainForm.moveView(batal_transaksi);
+        }
+        public void LoadBatalkanTransaksi(DataGridView dataGridTransaksi)
+        {
+            try
+            {
+                dataGridTransaksi.AllowUserToAddRows = false;
+
+                DataTable transaksiData = transaksiModel.GetBatalTransaksi();
+                if (transaksiData == null || transaksiData.Rows.Count == 0)
+                {
+                    show_message_box("Error: Gagal mengambil data transaksi atau tidak ada data.");
+                    return;
+                }
+
+                dataGridTransaksi.Columns.Clear();
+
+                DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
+                nomorColumn.HeaderText = "No";
+                nomorColumn.Name = "nomor";
+                dataGridTransaksi.Columns.Add(nomorColumn);
+
+                dataGridTransaksi.DataSource = transaksiData;
+
+                if (dataGridTransaksi.Columns["transaksi_id"] != null)
+                    dataGridTransaksi.Columns["transaksi_id"].Visible = false;
+
+                if (dataGridTransaksi.Columns["waktu_transaksi"] != null)
+                    dataGridTransaksi.Columns["waktu_transaksi"].HeaderText = "Waktu Transaksi";
+
+                if (dataGridTransaksi.Columns["total_harga"] != null)
+                    dataGridTransaksi.Columns["total_harga"].HeaderText = "Total Harga";
+
+                for (int i = 0; i < dataGridTransaksi.Rows.Count; i++)
+                {
+                    dataGridTransaksi.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
+                }
+
+                DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
+                {
+                    Name = "Delete",
+                    HeaderText = "Hapus",
+                    Text = "Hapus",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridTransaksi.Columns.Add(deleteButtonColumn);
+
+                dataGridTransaksi.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                show_message_box($"Error dalam LoadDataTransaksi: {ex.Message}\n{ex.StackTrace}");
+            }
         }
         public void ProsesTransaksi(string NamaCustomer, string email, string statusPembayaran, string metodePembayaran,
                                     DataTable produkTerpilih)
@@ -209,7 +267,7 @@ namespace Republik_Larva.Controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Terjadi kesalahan saat memuat data transaksi: " + ex.Message);
+                show_message_box("Terjadi kesalahan saat memuat data transaksi: " + ex.Message);
             }
         }
         public static void GeneratePdfInMemory(string namaCustomer, string emailCustomer, DataTable produkTerpilih, string statusPembayaran, string metodePembayaran)

@@ -48,9 +48,17 @@ namespace Republik_Larva.Views
         {
             btnTambahTransaksi.BackgroundImage = Properties.Resources.tambahTransaksi;
         }
-        private void btnRiwayat_Click(object sender, EventArgs e)
+        private void btnBatalkan_Click(object sender, EventArgs e)
         {
-
+            c_Transaksi.batalkanTransaksiView();
+        }
+        private void btnBatalkan_MouseEnter(object sender, EventArgs e)
+        {
+            btnBatalkan.BackgroundImage = Properties.Resources.btnBatalkanTransaksi;
+        }
+        private void btnBatalkan_MouseLeave(object sender, EventArgs e)
+        {
+            btnBatalkan.BackgroundImage = Properties.Resources.btnBatalkanTransaksiHover;
         }
 
         private void btnBelumBayar_Click(object sender, EventArgs e)
