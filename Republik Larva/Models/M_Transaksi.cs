@@ -29,7 +29,7 @@ namespace Republik_Larva.Models
             string query = @"
                 INSERT INTO transaksi 
                 (tanggal_transaksi, total_harga, admin_admin_id, customer_customer_id, status_bayar, metode_pembayaran) 
-                VALUES (CURRENT_DATE, @total_harga, @admin_id, @customer_id, @status_bayar, @metode_pembayaran) 
+                VALUES (CURRENT_TIMESTAMP, @total_harga, @admin_id, @customer_id, @status_bayar, @metode_pembayaran) 
                 RETURNING transaksi_id";
 
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
@@ -138,16 +138,6 @@ namespace Republik_Larva.Models
             return queryExecutor(query, parameters);
         }
 
-        public void HapusTransaksi(int transaksiId)
-        {
-            string query = "DELETE FROM transaksi WHERE transaksi_id = @transaksi_id";
-            NpgsqlParameter[] parameters = new NpgsqlParameter[]
-            {
-                new NpgsqlParameter("@transaksi_id", transaksiId)
-            };
-            commandExecutor(query, parameters);
-        }
-
         public void UpdateTransaksi(int transaksiId, string statusPembayaran, string metodePembayaran, int totalHarga)
         {
             string query = @"
@@ -246,5 +236,65 @@ namespace Republik_Larva.Models
             ORDER BY t.tanggal_transaksi DESC";
             return queryExecutor(query);
         }
+        public DateTime GetWaktuTransaksi(int transaksiId)
+        {
+            string query = "SELECT tanggal_transaksi FROM transaksi WHERE transaksi_id = @transaksi_id";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", transaksiId)
+            };
+            DataTable result = queryExecutor(query, parameters);
+            if (result.Rows.Count > 0)
+            {
+                return Convert.ToDateTime(result.Rows[0]["tanggal_transaksi"]);
+            }
+            else
+            {
+                throw new Exception("Transaksi tidak ditemukan.");
+            }
+        }
+        public void HapusTransaksi(int transaksiId)
+        {
+            DateTime waktuTransaksi = GetWaktuTransaksi(transaksiId);
+            TimeSpan selisihWaktu = DateTime.Now - waktuTransaksi;
+
+            if (selisihWaktu.TotalMinutes < 10)
+            {
+                string queryDetail = "SELECT produk_id_produk, jumlah FROM detail_transaksi WHERE transaksi_transaksi_id = @transaksi_id";
+                NpgsqlParameter[] parametersDetail = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("@transaksi_id", transaksiId)
+                };
+                DataTable detailTransaksi = queryExecutor(queryDetail, parametersDetail);
+
+                foreach (DataRow row in detailTransaksi.Rows)
+                {
+                    int produkId = Convert.ToInt32(row["produk_id_produk"]);
+                    int jumlah = Convert.ToInt32(row["jumlah"]);
+
+                    string queryUpdateStok = "UPDATE produk SET stok = stok + @jumlah WHERE produk_id = @produk_id";
+                    NpgsqlParameter[] parametersUpdateStok = new NpgsqlParameter[]
+                    {
+                        new NpgsqlParameter("@produk_id", produkId),
+                        new NpgsqlParameter("@jumlah", jumlah)
+                    };
+                    commandExecutor(queryUpdateStok, parametersUpdateStok);
+                }
+
+                commandExecutor("DELETE FROM detail_transaksi WHERE transaksi_transaksi_id = @transaksi_id", parametersDetail);
+
+                string query = "DELETE FROM transaksi WHERE transaksi_id = @transaksi_id";
+                NpgsqlParameter[] parameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("@transaksi_id", transaksiId)
+                };
+                commandExecutor(query, parameters);
+            }
+            else
+            {
+                throw new Exception("Transaksi sudah lebih dari 10 menit, tidak dapat dihapus.");
+            }
+        }
+
     }
 }

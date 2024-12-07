@@ -312,6 +312,17 @@ namespace Republik_Larva.Controller
             smtpClient.Send(email);
             smtpClient.Disconnect(true);
         }
-
+        public void HapusTransaksiDenganBatasWaktu(int transaksiId)
+        {
+            try
+            {
+                transaksiModel.HapusTransaksi(transaksiId);
+                show_message_box("Transaksi berhasil dihapus.");
+            }
+            catch (Exception ex)
+            {
+                show_message_box("Gagal menghapus transaksi: " + ex.Message);
+            }
+        }
     }
 }
