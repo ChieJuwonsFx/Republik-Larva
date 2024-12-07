@@ -71,7 +71,7 @@ namespace Republik_Larva.Models
         public int TambahAtauAmbilCustomer(string NamaCustomer, string email)
         {
             int customerId;
-            string queryCheck = "SELECT customer_id FROM customer WHERE email = @email or nama_customer = @nama_customer";
+            string queryCheck = "SELECT customer_id FROM customer WHERE nama_customer = @nama_customer";
             string queryInsert = @"
                 INSERT INTO customer (nama_customer, email) 
                 VALUES (@nama_customer, @email) 
@@ -102,6 +102,31 @@ namespace Republik_Larva.Models
 
             return customerId;
         }
+
+        public int GetStokProduk(int produkId)
+        {
+            string query = "SELECT stok FROM produk WHERE produk_id = @produk_id";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@produk_id", produkId)
+            };
+
+            DataTable result = queryExecutor(query, parameters);
+            return result.Rows.Count > 0 ? Convert.ToInt32(result.Rows[0]["stok"]) : 0;
+        }
+
+        public void KurangiStokProduk(int produkId, int jumlah)
+        {
+            string query = "UPDATE produk SET stok = stok - @jumlah WHERE produk_id = @produk_id";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@produk_id", produkId),
+                new NpgsqlParameter("@jumlah", jumlah)
+            };
+
+            commandExecutor(query, parameters);
+        }
+
 
         public DataTable GetTransaksiById(int transaksiId)
         {
