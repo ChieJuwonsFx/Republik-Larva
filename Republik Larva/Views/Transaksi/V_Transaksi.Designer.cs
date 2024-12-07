@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
+
             jumlahTransaksi = new Label();
             totalPenghasilan = new Label();
             jumlahMaggot = new Label();

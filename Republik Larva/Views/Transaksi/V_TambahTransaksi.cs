@@ -2,6 +2,17 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Font;
+using System.IO;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using MimeKit.Text;
+using iText.IO.Image;
 using Republik_Larva.Controller;
 using Republik_Larva.Models;
 
@@ -194,15 +205,98 @@ namespace Republik_Larva.Views.Transaksi
                 }
 
                 c_Transaksi.ProsesTransaksi(NamaCustomer, emailCustomer, statusPembayaranValue, metodePembayaranValue, produkTerpilih);
-
+                GeneratePdfInMemory(NamaCustomer, emailCustomer, produkTerpilih, statusPembayaranValue, metodePembayaranValue);
+                c_Transaksi.balikTransaksi();
             }
             catch (Exception ex)
             {
                 c_Transaksi.show_confirm_message_box("Terjadi kesalahan: " + ex.Message);
             }
         }
+        public static void GeneratePdfInMemory(string namaCustomer, string emailCustomer, DataTable produkTerpilih, string statusPembayaran, string metodePembayaran)
+        {
+                MemoryStream memoryStream = new MemoryStream();
+                PdfWriter writer = new PdfWriter(memoryStream);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
 
+                document.Add(new Paragraph("Republik Larva").SetFontSize(16).SetTextAlignment(TextAlignment.CENTER));
+                document.Add(new Paragraph("Jl. Medan Merdeka No. 123, Jakarta").SetTextAlignment(TextAlignment.CENTER));
+                document.Add(new Paragraph("Telp: 081238038207| Email: insensateecho@gmail.com").SetTextAlignment(TextAlignment.CENTER));
+                document.Add(new Paragraph("\n")); 
 
+                document.Add(new Paragraph("INVOICE").SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
+                document.Add(new Paragraph($"No. Invoice: INV-{DateTime.Now.Ticks}").SetTextAlignment(TextAlignment.LEFT));
+                document.Add(new Paragraph($"Tanggal: {DateTime.Now:dd MMMM yyyy}").SetTextAlignment(TextAlignment.LEFT));
+                document.Add(new Paragraph("\n")); 
+
+                document.Add(new Paragraph($"Nama Customer: {namaCustomer}"));
+                document.Add(new Paragraph($"Email: {emailCustomer}"));
+                document.Add(new Paragraph($"Metode Pembayaran: {metodePembayaran}"));
+                document.Add(new Paragraph($"Status Pembayaran: {statusPembayaran}"));
+                document.Add(new Paragraph("\n"));
+
+                Table table = new Table(4).UseAllAvailableWidth();
+                table.AddHeaderCell("Item");
+                table.AddHeaderCell("Jumlah");
+                table.AddHeaderCell("Harga");
+                table.AddHeaderCell("Total");
+
+                int totalAmount = 0;
+                foreach (DataRow row in produkTerpilih.Rows)
+                {
+                    string itemName = row["produk_id"].ToString();  
+                    int jumlah = (int)row["jumlah"];
+                    int harga = (int)row["harga"];
+                    int totalHarga = (int)row["total_harga"];
+
+                    totalAmount += totalHarga;
+
+                    table.AddCell(itemName);
+                    table.AddCell(jumlah.ToString());
+                    table.AddCell($"Rp {harga}");
+                    table.AddCell($"Rp {totalHarga}");
+                }
+
+                document.Add(table);
+                document.Add(new Paragraph("\n"));
+                document.Add(new Paragraph($"Total Pembayaran: Rp {totalAmount}").SetTextAlignment(TextAlignment.RIGHT));
+                document.Add(new Paragraph("\n"));
+                document.Close();
+
+                byte[] pdfBytes = memoryStream.ToArray();
+
+                SendEmailWithAttachment(pdfBytes, namaCustomer, emailCustomer, statusPembayaran);
+        }
+
+        public static void SendEmailWithAttachment(byte[] fileBytes, string namaCustomer, string emailCustomer, string statusPembayaran)
+        {
+            MimeMessage email = new MimeMessage();
+            email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+            email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
+
+            string subject = statusPembayaran.ToLower() == "lunas" ? "Terima kasih atas Pembelian Anda!" : "Pembelian Anda Belum Lunas, Segera Lunasi!";
+
+            email.Subject = subject;
+
+            string bodyText = statusPembayaran.ToLower() == "lunas" ?
+                $"Terima kasih telah melakukan pembayaran. Berikut adalah invoice untuk transaksi Anda." :
+                $"Transaksi Anda belum lunas. Mohon segera lakukan pembayaran untuk menyelesaikan transaksi Anda.";
+
+            BodyBuilder bodyBuilder = new BodyBuilder
+            {
+                TextBody = bodyText
+            };
+
+            bodyBuilder.Attachments.Add("GeneratedInvoice.pdf", fileBytes, new MimeKit.ContentType("application", "pdf"));
+            email.Body = bodyBuilder.ToMessageBody();
+
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+            smtpClient.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo");
+            smtpClient.Send(email);
+            smtpClient.Disconnect(true);
+        }
         private int CalculateTotalHarga()
         {
             int total = 0;
@@ -276,6 +370,7 @@ namespace Republik_Larva.Views.Transaksi
                     metodePembayaranValue,
                     produkTerpilih
                 );
+                GeneratePdfInMemory(NamaCustomer, emailCustomer, produkTerpilih, statusPembayaranValue, metodePembayaranValue);
                 c_Transaksi.show_message_box("Transaksi berhasil disimpan!");
                 c_Transaksi.balikTransaksi();
             }
@@ -283,7 +378,6 @@ namespace Republik_Larva.Views.Transaksi
             {
                 MessageBox.Show("Terjadi kesalahan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
+        } 
     }
 }
