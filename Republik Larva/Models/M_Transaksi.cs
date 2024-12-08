@@ -137,6 +137,26 @@ namespace Republik_Larva.Models
             };
             return queryExecutor(query, parameters);
         }
+        public DataTable GetTransaksiCustomer(int transaksiId)
+        {
+            string query = @"SELECT 
+                t.transaksi_id,
+                t.tanggal_transaksi,
+                t.total_harga,
+                t.metode_pembayaran,
+                t.status_bayar,
+                c.nama_customer,
+                c.email
+            FROM transaksi t
+            JOIN customer c ON t.customer_customer_id = c.customer_id
+            ORDER BY t.tanggal_transaksi DESC;
+            ";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", transaksiId)
+            };
+            return queryExecutor(query, parameters);
+        }
 
         public void UpdateTransaksi(int transaksiId, string statusPembayaran, string metodePembayaran, int totalHarga)
         {
@@ -266,6 +286,27 @@ namespace Republik_Larva.Models
             ORDER BY t.tanggal_transaksi DESC";
             return queryExecutor(query);
         }
+        public DataTable GetProdukTransaksi(int transaksiId)
+        {
+            string query = @"
+            SELECT 
+                p.produk_id,
+                p.nama_produk,
+                dt.jumlah,
+                dt.total_harga,
+                p.harga
+            FROM detail_transaksi dt
+            JOIN produk p ON dt.produk_id_produk = p.produk_id
+            WHERE dt.transaksi_transaksi_id = @transaksi_id";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", transaksiId)
+            };
+
+            return queryExecutor(query, parameters);
+        }
+
 
         public DateTime GetWaktuTransaksi(int transaksiId)
         {

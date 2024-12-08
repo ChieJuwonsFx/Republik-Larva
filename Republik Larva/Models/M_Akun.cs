@@ -13,7 +13,7 @@ namespace Republik_Larva.Models
             string query = @"
             SELECT admin_id, nama_admin, username
             FROM admin
-            WHERE isActive = true";  // Menambahkan filter hanya yang aktif
+            WHERE isActive = true";  
 
             DataTable dataAdmin = queryExecutor(query);
             return dataAdmin;

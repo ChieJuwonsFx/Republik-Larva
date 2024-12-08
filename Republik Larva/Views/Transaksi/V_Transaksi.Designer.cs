@@ -33,9 +33,9 @@
             totalPenghasilan = new Label();
             jumlahMaggot = new Label();
             btnTambahTransaksi = new Button();
-            btnBatalkan = new Button();
             btnBelumBayar = new Button();
             btnLihatSemua = new Button();
+            btnBatal = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -102,20 +102,6 @@
             btnTambahTransaksi.MouseEnter += btnTambahTransaksi_MouseEnter;
             btnTambahTransaksi.MouseLeave += btnTambahTransaksi_MouseLeave;
             // 
-            // btnBatalkan
-            // 
-            btnBatalkan.BackColor = Color.Transparent;
-            btnBatalkan.FlatAppearance.BorderSize = 0;
-            btnBatalkan.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            btnBatalkan.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btnBatalkan.FlatStyle = FlatStyle.Flat;
-            btnBatalkan.Location = new Point(616, 759);
-            btnBatalkan.Name = "btnBatalkan";
-            btnBatalkan.Size = new Size(330, 111);
-            btnBatalkan.TabIndex = 5;
-            btnBatalkan.UseVisualStyleBackColor = false;
-            btnBatalkan.Click += btnBatalkan_Click;
-            // 
             // btnBelumBayar
             // 
             btnBelumBayar.BackColor = Color.Transparent;
@@ -133,6 +119,7 @@
             // btnLihatSemua
             // 
             btnLihatSemua.BackColor = Color.Transparent;
+            btnLihatSemua.Cursor = Cursors.Hand;
             btnLihatSemua.FlatAppearance.BorderSize = 0;
             btnLihatSemua.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnLihatSemua.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -146,14 +133,31 @@
             btnLihatSemua.MouseEnter += btnLihatSemua_MouseEnter;
             btnLihatSemua.MouseLeave += btnLihatSemua_MouseLeave;
             // 
+            // btnBatal
+            // 
+            btnBatal.BackColor = Color.Transparent;
+            btnBatal.Cursor = Cursors.Hand;
+            btnBatal.FlatAppearance.BorderSize = 0;
+            btnBatal.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnBatal.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnBatal.FlatStyle = FlatStyle.Flat;
+            btnBatal.Location = new Point(616, 759);
+            btnBatal.Name = "btnBatal";
+            btnBatal.Size = new Size(330, 111);
+            btnBatal.TabIndex = 8;
+            btnBatal.UseVisualStyleBackColor = false;
+            btnBatal.Click += btnBatal_Click;
+            btnBatal.MouseEnter += btnBatal_MouseEnter;
+            btnBatal.MouseLeave += btnBatal_MouseLeave;
+            // 
             // V_Transaksi
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.transaksi;
+            Controls.Add(btnBatal);
             Controls.Add(btnLihatSemua);
             Controls.Add(btnBelumBayar);
-            Controls.Add(btnBatalkan);
             Controls.Add(btnTambahTransaksi);
             Controls.Add(jumlahMaggot);
             Controls.Add(totalPenghasilan);
@@ -172,8 +176,8 @@
         public Label totalPenghasilan;
         public Label jumlahMaggot;
         private Button btnTambahTransaksi;
-        private Button btnBatalkan;
         private Button btnBelumBayar;
         private Button btnLihatSemua;
+        private Button btnBatal;
     }
 }

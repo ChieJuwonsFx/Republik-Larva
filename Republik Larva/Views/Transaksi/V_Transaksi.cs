@@ -14,7 +14,7 @@ namespace Republik_Larva.Views
 {
     public partial class V_Transaksi : UserControl
     {
-        private C_Transaksi c_Transaksi; 
+        private C_Transaksi c_Transaksi;
         public V_Transaksi(C_Transaksi c_Transaksi)
         {
             InitializeComponent();
@@ -48,19 +48,6 @@ namespace Republik_Larva.Views
         {
             btnTambahTransaksi.BackgroundImage = Properties.Resources.tambahTransaksi;
         }
-        private void btnBatalkan_Click(object sender, EventArgs e)
-        {
-            c_Transaksi.batalkanTransaksiView();
-        }
-        private void btnBatalkan_MouseEnter(object sender, EventArgs e)
-        {
-            btnBatalkan.BackgroundImage = Properties.Resources.btnBatalkanTransaksi;
-        }
-        private void btnBatalkan_MouseLeave(object sender, EventArgs e)
-        {
-            btnBatalkan.BackgroundImage = Properties.Resources.btnBatalkanTransaksiHover;
-        }
-
         private void btnBelumBayar_Click(object sender, EventArgs e)
         {
 
@@ -77,6 +64,19 @@ namespace Republik_Larva.Views
         private void btnLihatSemua_MouseLeave(object sender, EventArgs e)
         {
             btnLihatSemua.BackgroundImage = Properties.Resources.lihatSemuaTransaksi;
+        }
+
+        private void btnBatal_Click(object sender, EventArgs e)
+        {
+            c_Transaksi.batalkanTransaksiView();
+        }
+        private void btnBatal_MouseEnter(object sender, EventArgs e)
+        {
+            btnBatal.BackgroundImage = Properties.Resources.btnBatalkanTransaksiHover;
+        }
+        private void btnBatal_MouseLeave(object sender, EventArgs e)
+        {
+            btnBatal.BackgroundImage = Properties.Resources.btnBatalkanTransaksi;
         }
     }
 }

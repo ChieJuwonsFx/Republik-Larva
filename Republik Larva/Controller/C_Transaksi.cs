@@ -26,6 +26,8 @@ using MimeKit;
 using MimeKit.Text;
 using iText.IO.Image;
 using MimeKit;
+using iText.Kernel.Geom;
+using iText.Kernel.Colors;
 
 namespace Republik_Larva.Controller
 {
@@ -370,11 +372,123 @@ namespace Republik_Larva.Controller
             smtpClient.Send(email);
             smtpClient.Disconnect(true);
         }
+
+        public static void GeneratePdfPembatalan(string namaCustomer, string emailCustomer, DataTable produkTerpilih, string statusPembayaran, string metodePembayaran)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            PdfWriter writer = new PdfWriter(memoryStream);
+            PdfDocument pdf = new PdfDocument(writer);
+
+            pdf.AddNewPage();
+            Document document = new Document(pdf);
+
+            Paragraph watermark = new Paragraph("BATALKAN")
+                .SetFontSize(50)
+                .SetFontColor(new DeviceRgb(255, 0, 0))
+                .SetOpacity(0.3f)
+                .SetTextAlignment(TextAlignment.CENTER);
+
+            iText.Kernel.Geom.Rectangle pageSize = pdf.GetFirstPage().GetPageSize();
+            Canvas canvas = new Canvas(pdf.GetFirstPage(), pageSize);
+            canvas.Add(watermark.SetFixedPosition(pageSize.GetWidth() / 4, pageSize.GetHeight() / 2, 500));
+
+            document.Add(new Paragraph("Republik Larva").SetFontSize(16).SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("Jl. Medan Merdeka No. 123, Jakarta").SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("Telp: 081238038207| Email: insensateecho@gmail.com").SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph("INVOICE PEMBATALAN").SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph($"No. Invoice: INV-{DateTime.Now.Ticks}").SetTextAlignment(TextAlignment.LEFT));
+            document.Add(new Paragraph($"Tanggal: {DateTime.Now:dd MMMM yyyy}").SetTextAlignment(TextAlignment.LEFT));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph($"Nama Customer: {namaCustomer}"));
+            document.Add(new Paragraph($"Email: {emailCustomer}"));
+            document.Add(new Paragraph($"Metode Pembayaran: {metodePembayaran}"));
+            document.Add(new Paragraph($"Status Pembayaran: {statusPembayaran}"));
+            document.Add(new Paragraph("\n"));
+
+            Table table = new Table(4).UseAllAvailableWidth();
+            table.AddHeaderCell("Item");
+            table.AddHeaderCell("Jumlah");
+            table.AddHeaderCell("Harga");
+            table.AddHeaderCell("Total");
+
+            int totalAmount = 0;
+            foreach (DataRow row in produkTerpilih.Rows)
+            {
+                int produkId = (int)row["produk_id"];
+                string itemName = GetProductNameById(produkId);
+                int jumlah = (int)row["jumlah"];
+                int harga = (int)row["harga"];
+                int totalHarga = (int)row["total_harga"];
+
+                totalAmount += totalHarga;
+
+                table.AddCell(itemName);
+                table.AddCell(jumlah.ToString());
+                table.AddCell($"Rp {harga}");
+                table.AddCell($"Rp {totalHarga}");
+            }
+
+            document.Add(table);
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph($"Total Pembayaran: Rp {totalAmount}").SetTextAlignment(TextAlignment.RIGHT));
+            document.Add(new Paragraph("\n"));
+            document.Close();
+
+            byte[] pdfBytes = memoryStream.ToArray();
+
+            SendEmailWithAttachmentPembatalan(pdfBytes, namaCustomer, emailCustomer);
+        }
+
+        public static void SendEmailWithAttachmentPembatalan(byte[] fileBytes, string namaCustomer, string emailCustomer)
+        {
+            MimeMessage email = new MimeMessage();
+            email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+            email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
+
+            email.Subject = "Transaksi Anda Telah Dibatalkan";
+
+            string bodyText = $"Halo {namaCustomer},\n\n" +
+                              $"Transaksi Anda telah dibatalkan. Terlampir adalah rincian invoice pembatalan.\n\n" +
+                              "Terima kasih, dan jika ada pertanyaan lebih lanjut, hubungi kami.\n\n" +
+                              "Tim Republik Larva";
+
+            BodyBuilder bodyBuilder = new BodyBuilder
+            {
+                TextBody = bodyText
+            };
+
+            bodyBuilder.Attachments.Add("InvoicePembatalan.pdf", fileBytes, new MimeKit.ContentType("application", "pdf"));
+            email.Body = bodyBuilder.ToMessageBody();
+
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);  // Menggunakan STARTTLS
+            smtpClient.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo");
+            smtpClient.Send(email);
+            smtpClient.Disconnect(true);
+        }
+
+
+
         public void HapusTransaksiDenganBatasWaktu(int transaksiId)
         {
             try
             {
+                DataTable transaksiData = transaksiModel.GetTransaksiCustomer(transaksiId);
+                if (transaksiData.Rows.Count == 0)
+                {
+                    show_message_box("Transaksi tidak ditemukan.");
+                    return;
+                }
+
+                string namaCustomer = transaksiData.Rows[0]["nama_customer"].ToString();
+                string emailCustomer = transaksiData.Rows[0]["email"].ToString();
+                string statusPembayaran = transaksiData.Rows[0]["status_bayar"].ToString();
+                string metodePembayaran = transaksiData.Rows[0]["metode_pembayaran"].ToString();
+
+                DataTable produkTerpilih = transaksiModel.GetProdukTransaksi(transaksiId);
                 transaksiModel.HapusTransaksi(transaksiId);
+                GeneratePdfPembatalan(namaCustomer, emailCustomer, produkTerpilih, statusPembayaran, metodePembayaran);
                 show_message_box("Transaksi berhasil dihapus.");
             }
             catch (Exception ex)
@@ -382,5 +496,6 @@ namespace Republik_Larva.Controller
                 show_message_box("Gagal menghapus transaksi: " + ex.Message);
             }
         }
+
     }
 }
