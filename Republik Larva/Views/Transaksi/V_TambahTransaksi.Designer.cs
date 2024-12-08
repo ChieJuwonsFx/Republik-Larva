@@ -100,16 +100,19 @@
             // btnSimpan
             // 
             btnSimpan.BackColor = Color.Transparent;
+            btnSimpan.Cursor = Cursors.Hand;
             btnSimpan.FlatAppearance.BorderSize = 0;
             btnSimpan.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnSimpan.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnSimpan.FlatStyle = FlatStyle.Flat;
-            btnSimpan.Location = new Point(177, 802);
+            btnSimpan.Location = new Point(546, 802);
             btnSimpan.Name = "btnSimpan";
             btnSimpan.Size = new Size(250, 70);
             btnSimpan.TabIndex = 6;
             btnSimpan.UseVisualStyleBackColor = false;
             btnSimpan.Click += btnSimpan_Click;
+            btnSimpan.MouseEnter += btnSimpan_MouseEnter;
+            btnSimpan.MouseLeave += btnSimpan_MouseLeave;
             // 
             // V_TambahTransaksi
             // 

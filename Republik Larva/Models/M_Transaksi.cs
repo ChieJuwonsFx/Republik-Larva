@@ -158,25 +158,6 @@ namespace Republik_Larva.Models
             return queryExecutor(query, parameters);
         }
 
-        public void UpdateTransaksi(int transaksiId, string statusPembayaran, string metodePembayaran, int totalHarga)
-        {
-            string query = @"
-                UPDATE transaksi 
-                SET status_bayar = @status_bayar, 
-                    metode_pembayaran = @metode_pembayaran, 
-                    total_harga = @total_harga 
-                WHERE transaksi_id = @transaksi_id";
-
-            NpgsqlParameter[] parameters = new NpgsqlParameter[]
-            {
-                new NpgsqlParameter("@status_bayar", statusPembayaran),
-                new NpgsqlParameter("@metode_pembayaran", metodePembayaran),
-                new NpgsqlParameter("@total_harga", totalHarga),
-                new NpgsqlParameter("@transaksi_id", transaksiId)
-            };
-
-            commandExecutor(query, parameters);
-        }
         public int GetJumlahTransaksiBulanIni()
         {
             string query = "SELECT COUNT(*) FROM transaksi WHERE EXTRACT(MONTH FROM tanggal_transaksi) = EXTRACT(MONTH FROM CURRENT_DATE)";
@@ -281,11 +262,65 @@ namespace Republik_Larva.Models
                 FROM detail_transaksi dt
                 JOIN produk p ON dt.produk_id_produk = p.produk_id
             ) d ON t.transaksi_id = d.transaksi_transaksi_id
-            WHERE t.tanggal_transaksi >= CURRENT_TIMESTAMP - INTERVAL '10 minutes'
+            WHERE t.tanggal_transaksi >= CURRENT_TIMESTAMP - INTERVAL '30 minutes'
             GROUP BY t.transaksi_id, c.nama_customer, a.nama_admin
             ORDER BY t.tanggal_transaksi DESC";
             return queryExecutor(query);
         }
+        public DataTable GetBelumBayar()
+        {
+            string query = @"
+            SELECT 
+                t.transaksi_id,
+                t.tanggal_transaksi,
+                t.total_harga,
+                t.metode_pembayaran,
+                t.status_bayar,
+                c.nama_customer,
+                a.nama_admin,
+                STRING_AGG(CONCAT(d.nama_produk, ' (', d.jumlah, ')'), ', ') AS produk
+            FROM transaksi t
+            JOIN customer c ON t.customer_customer_id = c.customer_id
+            JOIN admin a ON t.admin_admin_id = a.admin_id
+            JOIN (
+                SELECT 
+                    dt.transaksi_transaksi_id,
+                    p.nama_produk,
+                    dt.jumlah
+                FROM detail_transaksi dt
+                JOIN produk p ON dt.produk_id_produk = p.produk_id
+            ) d ON t.transaksi_id = d.transaksi_transaksi_id
+            WHERE t.status_bayar = 'Belum Lunas' 
+            GROUP BY t.transaksi_id, c.nama_customer, a.nama_admin
+            ORDER BY t.tanggal_transaksi DESC";
+
+            return queryExecutor(query);
+        }
+        public string GetEmailCustomerByTransaksiId(int transaksiId)
+        {
+            string query = @"
+            SELECT c.email
+            FROM transaksi t
+            JOIN customer c ON t.customer_customer_id = c.customer_id
+            WHERE t.transaksi_id = @transaksi_id";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", transaksiId)
+            };
+
+            try
+            {
+                object result = queryExecutor(query, parameters);
+                return result != null ? result.ToString() : string.Empty;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+
+
         public DataTable GetProdukTransaksi(int transaksiId)
         {
             string query = @"
@@ -366,6 +401,20 @@ namespace Republik_Larva.Models
             {
                 throw new Exception("Transaksi sudah lebih dari 10 menit, tidak dapat dihapus.");
             }
+        }
+        public void UpdateStatusLunas(int transaksiId)
+        {
+            string query = @"
+            UPDATE transaksi 
+            SET status_bayar = 'Lunas' 
+            WHERE transaksi_id = @transaksi_id";
+
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", NpgsqlTypes.NpgsqlDbType.Integer) { Value = transaksiId }
+            };
+
+            commandExecutor(query, parameters);
         }
 
     }

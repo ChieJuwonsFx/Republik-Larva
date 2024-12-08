@@ -157,10 +157,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.bg;
             ClientSize = new Size(1920, 1080);
+            Controls.Add(btnTransaksi);
             Controls.Add(btnAkun);
             Controls.Add(btnSendEmail);
             Controls.Add(btnProduk);
-            Controls.Add(btnTransaksi);
             Controls.Add(btnDashboard);
             Controls.Add(panelLogo);
             Controls.Add(panelUtama);

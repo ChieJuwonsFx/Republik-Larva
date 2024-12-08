@@ -226,6 +226,15 @@ namespace Republik_Larva.Views.Transaksi
             {
                 MessageBox.Show("Terjadi kesalahan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        } 
+        }
+        private void btnSimpan_MouseEnter(object sender, EventArgs e)
+        {
+            btnSimpan.BackgroundImage = Properties.Resources.simpanHover;
+        }
+
+        private void btnSimpan_MouseLeave(object sender, EventArgs e)
+        {
+            btnSimpan.BackgroundImage = Properties.Resources.simpan;
+        }
     }
 }

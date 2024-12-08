@@ -38,6 +38,7 @@ namespace Republik_Larva.Controller
         V_Transaksi view_transaksi;
         V_TambahTransaksi tambah_transaksi;
         V_BatalkanTransaksi batal_transaksi;
+        V_BelumLunas belum_lunas;
         M_Transaksi transaksiModel;
         M_Transaksi M_Produk = new M_Transaksi();
         V_LihatSemua view_semua;
@@ -75,6 +76,11 @@ namespace Republik_Larva.Controller
         {
             batal_transaksi = new V_BatalkanTransaksi(this);
             C_MainForm.moveView(batal_transaksi);
+        }
+        public void belumLunasView()
+        {
+            belum_lunas = new V_BelumLunas(this);
+            C_MainForm.moveView(belum_lunas);
         }
         public void LoadBatalkanTransaksi(DataGridView dataGridTransaksi)
         {
@@ -122,6 +128,65 @@ namespace Republik_Larva.Controller
                 dataGridTransaksi.Columns.Add(deleteButtonColumn);
 
                 dataGridTransaksi.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                show_message_box($"Error dalam LoadDataTransaksi: {ex.Message}\n{ex.StackTrace}");
+            }
+        }
+        public void LoadBelumLunas(DataGridView dataGridBelumLunas)
+        {
+            try
+            {
+                dataGridBelumLunas.AllowUserToAddRows = false;
+
+                DataTable transaksiData = transaksiModel.GetBelumBayar();
+                if (transaksiData == null || transaksiData.Rows.Count == 0)
+                {
+                    show_message_box("Error: Gagal mengambil data transaksi atau tidak ada data.");
+                    return;
+                }
+
+                dataGridBelumLunas.Columns.Clear();
+
+                DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
+                nomorColumn.HeaderText = "No";
+                nomorColumn.Name = "nomor";
+                dataGridBelumLunas.Columns.Add(nomorColumn);
+
+                dataGridBelumLunas.DataSource = transaksiData;
+
+                if (dataGridBelumLunas.Columns["transaksi_id"] != null)
+                    dataGridBelumLunas.Columns["transaksi_id"].Visible = false;
+
+                if (dataGridBelumLunas.Columns["waktu_transaksi"] != null)
+                    dataGridBelumLunas.Columns["waktu_transaksi"].HeaderText = "Waktu Transaksi";
+
+                if (dataGridBelumLunas.Columns["total_harga"] != null)
+                    dataGridBelumLunas.Columns["total_harga"].HeaderText = "Total Harga";
+
+                for (int i = 0; i < dataGridBelumLunas.Rows.Count; i++)
+                {
+                    dataGridBelumLunas.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
+                }
+
+                DataGridViewButtonColumn updateColumn = new DataGridViewButtonColumn
+                {
+                    Name = "updateLunasButton",
+                    Text = "Update Lunas",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridBelumLunas.Columns.Add(updateColumn);
+
+                DataGridViewButtonColumn tagihColumn = new DataGridViewButtonColumn
+                {
+                    Name = "tagihButton",
+                    Text = "Kirim Tagihan",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridBelumLunas.Columns.Add(tagihColumn);
+
+                dataGridBelumLunas.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
             {
@@ -216,8 +281,8 @@ namespace Republik_Larva.Controller
 
             using (var smtpClient = new SmtpClient())
             {
-                smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-                smtpClient.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo");
+                smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
                 smtpClient.Send(email);
                 smtpClient.Disconnect(true);
             }
@@ -367,8 +432,8 @@ namespace Republik_Larva.Controller
             email.Body = bodyBuilder.ToMessageBody();
 
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-            smtpClient.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo");
+            smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
             smtpClient.Send(email);
             smtpClient.Disconnect(true);
         }
@@ -463,13 +528,10 @@ namespace Republik_Larva.Controller
 
             SmtpClient smtpClient = new SmtpClient();
             smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);  // Menggunakan STARTTLS
-            smtpClient.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo");
+            smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
             smtpClient.Send(email);
             smtpClient.Disconnect(true);
         }
-
-
-
         public void HapusTransaksiDenganBatasWaktu(int transaksiId)
         {
             try
@@ -494,6 +556,225 @@ namespace Republik_Larva.Controller
             catch (Exception ex)
             {
                 show_message_box("Gagal menghapus transaksi: " + ex.Message);
+            }
+        }
+        public static void GeneratePdfPembayaranLunas(string namaCustomer, string emailCustomer, DataTable produkTerpilih, string statusPembayaran, string metodePembayaran)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            PdfWriter writer = new PdfWriter(memoryStream);
+            PdfDocument pdf = new PdfDocument(writer);
+
+            pdf.AddNewPage();
+            Document document = new Document(pdf);
+
+            Paragraph watermark = new Paragraph("LUNAS")
+                .SetFontSize(50)
+                .SetFontColor(new DeviceRgb(0, 128, 0)) 
+                .SetOpacity(0.3f)
+                .SetTextAlignment(TextAlignment.CENTER);
+
+            iText.Kernel.Geom.Rectangle pageSize = pdf.GetFirstPage().GetPageSize();
+            Canvas canvas = new Canvas(pdf.GetFirstPage(), pageSize);
+            canvas.Add(watermark.SetFixedPosition(pageSize.GetWidth() / 4, pageSize.GetHeight() / 2, 500));
+
+            document.Add(new Paragraph("Republik Larva").SetFontSize(16).SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("Jl. Medan Merdeka No. 123, Jakarta").SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("Telp: 081238038207| Email: insensateecho@gmail.com").SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph("INVOICE PEMBAYARAN LUNAS").SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph($"No. Invoice: INV-{DateTime.Now.Ticks}").SetTextAlignment(TextAlignment.LEFT));
+            document.Add(new Paragraph($"Tanggal: {DateTime.Now:dd MMMM yyyy}").SetTextAlignment(TextAlignment.LEFT));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph($"Nama Customer: {namaCustomer}"));
+            document.Add(new Paragraph($"Email: {emailCustomer}"));
+            document.Add(new Paragraph($"Metode Pembayaran: {metodePembayaran}"));
+            document.Add(new Paragraph($"Status Pembayaran: {statusPembayaran}"));
+            document.Add(new Paragraph("\n"));
+
+            Table table = new Table(4).UseAllAvailableWidth();
+            table.AddHeaderCell("Item");
+            table.AddHeaderCell("Jumlah");
+            table.AddHeaderCell("Harga");
+            table.AddHeaderCell("Total");
+
+            int totalAmount = 0;
+            foreach (DataRow row in produkTerpilih.Rows)
+            {
+                int produkId = (int)row["produk_id"];
+                string itemName = GetProductNameById(produkId);
+                int jumlah = (int)row["jumlah"];
+                int harga = (int)row["harga"];
+                int totalHarga = (int)row["total_harga"];
+
+                totalAmount += totalHarga;
+
+                table.AddCell(itemName);
+                table.AddCell(jumlah.ToString());
+                table.AddCell($"Rp {harga}");
+                table.AddCell($"Rp {totalHarga}");
+            }
+
+            document.Add(table);
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph($"Total Pembayaran: Rp {totalAmount}").SetTextAlignment(TextAlignment.RIGHT));
+            document.Add(new Paragraph("\n"));
+            document.Close();
+
+            byte[] pdfBytes = memoryStream.ToArray();
+
+            SendEmailWithAttachmentPembayaranLunas(pdfBytes, namaCustomer, emailCustomer);
+        }
+
+        public static void SendEmailWithAttachmentPembayaranLunas(byte[] fileBytes, string namaCustomer, string emailCustomer)
+        {
+            try
+            {
+                MimeMessage email = new MimeMessage();
+                email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+                email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
+
+                email.Subject = "Pembayaran Anda Telah Lunas";
+
+                string bodyText = $"Halo {namaCustomer},\n\n" +
+                                  $"Kami dengan senang hati memberitahukan Anda bahwa pembayaran untuk transaksi Anda telah berhasil dilunasi. Terlampir adalah rincian invoice pembayaran yang telah dilunasi.\n\n" +
+                                  "Terima kasih atas pembayaran Anda, dan jika ada pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami.\n\n" +
+                                  "Tim Republik Larva";
+
+                BodyBuilder bodyBuilder = new BodyBuilder
+                {
+                    TextBody = bodyText
+                };
+
+                bodyBuilder.Attachments.Add("InvoicePembatalan.pdf", fileBytes, new MimeKit.ContentType("application", "pdf"));
+                email.Body = bodyBuilder.ToMessageBody();
+
+                using (SmtpClient smtpClient = new SmtpClient())
+                {
+                    smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                    smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag"); 
+                    smtpClient.Send(email);
+                    smtpClient.Disconnect(true);
+                }
+
+                Console.WriteLine("Email berhasil dikirim.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Gagal mengirim email: {ex.Message}");
+            }
+        }
+        public void KirimTagihanEmail(int transaksiId, string namaCustomer, string emailCustomer)
+        {
+            try
+            {
+                DataTable produkData = transaksiModel.GetProdukTransaksi(transaksiId);
+                GeneratePdfTagihan(namaCustomer, emailCustomer, produkData, "Belum Lunas", "Transfer Bank"); 
+
+                show_message_box("Tagihan telah dikirim ke email customer.");
+            }
+            catch (Exception ex)
+            {
+                show_message_box("Gagal mengirim tagihan: " + ex.Message);
+            }
+        }
+
+        public static void GeneratePdfTagihan(string namaCustomer, string emailCustomer, DataTable produkTerpilih, string statusPembayaran, string metodePembayaran)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            PdfWriter writer = new PdfWriter(memoryStream);
+            PdfDocument pdf = new PdfDocument(writer);
+
+            pdf.AddNewPage();
+            Document document = new Document(pdf);
+
+            document.Add(new Paragraph("Republik Larva").SetFontSize(16).SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("Jl. Medan Merdeka No. 123, Jakarta").SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("Telp: 081238038207 | Email: insensateecho@gmail.com").SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph("TAGIHAN PEMBAYARAN").SetFontSize(18).SetTextAlignment(TextAlignment.CENTER));
+            document.Add(new Paragraph($"No. Invoice: INV-{DateTime.Now.Ticks}").SetTextAlignment(TextAlignment.LEFT));
+            document.Add(new Paragraph($"Tanggal: {DateTime.Now:dd MMMM yyyy}").SetTextAlignment(TextAlignment.LEFT));
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph($"Nama Customer: {namaCustomer}"));
+            document.Add(new Paragraph($"Email: {emailCustomer}"));
+            document.Add(new Paragraph($"Metode Pembayaran: {metodePembayaran}"));
+            document.Add(new Paragraph($"Status Pembayaran: {statusPembayaran}"));
+            document.Add(new Paragraph("\n"));
+
+            Table table = new Table(4).UseAllAvailableWidth();
+            table.AddHeaderCell("Item");
+            table.AddHeaderCell("Jumlah");
+            table.AddHeaderCell("Harga");
+            table.AddHeaderCell("Total");
+
+            int totalAmount = 0;
+            foreach (DataRow row in produkTerpilih.Rows)
+            {
+                int produkId = (int)row["produk_id"];
+                string itemName = GetProductNameById(produkId);
+                int jumlah = (int)row["jumlah"];
+                int harga = (int)row["harga"];
+                int totalHarga = (int)row["total_harga"];
+
+                totalAmount += totalHarga;
+
+                table.AddCell(itemName);
+                table.AddCell(jumlah.ToString());
+                table.AddCell($"Rp {harga}");
+                table.AddCell($"Rp {totalHarga}");
+            }
+
+            document.Add(table);
+            document.Add(new Paragraph("\n"));
+            document.Add(new Paragraph($"Total Tagihan: Rp {totalAmount}").SetTextAlignment(TextAlignment.RIGHT));
+            document.Add(new Paragraph("\n"));
+            document.Close();
+
+            byte[] pdfBytes = memoryStream.ToArray();
+
+            SendEmailWithAttachmentTagihan(pdfBytes, namaCustomer, emailCustomer);
+        }
+        public static void SendEmailWithAttachmentTagihan(byte[] fileBytes, string namaCustomer, string emailCustomer)
+        {
+            try
+            {
+                MimeMessage email = new MimeMessage();
+                email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+                email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
+
+                email.Subject = "Tagihan Pembayaran Anda";
+
+                string bodyText = $"Halo {namaCustomer},\n\n" +
+                                  $"Kami ingin mengingatkan bahwa Anda memiliki tagihan pembayaran yang belum diselesaikan terkait transaksi Anda di Republik Larva.\n\n" +
+                                  $"Detail tagihan:\n" +
+                                  $"- Status Pembayaran: Belum Lunas\n" +
+                                  $"- Total Tagihan: Mohon lihat detail dalam PDF terlampir.\n\n" +
+                                  "Kami sarankan Anda untuk segera menyelesaikan pembayaran agar transaksi Anda dapat diproses lebih lanjut. " +
+                                  "Jika ada pertanyaan atau kendala, jangan ragu untuk menghubungi kami di email ini atau melalui WhatsApp di 081238038207.\n\n" +
+                                  "Terima kasih atas perhatian Anda.\n\n" +
+                                  "Hormat kami,\nTim Republik Larva";
+
+                BodyBuilder bodyBuilder = new BodyBuilder
+                {
+                    TextBody = bodyText
+                };
+
+                bodyBuilder.Attachments.Add("InvoiceTagihan.pdf", fileBytes, new MimeKit.ContentType("application", "pdf"));
+                email.Body = bodyBuilder.ToMessageBody();
+
+                using (SmtpClient smtpClient = new SmtpClient())
+                {
+                    smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+                    smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
+                    smtpClient.Send(email);
+                    smtpClient.Disconnect(true);
+                }
+
+                Console.WriteLine("Email tagihan berhasil dikirim.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Gagal mengirim email tagihan: {ex.Message}");
             }
         }
 

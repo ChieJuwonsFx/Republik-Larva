@@ -105,6 +105,7 @@
             // btnBelumBayar
             // 
             btnBelumBayar.BackColor = Color.Transparent;
+            btnBelumBayar.Cursor = Cursors.Hand;
             btnBelumBayar.FlatAppearance.BorderSize = 0;
             btnBelumBayar.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnBelumBayar.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -115,6 +116,8 @@
             btnBelumBayar.TabIndex = 6;
             btnBelumBayar.UseVisualStyleBackColor = false;
             btnBelumBayar.Click += btnBelumBayar_Click;
+            btnBelumBayar.MouseEnter += btnBelumBayar_MouseEnter;
+            btnBelumBayar.MouseLeave += btnBelumBayar_MouseLeave;
             // 
             // btnLihatSemua
             // 

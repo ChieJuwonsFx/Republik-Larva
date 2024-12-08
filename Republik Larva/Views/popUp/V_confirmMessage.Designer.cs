@@ -38,6 +38,8 @@
             konfirm.BackColor = Color.Transparent;
             konfirm.BackgroundImageLayout = ImageLayout.Stretch;
             konfirm.FlatAppearance.BorderSize = 0;
+            konfirm.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            konfirm.FlatAppearance.MouseOverBackColor = Color.Transparent;
             konfirm.FlatStyle = FlatStyle.Flat;
             konfirm.Location = new Point(420, 334);
             konfirm.Name = "konfirm";
@@ -53,6 +55,8 @@
             batal.BackColor = Color.Transparent;
             batal.BackgroundImageLayout = ImageLayout.Stretch;
             batal.FlatAppearance.BorderSize = 0;
+            batal.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            batal.FlatAppearance.MouseOverBackColor = Color.Transparent;
             batal.FlatStyle = FlatStyle.Flat;
             batal.Location = new Point(117, 333);
             batal.Name = "batal";
@@ -60,8 +64,8 @@
             batal.TabIndex = 1;
             batal.UseVisualStyleBackColor = false;
             batal.Click += batal_Click;
-            batal.MouseLeave += batal_MouseLeave;
             batal.MouseEnter += batal_MouseEnter;
+            batal.MouseLeave += batal_MouseLeave;
             // 
             // label1
             // 

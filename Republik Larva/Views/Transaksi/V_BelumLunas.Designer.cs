@@ -1,6 +1,6 @@
 ﻿namespace Republik_Larva.Views.Transaksi
 {
-    partial class V_BatalkanTransaksi
+    partial class V_BelumLunas
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,26 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridTransaksi = new DataGridView();
+            dataGridBelumLunas = new DataGridView();
             btnKembali = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridTransaksi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridBelumLunas).BeginInit();
             SuspendLayout();
             // 
-            // dataGridTransaksi
+            // dataGridBelumLunas
             // 
-            // dataGridTransaksi
-            dataGridTransaksi.BackgroundColor = Color.FromArgb(245, 242, 214);
-            dataGridTransaksi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridTransaksi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; 
-            dataGridTransaksi.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells; 
-            dataGridTransaksi.DefaultCellStyle.WrapMode = DataGridViewTriState.True;     
-            dataGridTransaksi.Location = new Point(159, 167);
-            dataGridTransaksi.Margin = new Padding(4, 5, 4, 5);
-            dataGridTransaksi.Name = "dataGridTransaksi";
-            dataGridTransaksi.RowHeadersWidth = 51;
-            dataGridTransaksi.Size = new Size(1598, 580);
-            dataGridTransaksi.TabIndex = 0;
-            dataGridTransaksi.CellContentClick += dataGridTransaksi_CellContentClick;
+            dataGridBelumLunas.BackgroundColor = Color.FromArgb(245, 242, 214);
+            dataGridBelumLunas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridBelumLunas.Location = new Point(159, 167);
+            dataGridBelumLunas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridBelumLunas.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridBelumLunas.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridBelumLunas.Name = "dataGridBelumLunas";
+            dataGridBelumLunas.RowHeadersWidth = 51;
+            dataGridBelumLunas.Size = new Size(1598, 580);
+            dataGridBelumLunas.TabIndex = 0;
+            dataGridBelumLunas.CellContentClick += dataGridBelumLunas_CellContentClick;
             // 
             // btnKembali
             // 
@@ -59,30 +57,28 @@
             btnKembali.Location = new Point(117, 818);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(216, 74);
-            btnKembali.TabIndex = 1;
+            btnKembali.TabIndex = 2;
             btnKembali.UseVisualStyleBackColor = false;
-            btnKembali.Click += btnKembali_Click;
+            btnKembali.Click += this.btnKembali_Click;
             btnKembali.MouseEnter += btnKembali_MouseEnter;
             btnKembali.MouseLeave += btnKembali_MouseLeave;
             // 
-            // V_BatalkanTransaksi
+            // V_BelumLunas
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.batalkanTransaksi;
-            Controls.Add(dataGridTransaksi);
+            BackgroundImage = Properties.Resources.belumLunas;
             Controls.Add(btnKembali);
-            Margin = new Padding(4, 5, 4, 5);
-            Name = "V_BatalkanTransaksi";
-            Size = new Size(2560, 1442);
-            ((System.ComponentModel.ISupportInitialize)dataGridTransaksi).EndInit();
+            Controls.Add(dataGridBelumLunas);
+            Name = "V_BelumLunas";
+            Size = new Size(1920, 937);
+            ((System.ComponentModel.ISupportInitialize)dataGridBelumLunas).EndInit();
             ResumeLayout(false);
-
         }
 
         #endregion
 
-        private DataGridView dataGridTransaksi;
+        public DataGridView dataGridBelumLunas;
         private Button btnKembali;
     }
 }

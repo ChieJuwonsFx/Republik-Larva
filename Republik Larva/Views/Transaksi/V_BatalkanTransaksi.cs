@@ -37,9 +37,17 @@ namespace Republik_Larva.Views.Transaksi
             {
                 try
                 {
-                    int transaksiId = Convert.ToInt32(dataGridTransaksi.Rows[e.RowIndex].Cells["transaksi_id"].Value);
-                    c_Transaksi.HapusTransaksiDenganBatasWaktu(transaksiId);
-                    LoadDataTransaksi();
+                    bool result = c_Transaksi.show_confirm_message_box("Apakah Anda yakin ingin membatalkan transaksi? Proses ini tidak dapat dibatalkan.");
+                    if (result == true)
+                    {
+                        int transaksiId = Convert.ToInt32(dataGridTransaksi.Rows[e.RowIndex].Cells["transaksi_id"].Value);
+                        c_Transaksi.HapusTransaksiDenganBatasWaktu(transaksiId);
+                        LoadDataTransaksi();
+                    }
+                    else
+                    {
+                        c_Transaksi.show_message_box("Perubahan status transaksi dibatalkan.");
+                    }
                 }
                 catch (Exception ex)
                 {

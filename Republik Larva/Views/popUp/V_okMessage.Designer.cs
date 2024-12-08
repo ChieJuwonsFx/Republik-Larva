@@ -36,6 +36,8 @@
             // 
             konfirm.BackColor = Color.Transparent;
             konfirm.FlatAppearance.BorderSize = 0;
+            konfirm.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            konfirm.FlatAppearance.MouseOverBackColor = Color.Transparent;
             konfirm.FlatStyle = FlatStyle.Flat;
             konfirm.Location = new Point(269, 334);
             konfirm.Name = "konfirm";

@@ -50,9 +50,16 @@ namespace Republik_Larva.Views
         }
         private void btnBelumBayar_Click(object sender, EventArgs e)
         {
-
+            c_Transaksi.belumLunasView();
         }
-
+        private void btnBelumBayar_MouseEnter(object sender, EventArgs e)
+        {
+            btnBelumBayar.BackgroundImage = Properties.Resources.belumBayarHover;
+        }
+        private void btnBelumBayar_MouseLeave(object sender, EventArgs e)
+        {
+            btnBelumBayar.BackgroundImage = Properties.Resources.belumBayar;
+        }
         private void btnLihatSemua_Click(object sender, EventArgs e)
         {
             c_Transaksi.semuaTransaksiView();
