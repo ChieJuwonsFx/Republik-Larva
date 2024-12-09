@@ -267,7 +267,7 @@ namespace Republik_Larva.Controller
         private void SendEmail(string subject, string body)
         {
             MimeMessage email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+            email.From.Add(new MailboxAddress(EnvLoader.Nama_Email, EnvLoader.Email));
             email.To.Add(new MailboxAddress("Admin", "insensateecho@gmail.com"));
 
             email.Subject = subject;
@@ -281,8 +281,8 @@ namespace Republik_Larva.Controller
 
             using (var smtpClient = new SmtpClient())
             {
-                smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
+                smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                smtpClient.Authenticate(EnvLoader.Email, EnvLoader.Token_Email);
                 smtpClient.Send(email);
                 smtpClient.Disconnect(true);
             }
@@ -432,7 +432,7 @@ namespace Republik_Larva.Controller
             email.Body = bodyBuilder.ToMessageBody();
 
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
             smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
             smtpClient.Send(email);
             smtpClient.Disconnect(true);
@@ -508,7 +508,7 @@ namespace Republik_Larva.Controller
         public static void SendEmailWithAttachmentPembatalan(byte[] fileBytes, string namaCustomer, string emailCustomer)
         {
             MimeMessage email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+            email.From.Add(new MailboxAddress(EnvLoader.Nama_Email, EnvLoader.Email));
             email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
 
             email.Subject = "Transaksi Anda Telah Dibatalkan";
@@ -527,8 +527,8 @@ namespace Republik_Larva.Controller
             email.Body = bodyBuilder.ToMessageBody();
 
             SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);  // Menggunakan STARTTLS
-            smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
+            smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);  
+            smtpClient.Authenticate(EnvLoader.Email, EnvLoader.Token_Email);
             smtpClient.Send(email);
             smtpClient.Disconnect(true);
         }
@@ -569,7 +569,7 @@ namespace Republik_Larva.Controller
 
             Paragraph watermark = new Paragraph("LUNAS")
                 .SetFontSize(50)
-                .SetFontColor(new DeviceRgb(0, 128, 0)) 
+                .SetFontColor(new DeviceRgb(0, 128, 0))
                 .SetOpacity(0.3f)
                 .SetTextAlignment(TextAlignment.CENTER);
 
@@ -630,7 +630,7 @@ namespace Republik_Larva.Controller
             try
             {
                 MimeMessage email = new MimeMessage();
-                email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+                email.From.Add(new MailboxAddress(EnvLoader.Nama_Email, EnvLoader.Email));
                 email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
 
                 email.Subject = "Pembayaran Anda Telah Lunas";
@@ -650,8 +650,8 @@ namespace Republik_Larva.Controller
 
                 using (SmtpClient smtpClient = new SmtpClient())
                 {
-                    smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                    smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag"); 
+                    smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                    smtpClient.Authenticate(EnvLoader.Email, EnvLoader.Token_Email);
                     smtpClient.Send(email);
                     smtpClient.Disconnect(true);
                 }
@@ -663,21 +663,6 @@ namespace Republik_Larva.Controller
                 Console.WriteLine($"Gagal mengirim email: {ex.Message}");
             }
         }
-        public void KirimTagihanEmail(int transaksiId, string namaCustomer, string emailCustomer)
-        {
-            try
-            {
-                DataTable produkData = transaksiModel.GetProdukTransaksi(transaksiId);
-                GeneratePdfTagihan(namaCustomer, emailCustomer, produkData, "Belum Lunas", "Transfer Bank"); 
-
-                show_message_box("Tagihan telah dikirim ke email customer.");
-            }
-            catch (Exception ex)
-            {
-                show_message_box("Gagal mengirim tagihan: " + ex.Message);
-            }
-        }
-
         public static void GeneratePdfTagihan(string namaCustomer, string emailCustomer, DataTable produkTerpilih, string statusPembayaran, string metodePembayaran)
         {
             MemoryStream memoryStream = new MemoryStream();
@@ -734,12 +719,13 @@ namespace Republik_Larva.Controller
 
             SendEmailWithAttachmentTagihan(pdfBytes, namaCustomer, emailCustomer);
         }
+
         public static void SendEmailWithAttachmentTagihan(byte[] fileBytes, string namaCustomer, string emailCustomer)
         {
             try
             {
                 MimeMessage email = new MimeMessage();
-                email.From.Add(new MailboxAddress("Republik Larva", "insensateecho@gmail.com"));
+                email.From.Add(new MailboxAddress(EnvLoader.Nama_Email, EnvLoader.Email));
                 email.To.Add(new MailboxAddress(namaCustomer, emailCustomer));
 
                 email.Subject = "Tagihan Pembayaran Anda";
@@ -759,13 +745,13 @@ namespace Republik_Larva.Controller
                     TextBody = bodyText
                 };
 
-                bodyBuilder.Attachments.Add("InvoiceTagihan.pdf", fileBytes, new MimeKit.ContentType("application", "pdf"));
+                bodyBuilder.Attachments.Add($"Invoice_{DateTime.Now.Ticks}.pdf", fileBytes, new MimeKit.ContentType("application", "pdf"));
                 email.Body = bodyBuilder.ToMessageBody();
 
                 using (SmtpClient smtpClient = new SmtpClient())
                 {
-                    smtpClient.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-                    smtpClient.Authenticate("insensateecho@gmail.com", "tjasojifeneilxag");
+                    smtpClient.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
+                    smtpClient.Authenticate(EnvLoader.Email, EnvLoader.Token_Email);
                     smtpClient.Send(email);
                     smtpClient.Disconnect(true);
                 }

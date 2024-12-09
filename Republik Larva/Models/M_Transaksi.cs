@@ -311,14 +311,19 @@ namespace Republik_Larva.Models
 
             try
             {
-                object result = queryExecutor(query, parameters);
-                return result != null ? result.ToString() : string.Empty;
+                DataTable result = queryExecutor(query, parameters);
+                if (result.Rows.Count > 0)
+                {
+                    return result.Rows[0]["email"].ToString(); 
+                }
+                return string.Empty;
             }
             catch (Exception ex)
             {
                 return string.Empty;
             }
         }
+
 
 
         public DataTable GetProdukTransaksi(int transaksiId)

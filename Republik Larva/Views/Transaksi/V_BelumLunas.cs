@@ -59,7 +59,17 @@ namespace Republik_Larva.Views.Transaksi
                 }
                 else if (dataGridBelumLunas.Columns[e.ColumnIndex].Name == "tagihButton")
                 {
-                    c_Transaksi.KirimTagihanEmail(transaksiId, namaCustomer, emailCustomer);
+                    try
+                    {
+                        DataTable produkData = transaksiModel.GetProdukTransaksi(transaksiId);
+                        C_Transaksi.GeneratePdfTagihan(namaCustomer, emailCustomer, produkData, "Belum Lunas", "Transfer Bank/ e-Wallet");
+                        c_Transaksi.show_message_box($"{emailCustomer}");
+                        c_Transaksi.show_message_box("Tagihan telah dikirim ke email customer.");
+                    }
+                    catch (Exception ex)
+                    {
+                        c_Transaksi.show_message_box("Gagal mengirim tagihan: " + ex.Message);
+                    }
                 }
             }
         }

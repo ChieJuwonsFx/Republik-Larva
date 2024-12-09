@@ -41,7 +41,7 @@ namespace Republik_Larva.Views
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Connect("smtp.gmail.com", 465, MailKit.Security.SecureSocketOptions.SslOnConnect);
-                smtp.Authenticate("insensateecho@gmail.com", "xlixlbfcdcmdgnyo");
+                smtp.Authenticate(EnvLoader.Email, EnvLoader.Token_Email);
                 smtp.Send(email);
                 smtp.Disconnect(true);
 
