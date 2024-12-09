@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             uploadGambar = new Button();
-            ambilGambar = new Button();
             namaProduk = new TextBox();
             harga = new TextBox();
             stok = new TextBox();
@@ -50,20 +49,6 @@
             uploadGambar.Size = new Size(217, 29);
             uploadGambar.TabIndex = 0;
             uploadGambar.UseVisualStyleBackColor = false;
-            // 
-            // ambilGambar
-            // 
-            ambilGambar.BackColor = Color.Transparent;
-            ambilGambar.Cursor = Cursors.Hand;
-            ambilGambar.FlatAppearance.BorderSize = 0;
-            ambilGambar.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            ambilGambar.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            ambilGambar.FlatStyle = FlatStyle.Flat;
-            ambilGambar.Location = new Point(751, 145);
-            ambilGambar.Name = "ambilGambar";
-            ambilGambar.Size = new Size(420, 237);
-            ambilGambar.TabIndex = 1;
-            ambilGambar.UseVisualStyleBackColor = false;
             // 
             // namaProduk
             // 
@@ -130,7 +115,6 @@
             Controls.Add(stok);
             Controls.Add(harga);
             Controls.Add(namaProduk);
-            Controls.Add(ambilGambar);
             Controls.Add(uploadGambar);
             Name = "V_FormAddProduk";
             Size = new Size(1920, 937);
@@ -141,7 +125,6 @@
         #endregion
 
         private Button uploadGambar;
-        private Button ambilGambar;
         private TextBox namaProduk;
         private TextBox harga;
         private TextBox stok;
