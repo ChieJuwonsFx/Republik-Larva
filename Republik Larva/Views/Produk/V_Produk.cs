@@ -9,19 +9,19 @@ namespace Republik_Larva.Views
 {
     public partial class V_Produk : UserControl
     {
-        private C_Produk _controller;
+        private C_Produk c_Produk;
         M_Produk MProduk;
         public V_Produk(C_Produk controller)
         {
             InitializeComponent();
-            _controller = controller;
+            c_Produk = controller;
 
             LoadProduk();
         }
 
         private void LoadProduk()
         {
-            DataTable produkTable = _controller.GetProdukList();
+            DataTable produkTable = c_Produk.GetProdukList();
             DisplayProduk(produkTable);
         }
 
@@ -29,7 +29,7 @@ namespace Republik_Larva.Views
         {
             pnProduk.Controls.Clear();
 
-            int yOffset = 10;
+            int xOffset = 10;
             foreach (DataRow row in produkTable.Rows)
             {
                 M_Produk produk = new M_Produk
@@ -42,16 +42,20 @@ namespace Republik_Larva.Views
 
                 cardProduk kartu = new cardProduk
                 {
-                    Location = new Point(10, yOffset),
-                    Size = new Size(430, 550)
+                    Location = new Point(xOffset, 10),
+                    Size = new Size(531, 550)
                 };
 
                 kartu.SetProdukData(produk);
 
                 pnProduk.Controls.Add(kartu);
-
-                yOffset += kartu.Height + 10;
+                xOffset += kartu.Width + 10;
             }
+        }
+
+        private void btnTambahProduk_Click(object sender, EventArgs e)
+        {
+            c_Produk.addView();
         }
     }
 }

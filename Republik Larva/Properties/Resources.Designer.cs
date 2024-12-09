@@ -693,6 +693,26 @@ namespace Republik_Larva.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap shutter {
+            get {
+                object obj = ResourceManager.GetObject("shutter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shutterHover {
+            get {
+                object obj = ResourceManager.GetObject("shutterHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap simpan {
             get {
                 object obj = ResourceManager.GetObject("simpan", resourceCulture);

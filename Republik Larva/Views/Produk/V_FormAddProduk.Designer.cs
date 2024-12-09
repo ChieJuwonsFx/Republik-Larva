@@ -34,6 +34,9 @@
             stok = new TextBox();
             btnKembali = new Button();
             btnSimpan = new Button();
+            pictureBox1 = new PictureBox();
+            openFileDialog1 = new OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // uploadGambar
@@ -49,6 +52,7 @@
             uploadGambar.Size = new Size(217, 29);
             uploadGambar.TabIndex = 0;
             uploadGambar.UseVisualStyleBackColor = false;
+            uploadGambar.Click += uploadGambar_Click;
             // 
             // namaProduk
             // 
@@ -89,7 +93,6 @@
             btnKembali.Size = new Size(216, 74);
             btnKembali.TabIndex = 5;
             btnKembali.UseVisualStyleBackColor = false;
-            btnKembali.Click += btnKembali_Click;
             // 
             // btnSimpan
             // 
@@ -105,11 +108,25 @@
             btnSimpan.UseVisualStyleBackColor = false;
             btnSimpan.Click += btnSimpan_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Location = new Point(753, 142);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(415, 238);
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // V_FormAddProduk
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.formTambahProduk;
+            Controls.Add(pictureBox1);
             Controls.Add(btnSimpan);
             Controls.Add(btnKembali);
             Controls.Add(stok);
@@ -118,6 +135,7 @@
             Controls.Add(uploadGambar);
             Name = "V_FormAddProduk";
             Size = new Size(1920, 937);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -130,5 +148,7 @@
         private TextBox stok;
         private Button btnKembali;
         private Button btnSimpan;
+        private PictureBox pictureBox1;
+        private OpenFileDialog openFileDialog1;
     }
 }

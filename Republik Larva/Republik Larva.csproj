@@ -23,6 +23,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\..\..\..\..\..\..\Users\Asus\Downloads\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>..\..\..\..\..\..\..\Users\Asus\Downloads\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>..\..\..\..\..\..\..\Users\Asus\Downloads\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
