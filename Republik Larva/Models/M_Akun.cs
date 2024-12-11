@@ -107,7 +107,7 @@ namespace Republik_Larva.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error updating admin: " + ex.Message); // Untuk debugging
+                Console.WriteLine("Error updating admin: " + ex.Message); 
                 return false;
             }
         }

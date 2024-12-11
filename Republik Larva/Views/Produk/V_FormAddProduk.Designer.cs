@@ -57,6 +57,7 @@
             // namaProduk
             // 
             namaProduk.BorderStyle = BorderStyle.None;
+            namaProduk.Cursor = Cursors.IBeam;
             namaProduk.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             namaProduk.Location = new Point(502, 473);
             namaProduk.Name = "namaProduk";
@@ -66,6 +67,7 @@
             // harga
             // 
             harga.BorderStyle = BorderStyle.None;
+            harga.Cursor = Cursors.IBeam;
             harga.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             harga.Location = new Point(502, 595);
             harga.Name = "harga";
@@ -75,6 +77,7 @@
             // stok
             // 
             stok.BorderStyle = BorderStyle.None;
+            stok.Cursor = Cursors.IBeam;
             stok.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             stok.Location = new Point(502, 719);
             stok.Name = "stok";
@@ -84,6 +87,7 @@
             // btnKembali
             // 
             btnKembali.BackColor = Color.Transparent;
+            btnKembali.Cursor = Cursors.Hand;
             btnKembali.FlatAppearance.BorderSize = 0;
             btnKembali.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnKembali.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -93,10 +97,14 @@
             btnKembali.Size = new Size(216, 74);
             btnKembali.TabIndex = 5;
             btnKembali.UseVisualStyleBackColor = false;
+            btnKembali.Click += btnKembali_Click;
+            btnKembali.MouseEnter += btnKembali_MouseEnter;
+            btnKembali.MouseLeave += btnKembali_MouseLeave;
             // 
             // btnSimpan
             // 
             btnSimpan.BackColor = Color.Transparent;
+            btnSimpan.Cursor = Cursors.Hand;
             btnSimpan.FlatAppearance.BorderSize = 0;
             btnSimpan.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnSimpan.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -107,6 +115,8 @@
             btnSimpan.TabIndex = 6;
             btnSimpan.UseVisualStyleBackColor = false;
             btnSimpan.Click += btnSimpan_Click;
+            btnSimpan.MouseEnter += btnSimpan_MouseEnter;
+            btnSimpan.MouseLeave += btnSimpan_MouseLeave;
             // 
             // pictureBox1
             // 
@@ -116,6 +126,7 @@
             pictureBox1.Size = new Size(415, 238);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // openFileDialog1
             // 

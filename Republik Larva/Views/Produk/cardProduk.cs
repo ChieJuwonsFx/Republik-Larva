@@ -11,6 +11,7 @@ namespace Republik_Larva.Views.Produk
     public partial class cardProduk : UserControl
     {
         internal M_Produk ProdukData;
+        C_Produk c_Produk;
 
         public cardProduk()
         {
@@ -31,19 +32,26 @@ namespace Republik_Larva.Views.Produk
             }
             else
             {
-                imageProduk.Image = Properties.Resources.bg; 
+                imageProduk.Image = Properties.Resources.bg;
             }
         }
-
-
-        private void btnEditProduk_Click(object sender, EventArgs e)
+        private void btnEdit_MouseEnter(object sender, EventArgs e)
         {
-            MessageBox.Show($"Edit produk: {ProdukData.nama_produk}");
+            btnEdit.BackgroundImage = Properties.Resources.editProdukHover;
+        }
+        private void btnEdit_MouseLeave(object sender, EventArgs e)
+        {
+            btnEdit.BackgroundImage = Properties.Resources.editProduk;
+        }
+        private void btnHapus_MouseEnter(object sender, EventArgs e)
+        {
+            btnHapus.BackgroundImage = Properties.Resources.hapusProdukHover;
+        }
+        private void btnHapus_MouseLeave(object sender, EventArgs e)
+        {
+            btnHapus.BackgroundImage = Properties.Resources.hapusProduk;
         }
 
-        private void imageProduk_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show($"Detail produk: {ProdukData.nama_produk}");
-        }
+
     }
 }

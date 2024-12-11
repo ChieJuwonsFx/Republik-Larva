@@ -16,8 +16,9 @@ namespace Republik_Larva.Views.Produk
             imageProduk = new PictureBox();
             namaProduk = new Label();
             harga = new Label();
-            btnEditProduk = new Button();
             stok = new Label();
+            btnEdit = new Button();
+            btnHapus = new Button();
             ((System.ComponentModel.ISupportInitialize)imageProduk).BeginInit();
             SuspendLayout();
             // 
@@ -29,7 +30,6 @@ namespace Republik_Larva.Views.Produk
             imageProduk.SizeMode = PictureBoxSizeMode.Zoom;
             imageProduk.TabIndex = 0;
             imageProduk.TabStop = false;
-            imageProduk.Click += imageProduk_Click;
             // 
             // namaProduk
             // 
@@ -51,19 +51,6 @@ namespace Republik_Larva.Views.Produk
             harga.TabIndex = 2;
             harga.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // btnEditProduk
-            // 
-            btnEditProduk.BackgroundImage = Properties.Resources.editProduk;
-            btnEditProduk.BackgroundImageLayout = ImageLayout.Stretch;
-            btnEditProduk.FlatAppearance.BorderSize = 0;
-            btnEditProduk.FlatStyle = FlatStyle.Flat;
-            btnEditProduk.Location = new Point(429, 226);
-            btnEditProduk.Name = "btnEditProduk";
-            btnEditProduk.Size = new Size(69, 69);
-            btnEditProduk.TabIndex = 3;
-            btnEditProduk.UseVisualStyleBackColor = true;
-            btnEditProduk.Click += btnEditProduk_Click;
-            // 
             // stok
             // 
             stok.BackColor = Color.Transparent;
@@ -73,13 +60,42 @@ namespace Republik_Larva.Views.Produk
             stok.Size = new Size(465, 25);
             stok.TabIndex = 4;
             // 
+            // btnEdit
+            // 
+            btnEdit.BackgroundImage = Properties.Resources.editProduk;
+            btnEdit.BackgroundImageLayout = ImageLayout.Stretch;
+            btnEdit.FlatAppearance.BorderSize = 0;
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Location = new Point(429, 226);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(69, 69);
+            btnEdit.TabIndex = 5;
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.MouseEnter += btnEdit_MouseEnter;
+            btnEdit.MouseLeave += btnEdit_MouseLeave;
+            // 
+            // btnHapus
+            // 
+            btnHapus.BackgroundImage = Properties.Resources.hapusProduk;
+            btnHapus.BackgroundImageLayout = ImageLayout.Stretch;
+            btnHapus.FlatAppearance.BorderSize = 0;
+            btnHapus.FlatStyle = FlatStyle.Flat;
+            btnHapus.Location = new Point(32, 226);
+            btnHapus.Name = "btnHapus";
+            btnHapus.Size = new Size(69, 69);
+            btnHapus.TabIndex = 6;
+            btnHapus.UseVisualStyleBackColor = true;
+            btnHapus.MouseLeave += btnHapus_MouseLeave;
+            btnHapus.MouseEnter += btnHapus_MouseEnter;
+            // 
             // cardProduk
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.cardProduk;
+            Controls.Add(btnHapus);
+            Controls.Add(btnEdit);
             Controls.Add(stok);
-            Controls.Add(btnEditProduk);
             Controls.Add(harga);
             Controls.Add(namaProduk);
             Controls.Add(imageProduk);
@@ -89,5 +105,9 @@ namespace Republik_Larva.Views.Produk
             ((System.ComponentModel.ISupportInitialize)imageProduk).EndInit();
             ResumeLayout(false);
         }
+
+        public Button btnEdit;
+        public PictureBox pictureBox1;
+        public Button btnHapus;
     }
 }

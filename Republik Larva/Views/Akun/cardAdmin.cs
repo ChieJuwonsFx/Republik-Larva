@@ -25,9 +25,13 @@ namespace Republik_Larva.Views.Akun
             username.Text = admin.username;
             adminId.Text = $"{admin.admin_id}";
         }
-        public void btnHapus_Click(object sender, EventArgs e)
+        private void btnHapus_MouseEnter(object sender, EventArgs e)
         {
-
+            btnHapus.BackgroundImage = Properties.Resources.hapusAdminHover;
+        }
+        private void btnHapus_MouseLeave(object sender, EventArgs e)
+        {
+            btnHapus.BackgroundImage = Properties.Resources.hapusAdmin;
         }
     }
 }

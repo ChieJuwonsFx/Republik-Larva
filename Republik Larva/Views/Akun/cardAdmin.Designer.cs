@@ -75,7 +75,7 @@
             label1.TabIndex = 3;
             label1.Text = "~ Admin Republik Larva ~";
             // 
-            // button1
+            // btnHapus
             // 
             btnHapus.FlatAppearance.BorderSize = 0;
             btnHapus.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -86,7 +86,8 @@
             btnHapus.Size = new Size(69, 69);
             btnHapus.TabIndex = 4;
             btnHapus.UseVisualStyleBackColor = true;
-            btnHapus.Click += this.btnHapus_Click;
+            btnHapus.MouseLeave += btnHapus_MouseLeave;
+            btnHapus.MouseEnter += btnHapus_MouseEnter;
             // 
             // cardAdmin
             // 

@@ -12,9 +12,6 @@ namespace Republik_Larva.Views.Produk
         {
             InitializeComponent();
             c_Produk = controller;
-
-            // Pastikan SizeMode PictureBox diatur
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
         private void btnSimpan_Click(object sender, EventArgs e)
         {
@@ -22,13 +19,13 @@ namespace Republik_Larva.Views.Produk
                 string.IsNullOrWhiteSpace(harga.Text) ||
                 string.IsNullOrWhiteSpace(stok.Text))
             {
-                MessageBox.Show("Pastikan semua data telah diisi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                c_Produk.show_message_box("Pastikan semua data telah diisi!");
                 return;
             }
 
             if (pictureBox1.Image == null)
             {
-                MessageBox.Show("Pastikan Anda telah memilih gambar produk!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                c_Produk.show_message_box("Pastikan Anda telah memilih gambar produk!");
                 return;
             }
 
@@ -36,7 +33,7 @@ namespace Republik_Larva.Views.Produk
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                    pictureBox1.Image.Save(ms, ImageFormat.Png); 
+                    pictureBox1.Image.Save(ms, ImageFormat.Png);
                     byte[] gambarByte = ms.ToArray();
 
                     M_Produk produkBaru = new M_Produk
@@ -48,16 +45,13 @@ namespace Republik_Larva.Views.Produk
                     };
 
                     M_Produk.AddProduk(produkBaru);
-
-                    namaProduk.Clear();
-                    harga.Clear();
-                    stok.Clear();
-                    pictureBox1.Image = null;
+                    c_Produk.show_message_box("Data produk berhasil ditambahkan");
+                    c_Produk.balikProduk();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Terjadi kesalahan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                c_Produk.show_message_box($"Terjadi kesalahan: {ex.Message}");
             }
         }
 
@@ -78,22 +72,37 @@ namespace Republik_Larva.Views.Produk
                     pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
                     pictureBox1.Image = Image.FromFile(selectedFileName);
-
-                    if (pictureBox1.Image != null)
-                    {
-                        MessageBox.Show("Gambar berhasil dimuat ke PictureBox!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Gagal memuat gambar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    c_Produk.show_message_box($"Gagal memuat gambar: {ex.Message}");
                 }
             }
         }
-
-        private void btnAmbilGambar_Click(object sender, EventArgs e)
+        private void btnKembali_Click(object sender, EventArgs e)
         {
+            c_Produk.balikProduk();
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            c_Produk.webcamView();
+        }
+        private void btnKembali_MouseEnter(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
+        }
+        private void btnKembali_MouseLeave(object sender, EventArgs e)
+        {
+            btnKembali.BackgroundImage = Properties.Resources.kembali;
+        }
+        private void btnSimpan_MouseEnter(object sender, EventArgs e)
+        {
+            btnSimpan.BackgroundImage = Properties.Resources.simpanHover;
+        }
 
+        private void btnSimpan_MouseLeave(object sender, EventArgs e)
+        {
+            btnSimpan.BackgroundImage = Properties.Resources.simpan;
         }
     }
 }

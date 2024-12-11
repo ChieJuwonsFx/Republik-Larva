@@ -34,20 +34,18 @@
             // 
             // pnProduk
             // 
+            pnProduk.AutoScroll = true;
             pnProduk.BackColor = Color.Transparent;
+            pnProduk.BackgroundImageLayout = ImageLayout.None;
             pnProduk.Location = new Point(98, 184);
             pnProduk.Name = "pnProduk";
-            pnProduk.Padding = new Padding(0);
             pnProduk.Size = new Size(1720, 578);
             pnProduk.TabIndex = 1;
-            pnProduk.AutoScroll = true;
-            pnProduk.BackgroundImageLayout = ImageLayout.None;
-
-
             // 
             // btnTambahProduk
             // 
             btnTambahProduk.BackColor = Color.Transparent;
+            btnTambahProduk.Cursor = Cursors.Hand;
             btnTambahProduk.FlatAppearance.BorderSize = 0;
             btnTambahProduk.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnTambahProduk.FlatAppearance.MouseOverBackColor = Color.Transparent;
@@ -58,6 +56,8 @@
             btnTambahProduk.TabIndex = 2;
             btnTambahProduk.UseVisualStyleBackColor = false;
             btnTambahProduk.Click += btnTambahProduk_Click;
+            btnTambahProduk.MouseEnter += btnTambahProduk_MouseEnter;
+            btnTambahProduk.MouseLeave += btnTambahProduk_MouseLeave;
             // 
             // V_Produk
             // 
