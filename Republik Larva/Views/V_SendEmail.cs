@@ -2,26 +2,26 @@
 using MailKit;
 using Republik_Larva.Controller;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MailKit.Net.Smtp;
 using System.Windows.Forms;
-using Republik_Larva.Controller;
+using MailKit.Net.Smtp;
+using Republik_Larva.Models;
 
 namespace Republik_Larva.Views
 {
     public partial class V_SendEmail : UserControl
     {
-        C_SendEmail c_SendEmail;
+        private C_SendEmail c_SendEmail;
+        private string attachmentPath = null;
+
         public V_SendEmail(C_SendEmail c_SendEmail)
         {
             InitializeComponent();
+            this.c_SendEmail = c_SendEmail;
+            LoadCustomerData();
         }
+
         private void btnSendEmail_Click(object sender, EventArgs e)
         {
             try
@@ -37,6 +37,11 @@ namespace Republik_Larva.Views
                     HtmlBody = $"<p>{pesan.Text}</p><br><footer>Powered by insensateecho@gmail.com</footer>"
                 };
 
+                if (!string.IsNullOrEmpty(attachmentPath))
+                {
+                    builder.Attachments.Add(attachmentPath);
+                }
+
                 email.Body = builder.ToMessageBody();
 
                 SmtpClient smtp = new SmtpClient();
@@ -45,45 +50,80 @@ namespace Republik_Larva.Views
                 smtp.Send(email);
                 smtp.Disconnect(true);
 
-                MessageBox.Show("Email berhasil dikirim!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                c_SendEmail.show_message_box("Email berhasil dikirim!");
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Gagal mengirim email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                c_SendEmail.show_message_box($"Gagal mengirim email: {ex.Message}");
             }
         }
+
+        private void uploadFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Pilih File",
+                Filter = "All files (*.*)|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    attachmentPath = openFileDialog.FileName;
+                    namaFile.Text = $"File: {System.IO.Path.GetFileName(attachmentPath)}";
+                }
+                catch (Exception ex)
+                {
+                    c_SendEmail.show_message_box($"Gagal memuat file: {ex.Message}");
+                }
+            }
+        }
+
+        private void LoadCustomerData()
+        {
+            try
+            {
+                DataTable customerData = c_SendEmail.GetCustomerData();
+                if (customerData != null)
+                {
+                    dataGridView1.DataSource = customerData;
+                }
+                else
+                {
+                    c_SendEmail.show_message_box("Data pelanggan kosong.");
+                }
+            }
+            catch (Exception ex)
+            {
+                c_SendEmail.show_message_box($"Gagal memuat data pelanggan: {ex.Message}");
+            }
+        }
+
+        private void DisplayCustomerData(DataTable customerTable)
+        {
+            dataGridView1.DataSource = customerTable;
+            dataGridView1.Columns["customer_id"].HeaderText = "ID";
+            dataGridView1.Columns["nama_customer"].HeaderText = "Nama Pelanggan";
+            dataGridView1.Columns["email_customer"].HeaderText = "Email Pelanggan";
+
+            dataGridView1.Columns["customer_id"].Visible = false;
+        }
+
         private void btnSendEmail_MouseLeave(object sender, EventArgs e)
         {
             btnSendEmail.BackgroundImage = Properties.Resources.kirim;
         }
+
         private void btnSendEmail_MouseEnter(object sender, EventArgs e)
         {
             btnSendEmail.BackgroundImage = Properties.Resources.kirimHover;
         }
 
-        private void namaTujuan_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void emailTujuan_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void subject_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pesan_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void V_SendEmail_Load(object sender, EventArgs e)
         {
-
+            namaFile.Text = "Tidak ada file terpilih";
         }
     }
 }
