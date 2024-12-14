@@ -1,12 +1,11 @@
 ﻿using Republik_Larva.Controller;
-using Republik_Larva.Models;
 
 namespace Republik_Larva.Views.Transaksi
 {
     public partial class V_BatalkanTransaksi : UserControl
     {
         private C_Transaksi c_Transaksi;
-        M_Transaksi m_Transaksi;
+
         public V_BatalkanTransaksi(C_Transaksi controller)
         {
             InitializeComponent();
@@ -19,7 +18,6 @@ namespace Republik_Larva.Views.Transaksi
             c_Transaksi.LoadBatalkanTransaksi(dataGridTransaksi);
         }
 
-
         private void dataGridTransaksi_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -29,10 +27,12 @@ namespace Republik_Larva.Views.Transaksi
                 try
                 {
                     bool result = c_Transaksi.show_confirm_message_box("Apakah Anda yakin ingin membatalkan transaksi? Proses ini tidak dapat dibatalkan.");
-                    if (result == true)
+                    if (result)
                     {
                         int transaksiId = Convert.ToInt32(dataGridTransaksi.Rows[e.RowIndex].Cells["transaksi_id"].Value);
+
                         c_Transaksi.HapusTransaksiDenganBatasWaktu(transaksiId);
+
                         LoadDataTransaksi();
                     }
                     else
@@ -42,22 +42,24 @@ namespace Republik_Larva.Views.Transaksi
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    c_Transaksi.show_message_box("Terjadi kesalahan: " + ex.Message);
                 }
             }
         }
+
         private void btnKembali_Click(object sender, EventArgs e)
         {
             c_Transaksi.balikTransaksi();
         }
+
         private void btnKembali_MouseLeave(object sender, EventArgs e)
         {
             btnKembali.BackgroundImage = Properties.Resources.kembali;
         }
+
         private void btnKembali_MouseEnter(object sender, EventArgs e)
         {
             btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
         }
     }
 }
-

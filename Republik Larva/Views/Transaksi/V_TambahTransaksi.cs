@@ -1,32 +1,29 @@
 ﻿using System.Data;
 using Republik_Larva.Controller;
-using Republik_Larva.Models;
 
 namespace Republik_Larva.Views.Transaksi
 {
     public partial class V_TambahTransaksi : UserControl
     {
-        private M_Transaksi transaksiModel;
         private C_Transaksi c_Transaksi;
+
         public V_TambahTransaksi(C_Transaksi controller)
         {
             InitializeComponent();
             c_Transaksi = controller;
-            transaksiModel = new M_Transaksi();
             LoadComboBox();
             LoadProduk();
         }
 
         private void LoadComboBox()
         {
-            statusPembayaran.DataSource = transaksiModel.GetStatusPembayaran();
-            metodePembayaran.DataSource = transaksiModel.GetMetodePembayaran();
+            statusPembayaran.DataSource = c_Transaksi.GetStatusPembayaran();
+            metodePembayaran.DataSource = c_Transaksi.GetMetodePembayaran();
         }
 
         private void LoadProduk()
         {
-            M_Transaksi transaksiModel = new M_Transaksi();
-            DataTable produkTable = transaksiModel.GetProduk();
+            DataTable produkTable = c_Transaksi.GetProduk();
 
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.WrapContents = true;
@@ -149,25 +146,7 @@ namespace Republik_Larva.Views.Transaksi
             previewList.Items.Add(new string('-', 50));
             previewList.Items.Add("Subtotal".PadRight(35) + "Rp" + subtotal.ToString().PadLeft(18));
         }
-        private int CalculateTotalHarga()
-        {
-            int total = 0;
-            foreach (Control control in flowLayoutPanel1.Controls)
-            {
-                if (control is Panel panel)
-                {
-                    foreach (Control subControl in panel.Controls)
-                    {
-                        if (subControl is NumericUpDown numericUpDown)
-                        {
-                            int hargaProduk = 0;
-                            total += (int)numericUpDown.Value * hargaProduk;
-                        }
-                    }
-                }
-            }
-            return total;
-        }
+
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             try
@@ -205,8 +184,9 @@ namespace Republik_Larva.Views.Transaksi
                                 {
                                     int produkId = (int)checkBox.Tag;
                                     int jumlah = (int)numericUpDown.Value;
-                                    int harga = Convert.ToInt32(checkBox.Text.Split('-')[1].Replace("Rp", "").Trim());
+                                    int harga = Convert.ToInt32(checkBox.Text.Split('-')[1].Trim().Replace("Rp", "").Trim());
                                     int totalHarga = jumlah * harga;
+
                                     produkTerpilih.Rows.Add(produkId, jumlah, harga, totalHarga);
                                 }
                             }
@@ -220,7 +200,7 @@ namespace Republik_Larva.Views.Transaksi
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Terjadi kesalahan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                c_Transaksi.show_message_box("Terjadi kesalahan: " + ex.Message);
             }
         }
         private void btnSimpan_MouseEnter(object sender, EventArgs e)

@@ -64,6 +64,58 @@ namespace Republik_Larva.Controller
             C_MainForm.moveView(belum_lunas);
         }
 
+        public DataTable GetSelectedProduk(FlowLayoutPanel flowLayoutPanel)
+        {
+            DataTable selectedProduk = new DataTable();
+            selectedProduk.Columns.Add("produk_id", typeof(int));
+            selectedProduk.Columns.Add("nama_produk", typeof(string));
+            selectedProduk.Columns.Add("harga", typeof(int));
+            selectedProduk.Columns.Add("quantity", typeof(int));
+
+            foreach (Control control in flowLayoutPanel.Controls)
+            {
+                if (control is Panel panel)
+                {
+                    foreach (Control subControl in panel.Controls)
+                    {
+                        if (subControl is FlowLayoutPanel flowPanel)
+                        {
+                            CheckBox checkBox = flowPanel.Controls.OfType<CheckBox>().FirstOrDefault();
+                            NumericUpDown numericUpDown = flowPanel.Controls.OfType<NumericUpDown>().FirstOrDefault();
+
+                            if (checkBox != null && numericUpDown != null && checkBox.Checked)
+                            {
+                                DataRow row = selectedProduk.NewRow();
+                                row["produk_id"] = checkBox.Tag;
+                                row["nama_produk"] = checkBox.Text.Split('-')[0].Trim();
+                                row["harga"] = Convert.ToInt32(checkBox.Text.Split('-')[1].Trim().Replace("Rp", "").Trim());
+                                row["quantity"] = (int)numericUpDown.Value;
+
+                                selectedProduk.Rows.Add(row);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return selectedProduk;
+        }
+
+
+        public List<string> GetStatusPembayaran()
+        {
+            return new List<string> { "Lunas", "Belum Lunas" };
+        }
+
+        public List<string> GetMetodePembayaran()
+        {
+            return new List<string> { "Cash", "Transfer Bank", "E-Wallet" };
+        }
+
+        public DataTable GetProduk()
+        {
+            return transaksiModel.GetProduk();
+        }
         public void TampilkanTransaksiSebulan(DataGridView gridView)
         {
             try
@@ -109,7 +161,57 @@ namespace Republik_Larva.Controller
         }
 
         //BelumLunas 
-        public void LoadBelumLunas(DataGridView dataGridBelumLunas)
+
+        public void LoadBelumLunas(DataGridView dataGrid)
+        {
+            try
+            {
+                DataTable data = transaksiModel.GetBelumBayar();
+                dataGrid.DataSource = data;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal memuat data: " + ex.Message);
+            }
+        }
+
+        public string GetEmailCustomerByTransaksiId(int transaksiId)
+        {
+            try
+            {
+                return transaksiModel.GetEmailCustomerByTransaksiId(transaksiId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal mendapatkan email customer: " + ex.Message);
+                return string.Empty;
+            }
+        }
+
+        public void UpdateStatusLunas(int transaksiId)
+        {
+            try
+            {
+                transaksiModel.UpdateStatusLunas(transaksiId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal mengubah status transaksi: " + ex.Message);
+            }
+        }
+        public DataTable GetProdukTransaksi(int transaksiId)
+        {
+            try
+            {
+                return transaksiModel.GetProdukTransaksi(transaksiId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal mendapatkan data produk: " + ex.Message);
+                return null;
+            }
+        }
+        public void LoadBelumBayar(DataGridView dataGridBelumLunas)
         {
             try
             {
@@ -552,8 +654,7 @@ namespace Republik_Larva.Controller
 
 
         //TambahTransaksi
-        public void ProsesTransaksi(string NamaCustomer, string email, string statusPembayaran, string metodePembayaran,
-                                    DataTable produkTerpilih)
+        public void ProsesTransaksi(string NamaCustomer, string email, string statusPembayaran, string metodePembayaran,DataTable produkTerpilih)
         {
             try
             {

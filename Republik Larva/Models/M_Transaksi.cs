@@ -7,15 +7,7 @@ namespace Republik_Larva.Models
 {
     public class M_Transaksi : DatabaseWrapper
     {
-        public List<string> GetStatusPembayaran()
-        {
-            return new List<string> { "Lunas", "Belum Lunas" };
-        }
 
-        public List<string> GetMetodePembayaran()
-        {
-            return new List<string> { "Cash", "Transfer Bank", "E-Wallet" };
-        }
 
         public DataTable GetProduk()
         {
@@ -323,8 +315,6 @@ namespace Republik_Larva.Models
                 return string.Empty;
             }
         }
-
-
 
         public DataTable GetProdukTransaksi(int transaksiId)
         {
