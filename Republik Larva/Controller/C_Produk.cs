@@ -21,7 +21,6 @@ namespace Republik_Larva.Controller
         V_Produk view_produk;
         V_FormAddProduk view_add;
         V_FormUbahProduk view_ubah;
-        V_AmbilGambar view_ambil;
         M_Produk M_Produk = new M_Produk();
         private int idProduk;
         public C_Produk(C_MainForm controller)
@@ -58,14 +57,9 @@ namespace Republik_Larva.Controller
             }
             else
             {
-                view_ubah = new V_FormUbahProduk(this, produkData);  // Kirim data produk ke view ubah
+                view_ubah = new V_FormUbahProduk(this, produkData); 
                 C_MainForm.moveView(view_ubah);
             }
-        }
-        public void webcamView()
-        {
-            view_ambil = new V_AmbilGambar(this);
-            C_MainForm.moveView(view_ambil);
         }
     }
 }

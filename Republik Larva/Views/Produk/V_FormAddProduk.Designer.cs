@@ -126,7 +126,6 @@
             pictureBox1.Size = new Size(415, 238);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // openFileDialog1
             // 

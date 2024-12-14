@@ -83,10 +83,6 @@ namespace Republik_Larva.Views.Produk
         {
             c_Produk.balikProduk();
         }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            c_Produk.webcamView();
-        }
         private void btnKembali_MouseEnter(object sender, EventArgs e)
         {
             btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
