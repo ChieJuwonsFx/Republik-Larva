@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using Npgsql;
 
 namespace Republik_Larva.Models
@@ -18,9 +17,9 @@ namespace Republik_Larva.Models
             DataTable dataAdmin = queryExecutor(query);
             return dataAdmin;
         }
-        public DataAkun Validate(string username, string password)
+        public M_Akun Validate(string username, string password)
         {
-            DataAkun login = null;
+            M_Akun login = null;
             string query = "SELECT * FROM admin WHERE username = @username AND password = @password";
 
             NpgsqlParameter[] parameters = {
@@ -33,7 +32,7 @@ namespace Republik_Larva.Models
             if (resultTable.Rows.Count > 0)
             {
                 DataRow row = resultTable.Rows[0];
-                login = new DataAkun
+                login = new M_Akun
                 {
                     admin_id = Convert.ToInt32(row["admin_id"]),
                     nama_admin = row["nama_admin"].ToString(),
@@ -44,29 +43,40 @@ namespace Republik_Larva.Models
             return login;
         }
 
-        public DataAkun GetDataById(int id)
+        public M_Akun GetAdminById(int id)
         {
-            DataAkun akun = null;
-            string query = "SELECT * FROM admin WHERE admin_id = @id";
-
-            NpgsqlParameter[] parameters = {
-                new NpgsqlParameter("@id", id)
-            };
-
-            DataTable resultTable = queryExecutor(query, parameters);
-
-            if (resultTable.Rows.Count > 0)
+            try
             {
-                DataRow row = resultTable.Rows[0];
-                akun = new DataAkun
-                {
-                    admin_id = Convert.ToInt32(row["admin_id"]),
-                    nama_admin = row["nama_admin"].ToString(),
-                    username = row["username"].ToString(),
-                    password = row["password"].ToString()
+                string query = "SELECT * FROM admin WHERE admin_id = @id AND isActive = true";
+
+                NpgsqlParameter[] parameters = {
+                    new NpgsqlParameter("@id", id)
                 };
+
+                DataTable resultTable = queryExecutor(query, parameters);
+
+                if (resultTable.Rows.Count > 0)
+                {
+                    DataRow row = resultTable.Rows[0];
+                    return new M_Akun
+                    {
+                        admin_id = Convert.ToInt32(row["admin_id"]),
+                        nama_admin = row["nama_admin"].ToString(),
+                        username = row["username"].ToString(),
+                        password = row["password"].ToString(),
+                        isActive = row["isActive"].ToString()
+                    };
+                }
+                else
+                {
+                    return null;
+                }
             }
-            return akun;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching data by ID: " + ex.Message);
+                return null;
+            }
         }
         public bool TambahAdmin(string namaAdmin, string username, string password)
         {
@@ -130,10 +140,6 @@ namespace Republik_Larva.Models
                 return false;
             }
         }
-    }
-
-    public class DataAkun
-    {
         public int admin_id { get; set; }
         public string nama_admin { get; set; }
         public string username { get; set; }

@@ -10,7 +10,6 @@ namespace Republik_Larva.Views
     public partial class V_Produk : UserControl
     {
         private C_Produk c_Produk;
-        M_Produk MProduk;
         public V_Produk(C_Produk controller)
         {
             InitializeComponent();
@@ -34,44 +33,43 @@ namespace Republik_Larva.Views
             {
                 M_Produk produk = new M_Produk
                 {
-                    produk_id = Convert.ToInt32(row["produk_id"]), 
+                    produk_id = Convert.ToInt32(row["produk_id"]),
                     nama_produk = row["nama_produk"].ToString(),
                     harga = Convert.ToInt32(row["harga"]),
                     stok = Convert.ToInt32(row["stok"]),
                     gambar = row["gambar"] as byte[]
                 };
 
-                cardProduk kartu = new cardProduk
+                cardProduk kartu = new cardProduk(c_Produk)
                 {
                     Location = new Point(xOffset, 10),
                     Size = new Size(531, 550)
                 };
 
-                kartu.SetProdukData(produk);
+                kartu.SetProdukData(produk.produk_id, produk.nama_produk, produk.harga, produk.stok, produk.gambar);
 
                 kartu.btnEdit.Click += (sender, e) =>
                 {
                     c_Produk.editProdukView(produk.produk_id);
                 };
+
                 kartu.btnHapus.Click += (sender, e) =>
                 {
-                    bool result = c_Produk.show_confirm_message_box($"Anda yakin ingin menghapus admin {produk.nama_produk}?");
+                    bool result = c_Produk.show_confirm_message_box($"Anda yakin ingin menghapus produk {produk.nama_produk}?");
 
-                    if (result == true)
+                    if (result)
                     {
-                        M_Produk m_Produk = new M_Produk();
-
-                        bool berhasilDihapus = m_Produk.HapusProduk(produk.produk_id);
+                        bool berhasilDihapus = produk.HapusProduk(produk.produk_id);
                         if (berhasilDihapus)
                         {
                             pnProduk.Controls.Remove(kartu);
                             kartu.Dispose();
 
-                            c_Produk.show_message_box("Admin berhasil dihapus.");
+                            c_Produk.show_message_box("Produk berhasil dihapus.");
                         }
                         else
                         {
-                            c_Produk.show_message_box("Gagal menghapus admin. Karena admin pernah melayani transaksi");
+                            c_Produk.show_message_box("Gagal menghapus produk. Karena produk pernah melayani transaksi.");
                         }
                     }
                 };
@@ -85,6 +83,7 @@ namespace Republik_Larva.Views
         {
             c_Produk.addView();
         }
+
         private void btnTambahProduk_MouseEnter(object sender, EventArgs e)
         {
             btnTambahProduk.BackgroundImage = Properties.Resources.tambahProdukHover;

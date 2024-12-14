@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Republik_Larva.Views;
-using Republik_Larva.Models;
-using NpgsqlTypes;
-using System.Numerics;
-using Republik_Larva.Controller;
+﻿using Republik_Larva.Views;
 
 namespace Republik_Larva.Controller
 {

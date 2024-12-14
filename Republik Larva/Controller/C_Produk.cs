@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Republik_Larva.Views;
+﻿using Republik_Larva.Views;
 using Republik_Larva.Models;
-using NpgsqlTypes;
-using System.Numerics;
-using Republik_Larva.Controller;
-using System.Windows.Forms;
 using System.Data;
 using Republik_Larva.Views.Produk;
-using Republik_Larva.Views.Akun;
 
 namespace Republik_Larva.Controller
 {
@@ -22,7 +12,6 @@ namespace Republik_Larva.Controller
         V_FormAddProduk view_add;
         V_FormUbahProduk view_ubah;
         M_Produk M_Produk = new M_Produk();
-        private int idProduk;
         public C_Produk(C_MainForm controller)
         {
             C_MainForm = controller;
@@ -57,9 +46,74 @@ namespace Republik_Larva.Controller
             }
             else
             {
-                view_ubah = new V_FormUbahProduk(this, produkData); 
+                view_ubah = new V_FormUbahProduk(this, produkId); 
                 C_MainForm.moveView(view_ubah);
             }
         }
+        public void HapusProduk(int produkId)
+        {
+            bool konfirmasi = show_confirm_message_box("Apakah Anda yakin ingin menghapus produk ini?");
+            if (konfirmasi)
+            {
+                bool berhasil = M_Produk.HapusProduk(produkId);
+                if (berhasil)
+                {
+                    show_message_box("Produk berhasil dihapus.");
+                    balikProduk();
+                }
+                else
+                {
+                    show_message_box("Gagal menghapus produk.");
+                }
+            }
+        }
+        public void TambahProduk(string nama, int harga, int stok, byte[] gambar)
+        {
+            try
+            {
+                if (harga <= 0 || stok < 0)
+                {
+                    show_message_box("Harga dan stok harus bernilai positif!");
+                    return;
+                }
+
+                M_Produk produkBaru = new M_Produk
+                {
+                    nama_produk = nama,
+                    harga = harga,
+                    stok = stok,
+                    gambar = gambar
+                };
+
+                M_Produk.AddProduk(produkBaru);
+
+                show_message_box("Data produk berhasil ditambahkan");
+                balikProduk();
+            }
+            catch (Exception ex)
+            {
+                show_message_box($"Terjadi kesalahan saat menambah produk: {ex.Message}");
+            }
+        }
+        public void UbahProduk(int produkId, string nama, int harga, int stok, byte[] gambar)
+        {
+            try
+            {
+                if (harga <= 0 || stok < 0)
+                {
+                    show_message_box("Harga dan stok harus bernilai positif!");
+                    return;
+                }
+
+                M_Produk.UpdateProduk(produkId, nama, harga, stok, gambar); // Pass produkId here
+                show_message_box("Produk berhasil diperbarui.");
+                balikProduk();
+            }
+            catch (Exception ex)
+            {
+                show_message_box($"Terjadi kesalahan saat memperbarui produk: {ex.Message}");
+            }
+        }
+
     }
 }

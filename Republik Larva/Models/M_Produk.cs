@@ -1,9 +1,6 @@
 ﻿using Npgsql;
-using System;
-using Republik_Larva.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace Republik_Larva.Models
 {

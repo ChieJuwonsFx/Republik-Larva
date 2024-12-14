@@ -1,13 +1,5 @@
 ﻿using Republik_Larva.Controller;
-using Republik_Larva.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Republik_Larva.Views.Akun
@@ -15,13 +7,15 @@ namespace Republik_Larva.Views.Akun
     public partial class V_EditAdmin : UserControl
     {
         private C_Akun c_Akun;
-        private DataAkun adminData;
+        private int adminId; 
 
-        public V_EditAdmin(C_Akun controller, DataAkun dataAdmin)
+        public V_EditAdmin(C_Akun controller, int adminId)
         {
             InitializeComponent();
             c_Akun = controller;
-            adminData = dataAdmin;
+            this.adminId = adminId;
+
+            var adminData = c_Akun.GetAdminById(adminId);
 
             if (adminData != null)
             {
@@ -38,21 +32,26 @@ namespace Republik_Larva.Views.Akun
             string password = this.password.Text.Trim();
             string konfirmPassword = this.konfirmPassword.Text.Trim();
 
-            c_Akun.editAdmin(adminData.admin_id, namaAdmin, password, konfirmPassword);
+            c_Akun.EditAdmin(adminId, namaAdmin, password, konfirmPassword);
+
             c_Akun.balikAkun();
         }
+
         private void btnSimpan_MouseEnter(object sender, EventArgs e)
         {
             btnSimpan.BackgroundImage = Properties.Resources.simpanHover;
         }
+
         private void btnSimpan_MouseLeave(object sender, EventArgs e)
         {
             btnSimpan.BackgroundImage = Properties.Resources.simpan;
         }
+
         private void password_TextChanged(object sender, EventArgs e)
         {
             password.PasswordChar = '*';
         }
+
         private void konfirmPassword_TextChanged(object sender, EventArgs e)
         {
             konfirmPassword.PasswordChar = '*';
@@ -62,14 +61,15 @@ namespace Republik_Larva.Views.Akun
         {
             c_Akun.balikAkun();
         }
+
         private void btnKembali_MouseLeave(object sender, EventArgs e)
         {
             btnKembali.BackgroundImage = Properties.Resources.kembali;
         }
+
         private void btnKembali_MouseEnter(object sender, EventArgs e)
         {
             btnKembali.BackgroundImage = Properties.Resources.kembaliHover;
         }
     }
 }
-

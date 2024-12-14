@@ -10,7 +10,7 @@ public class C_Akun : C_MessageBox
     private V_Akun view_akun;
     private C_MessageBox c_MessageBox;
     private V_MainForm v_MainForm;
-    private DataAkun akun;
+    private M_Akun m_Akun;
     private V_TambahAdmin view_tambah;
     private V_EditAdmin view_edit;
     private V_AllAdmin view_all;
@@ -20,18 +20,18 @@ public class C_Akun : C_MessageBox
     {
         C_MainForm = controller;
         M_Akun mAkun = new M_Akun();
-        akun = mAkun.GetDataById(id_admin);
+        m_Akun = mAkun.GetAdminById(id_admin);
 
         c_MessageBox = new C_MessageBox();
 
         this.idAdmin = id_admin;
 
-        view_akun = new V_Akun(this, akun);
+        view_akun = new V_Akun(this, m_Akun);
         C_MainForm.moveView(view_akun);
     }
     public void balikAkun()
     {
-        view_akun = new V_Akun(this, akun);
+        view_akun = new V_Akun(this, m_Akun);
         C_MainForm.moveView(view_akun);
     }
     public void tambahAdminView()
@@ -57,7 +57,7 @@ public class C_Akun : C_MessageBox
 
         M_Akun model = new M_Akun();
         bool isSuccess = model.TambahAdmin(namaAdmin, username, password);
-        view_akun = new V_Akun(this, akun);
+        view_akun = new V_Akun(this, m_Akun);
         C_MainForm.moveView(view_akun);
         return isSuccess;
     }
@@ -71,7 +71,7 @@ public class C_Akun : C_MessageBox
         }
 
         M_Akun mAkun = new M_Akun();
-        DataAkun adminData = mAkun.GetDataById(idAdmin);
+        M_Akun adminData = mAkun.GetAdminById(idAdmin);
 
         if (adminData == null)
         {
@@ -79,8 +79,37 @@ public class C_Akun : C_MessageBox
         }
         else
         {
-            view_edit = new V_EditAdmin(this, adminData);
+            view_edit = new V_EditAdmin(this, idAdmin);
             C_MainForm.moveView(view_edit);
+        }
+    }
+    public M_Akun GetAdminById(int adminId)
+    {
+        return m_Akun.GetAdminById(adminId);
+    }
+
+    public void EditAdmin(int adminId, string namaAdmin, string password, string konfirmPassword)
+    {
+        if (string.IsNullOrWhiteSpace(namaAdmin) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(konfirmPassword))
+        {
+            show_message_box("Semua field harus diisi.");
+            return;
+        }
+
+        if (password != konfirmPassword)
+        {
+            show_message_box("Password dan konfirmasi password tidak cocok.");
+            return;
+        }
+
+        bool berhasil = m_Akun.UpdateAdmin(adminId, namaAdmin, password);
+        if (berhasil)
+        {
+            show_message_box("Admin berhasil diperbarui.");
+        }
+        else
+        {
+            show_message_box("Gagal memperbarui admin.");
         }
     }
 
@@ -109,7 +138,29 @@ public class C_Akun : C_MessageBox
     }
     public DataTable GetAkunList()
     {
-        return M_Akun.All();
+        M_Akun model = new M_Akun();
+        return M_Akun.All(); 
+    }
+    public void HapusAdmin(M_Akun akun, cardAdmin kartu)
+    {
+        bool result = show_confirm_message_box($"Anda yakin ingin menghapus admin {akun.nama_admin}?");
+
+        if (result)
+        {
+            bool berhasilDihapus = m_Akun.HapusAdmin(akun.admin_id);
+
+            if (berhasilDihapus)
+            {
+                view_all.pnAdmin.Controls.Remove(kartu);
+                kartu.Dispose();
+
+                show_message_box("Admin berhasil dihapus.");
+            }
+            else
+            {
+                show_message_box("Gagal menghapus admin. Karena admin pernah melayani transaksi");
+            }
+        }
     }
     public void logout()
     {

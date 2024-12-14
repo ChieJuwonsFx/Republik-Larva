@@ -9,11 +9,11 @@ namespace Republik_Larva.Views
     public partial class V_Akun : UserControl
     {
         private C_Akun c_Akun;
-        private DataAkun akun;
+        private M_Akun akun;
         private V_TambahAdmin tambahAdmin;
         private C_MainForm mainForm;
 
-        public V_Akun(C_Akun controller, DataAkun akun)
+        public V_Akun(C_Akun controller, M_Akun akun)
         {
             InitializeComponent();
             c_Akun = controller;

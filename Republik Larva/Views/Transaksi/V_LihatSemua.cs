@@ -1,14 +1,10 @@
 ﻿using Republik_Larva.Controller;
-using Republik_Larva.Models;
-using System;
-using System.Windows.Forms;
 
 namespace Republik_Larva.Views.Transaksi
 {
     public partial class V_LihatSemua : UserControl
     {
         private C_Transaksi c_Transaksi;
-
         public V_LihatSemua(C_Transaksi controller)
         {
             InitializeComponent();

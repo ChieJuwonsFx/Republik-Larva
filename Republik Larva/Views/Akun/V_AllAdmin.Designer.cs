@@ -77,7 +77,7 @@
 
         #endregion
 
-        private FlowLayoutPanel pnAdmin;
+        public FlowLayoutPanel pnAdmin;
         private Button btnKembali;
     }
 }

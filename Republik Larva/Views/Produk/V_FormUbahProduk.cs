@@ -1,41 +1,44 @@
 ﻿using Republik_Larva.Controller;
 using Republik_Larva.Models;
-using System.Data;
 using System.Drawing.Imaging;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using Republik_Larva.Controller;
-using Republik_Larva.Models;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace Republik_Larva.Views.Produk
 {
     public partial class V_FormUbahProduk : UserControl
     {
         private C_Produk c_Produk;
-        private M_Produk produkData;
+        private int produkId; 
 
-        public V_FormUbahProduk(C_Produk controller, M_Produk dataProduk)
+        public V_FormUbahProduk(C_Produk controller, int produkId)
         {
             InitializeComponent();
             c_Produk = controller;
-            produkData = dataProduk;
+            this.produkId = produkId;
 
+            M_Produk produkData = M_Produk.getProdukById(produkId);
             if (produkData != null)
             {
-                namaProduk.Text = produkData.nama_produk;
-                harga.Text = produkData.harga.ToString();
-                stok.Text = produkData.stok.ToString();
+                SetProdukData(produkData.nama_produk, produkData.harga, produkData.stok, produkData.gambar);
+            }
+            else
+            {
+                c_Produk.show_message_box("Produk tidak ditemukan.");
+            }
+        }
 
-                if (produkData.gambar != null && produkData.gambar.Length > 0)
-                {
-                    pictureBox1.Image = new Bitmap(new System.IO.MemoryStream(produkData.gambar));
-                }
-                else
-                {
-                    pictureBox1.Image = Properties.Resources.AllAdmin; 
-                }
+        public void SetProdukData(string nama, int Harga, int Stok, byte[] gambar)
+        {
+            namaProduk.Text = nama;
+            harga.Text = Harga.ToString();
+            stok.Text = Stok.ToString();
+
+            if (gambar != null && gambar.Length > 0)
+            {
+                pictureBox1.Image = new Bitmap(new System.IO.MemoryStream(gambar));
+            }
+            else
+            {
+                pictureBox1.Image = Properties.Resources.AllAdmin;
             }
         }
 
@@ -45,28 +48,17 @@ namespace Republik_Larva.Views.Produk
             int hargaBaru = int.TryParse(harga.Text.Trim(), out var hargaProduk) ? hargaProduk : 0;
             int stokBaru = int.TryParse(stok.Text.Trim(), out var stokProduk) ? stokProduk : 0;
 
-            if (produkData != null)
+            byte[] gambarProduk = null;
+            if (pictureBox1.Image != null)
             {
-                byte[] gambarProduk = produkData.gambar;
-                if (pictureBox1.Image != null)
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        pictureBox1.Image.Save(ms, ImageFormat.Jpeg); 
-                        gambarProduk = ms.ToArray(); 
-                    }
+                    pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
+                    gambarProduk = ms.ToArray();
                 }
-
-                produkData.nama_produk = namaProdukBaru;
-                produkData.harga = hargaBaru;
-                produkData.stok = stokBaru;
-                produkData.gambar = gambarProduk;
-
-                M_Produk.UpdateProduk(produkData.produk_id, produkData.nama_produk, produkData.harga, produkData.stok, produkData.gambar);
-
-                c_Produk.show_message_box("Produk berhasil diperbarui.");
-                c_Produk.balikProduk(); 
             }
+
+            c_Produk.UbahProduk(produkId, namaProdukBaru, hargaBaru, stokBaru, gambarProduk);
         }
 
         private void uploadGambar_Click(object sender, EventArgs e)

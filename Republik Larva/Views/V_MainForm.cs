@@ -15,7 +15,6 @@ namespace Republik_Larva.Views
     public partial class V_MainForm : Form
     {
         C_MainForm mainForm;
-        C_Route Route;
         public int LoggedInAdminId { get; set; }
         public V_MainForm()
         {

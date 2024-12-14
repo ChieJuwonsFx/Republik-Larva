@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Republik_Larva.Views;
-using Republik_Larva.Views.popUp;
+﻿using Republik_Larva.Views.popUp;
 
 namespace Republik_Larva.Controller
 {

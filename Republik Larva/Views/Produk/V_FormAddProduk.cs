@@ -1,5 +1,4 @@
 ﻿using Republik_Larva.Controller;
-using Republik_Larva.Models;
 using System.Drawing.Imaging;
 
 namespace Republik_Larva.Views.Produk
@@ -7,12 +6,12 @@ namespace Republik_Larva.Views.Produk
     public partial class V_FormAddProduk : UserControl
     {
         private C_Produk c_Produk;
-
         public V_FormAddProduk(C_Produk controller)
         {
             InitializeComponent();
             c_Produk = controller;
         }
+
         private void btnSimpan_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(namaProduk.Text) ||
@@ -31,22 +30,16 @@ namespace Republik_Larva.Views.Produk
 
             try
             {
+                string nama = namaProduk.Text;
+                int hargaProduk = int.Parse(harga.Text);
+                int stokProduk = int.Parse(stok.Text);
+
                 using (MemoryStream ms = new MemoryStream())
                 {
                     pictureBox1.Image.Save(ms, ImageFormat.Png);
-                    byte[] gambarByte = ms.ToArray();
+                    byte[] gambar = ms.ToArray();
 
-                    M_Produk produkBaru = new M_Produk
-                    {
-                        nama_produk = namaProduk.Text,
-                        harga = int.Parse(harga.Text),
-                        stok = int.Parse(stok.Text),
-                        gambar = gambarByte
-                    };
-
-                    M_Produk.AddProduk(produkBaru);
-                    c_Produk.show_message_box("Data produk berhasil ditambahkan");
-                    c_Produk.balikProduk();
+                    c_Produk.TambahProduk(nama, hargaProduk, stokProduk, gambar);
                 }
             }
             catch (Exception ex)
@@ -54,7 +47,6 @@ namespace Republik_Larva.Views.Produk
                 c_Produk.show_message_box($"Terjadi kesalahan: {ex.Message}");
             }
         }
-
 
         private void uploadGambar_Click(object sender, EventArgs e)
         {
@@ -70,7 +62,6 @@ namespace Republik_Larva.Views.Produk
                 {
                     string selectedFileName = openFileDialog.FileName;
                     pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
                     pictureBox1.Image = Image.FromFile(selectedFileName);
                 }
                 catch (Exception ex)
@@ -95,7 +86,6 @@ namespace Republik_Larva.Views.Produk
         {
             btnSimpan.BackgroundImage = Properties.Resources.simpanHover;
         }
-
         private void btnSimpan_MouseLeave(object sender, EventArgs e)
         {
             btnSimpan.BackgroundImage = Properties.Resources.simpan;

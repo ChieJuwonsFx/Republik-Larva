@@ -1,39 +1,41 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-using Republik_Larva.Controller;
-using Republik_Larva.Views;
-using Republik_Larva.Models;
+﻿using Republik_Larva.Controller;
 
 namespace Republik_Larva.Views.Produk
 {
     public partial class cardProduk : UserControl
     {
-        internal M_Produk ProdukData;
-        C_Produk c_Produk;
+        private C_Produk c_Produk; 
+        private int produkId;
 
-        public cardProduk()
+        public cardProduk(C_Produk controller)
         {
             InitializeComponent();
+            c_Produk = controller;
         }
 
-        public void SetProdukData(M_Produk produk)
+        public void SetProdukData(int id, string nama, int Harga, int Stok, byte[] gambar)
         {
-            ProdukData = produk;
+            produkId = id; 
+            namaProduk.Text = nama;
+            harga.Text = $"Harga: {Harga}";
+            stok.Text = $"Stok: {Stok}";
 
-            namaProduk.Text = produk.nama_produk;
-            harga.Text = $"Harga: {produk.harga.ToString()}";
-            stok.Text = $"Stok: {produk.stok.ToString()}";
-
-            if (produk.gambar != null && produk.gambar.Length > 0)
+            if (gambar != null && gambar.Length > 0)
             {
-                imageProduk.Image = new Bitmap(new MemoryStream(produk.gambar));
+                imageProduk.Image = new Bitmap(new MemoryStream(gambar));
             }
             else
             {
-                imageProduk.Image = Properties.Resources.bg;
+                imageProduk.Image = Properties.Resources.bg; 
             }
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            c_Produk.editProdukView(produkId);
+        }
+        private void btnHapus_Click(object sender, EventArgs e)
+        {
+            c_Produk.HapusProduk(produkId);
         }
         private void btnEdit_MouseEnter(object sender, EventArgs e)
         {
@@ -51,7 +53,5 @@ namespace Republik_Larva.Views.Produk
         {
             btnHapus.BackgroundImage = Properties.Resources.hapusProduk;
         }
-
-
     }
 }

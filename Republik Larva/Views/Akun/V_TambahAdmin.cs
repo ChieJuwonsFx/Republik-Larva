@@ -7,7 +7,6 @@ namespace Republik_Larva.Views.Akun
     public partial class V_TambahAdmin : UserControl
     {
         private C_Akun c_Akun;
-
         public V_TambahAdmin(C_Akun controller)
         {
             InitializeComponent();
