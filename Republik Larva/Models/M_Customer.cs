@@ -13,5 +13,8 @@ namespace Republik_Larva.Models
             DataTable dataCustomer = queryExecutor(query);
             return dataCustomer;
         }
+        public int customer_id { get; set; }
+        public string nama_customer { get; set; }
+        public string email { get; set; }
     }
 }

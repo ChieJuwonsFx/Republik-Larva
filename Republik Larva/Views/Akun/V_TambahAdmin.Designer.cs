@@ -84,6 +84,8 @@
             btnSimpan.BackgroundImageLayout = ImageLayout.Stretch;
             btnSimpan.Cursor = Cursors.Hand;
             btnSimpan.FlatAppearance.BorderSize = 0;
+            btnSimpan.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnSimpan.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnSimpan.FlatStyle = FlatStyle.Flat;
             btnSimpan.Location = new Point(835, 752);
             btnSimpan.Name = "btnSimpan";
@@ -91,8 +93,8 @@
             btnSimpan.TabIndex = 4;
             btnSimpan.UseVisualStyleBackColor = false;
             btnSimpan.Click += btnSimpan_Click;
-            btnSimpan.MouseLeave += btnSimpan_MouseLeave;
             btnSimpan.MouseEnter += btnSimpan_MouseEnter;
+            btnSimpan.MouseLeave += btnSimpan_MouseLeave;
             // 
             // btnKembali
             // 

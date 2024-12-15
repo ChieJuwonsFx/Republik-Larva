@@ -7,11 +7,9 @@ namespace Republik_Larva.Models
 {
     public class M_Transaksi : DatabaseWrapper
     {
-
-
         public DataTable GetProduk()
         {
-            string query = "SELECT produk_id, nama_produk, harga, stok FROM produk WHERE stok > 0";
+            string query = "SELECT produk_id, nama_produk, harga, stok FROM produk WHERE stok > 0 AND isAvailable = TRUE";
             return queryExecutor(query);
         }
 

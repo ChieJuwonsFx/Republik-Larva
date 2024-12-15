@@ -12,7 +12,8 @@ namespace Republik_Larva.Models
         {
             string query = @"
                 SELECT produk_id, nama_produk, harga, stok, gambar
-                FROM produk";
+                FROM produk
+                WHERE isAvailable = TRUE";
 
             DataTable dataProduk = queryExecutor(query);
             return dataProduk;

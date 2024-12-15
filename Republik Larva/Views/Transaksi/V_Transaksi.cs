@@ -12,6 +12,7 @@ namespace Republik_Larva.Views
             c_Transaksi.TampilkanTransaksiSebulan(dataGridView1);
             AturKolomDataGridView();
         }
+
         public void UpdateDashboard(int JumlahTransaksi, int TotalPenghasilan, int TotalMaggotTerjual)
         {
             jumlahTransaksi.Text = JumlahTransaksi.ToString();

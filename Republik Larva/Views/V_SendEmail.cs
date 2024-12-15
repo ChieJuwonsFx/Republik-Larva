@@ -1,12 +1,7 @@
 ﻿using MimeKit;
-using MailKit;
 using Republik_Larva.Controller;
-using System;
 using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
 using MailKit.Net.Smtp;
-using Republik_Larva.Models;
 
 namespace Republik_Larva.Views
 {

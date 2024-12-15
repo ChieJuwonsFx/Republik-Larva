@@ -55,9 +55,11 @@ namespace Republik_Larva.Controller
             bool konfirmasi = show_confirm_message_box("Apakah Anda yakin ingin menghapus produk ini?");
             if (konfirmasi)
             {
+                
                 bool berhasil = M_Produk.HapusProduk(produkId);
                 if (berhasil)
                 {
+                    show_message_box($"{produkId}");
                     show_message_box("Produk berhasil dihapus.");
                     balikProduk();
                 }

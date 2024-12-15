@@ -112,25 +112,6 @@ public class C_Akun : C_MessageBox
             show_message_box("Gagal memperbarui admin.");
         }
     }
-
-    public bool editAdmin(int id, string namaAdmin, string password, string konfirmPassword)
-    {
-        if (string.IsNullOrEmpty(namaAdmin))
-        {
-            show_message_box("Nama Admin tidak boleh kosong.");
-            return false;
-        }
-
-        if (!string.IsNullOrEmpty(password) && password != konfirmPassword)
-        {
-            show_message_box("Konfirmasi password tidak cocok.");
-            return false;
-        }
-
-        M_Akun mAkun = new M_Akun();
-        bool isUpdated = mAkun.UpdateAdmin(id, namaAdmin, password);
-        return isUpdated;
-    }
     public void AllAdminView()
     {
         view_all = new V_AllAdmin(this);

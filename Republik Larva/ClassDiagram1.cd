@@ -1,28 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Republik_Larva.Views.V_Login" Collapsed="true">
-    <Position X="2.25" Y="3.75" Width="1.5" />
+    <Position X="2" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAIAAAAAACAAAAAACgCQBBECAAAACAAAAAAAAghBAAA=</HashCode>
       <FileName>Views\V_Login.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_MainForm" Collapsed="true">
-    <Position X="4" Y="3.75" Width="1.5" />
+    <Position X="2" Y="1.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AABCgAAAACAKCAAICgiAABAGAAQYRCFMCgJCAAIiAAA=</HashCode>
       <FileName>Views\V_MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_Utama" Collapsed="true">
-    <Position X="5.75" Y="3.75" Width="1.5" />
+    <Position X="2" Y="2.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Views\V_Utama.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_SendEmail" Collapsed="true">
-    <Position X="7.5" Y="3.75" Width="1.5" />
+    <Position X="2" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgQAgACBAAgAAACCAAACCAAoAQBgACgAAAAACBAA=</HashCode>
       <FileName>Views\V_SendEmail.cs</FileName>
@@ -31,14 +39,14 @@
   <Class Name="Republik_Larva.Views.Transaksi.V_BatalkanTransaksi" Collapsed="true">
     <Position X="18.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAASICEIAAAACAAAACAAAAgAAAIAEAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAASACEIAAAACAAAACAAAAgAAAIAEAAAAACAA=</HashCode>
       <FileName>Views\Transaksi\V_BatalkanTransaksi.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Transaksi.V_BelumLunas" Collapsed="true">
     <Position X="16.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAASAAEAAQAACIAAEiAAAAgAAAIAAAAAAACAA=</HashCode>
+      <HashCode>AAAAAAAAASAAEAAQAACIAAAiAAAAgAAAIAAAAAAACAA=</HashCode>
       <FileName>Views\Transaksi\V_BelumLunas.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,44 +58,44 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Transaksi.V_TambahTransaksi" Collapsed="true">
-    <Position X="13" Y="1.75" Width="1.5" />
+    <Position X="9.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAEAAQAACAABCAgAACCAAECAICECACAAAAAAAAAiIA=</HashCode>
+      <HashCode>ABAEAAQAACAABCAgAACCAAACAICEAACAAAAAAAAAiIA=</HashCode>
       <FileName>Views\Transaksi\V_TambahTransaksi.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_Transaksi" Collapsed="true">
-    <Position X="11" Y="1.75" Width="1.5" />
+    <Position X="11.5" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgiACCkQAAESQACAAAACAIgAQBoAAAABAACICIA=</HashCode>
       <FileName>Views\Transaksi\V_Transaksi.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Produk.cardProduk" Collapsed="true">
-    <Position X="11" Y="0.75" Width="1.5" />
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAgAgAAgAgAAAAIABCAEAIAkAAAACAAABQAAI=</HashCode>
+      <HashCode>AAAAgAAAgAgAAgAAAAAAIABCAEAIAkAAAQCEAABQAAI=</HashCode>
       <FileName>Views\Produk\cardProduk.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Produk.V_FormAddProduk" Collapsed="true">
-    <Position X="13" Y="0.75" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAASAAECAAAACCQABCAEAIggCAIAAAAABAgUA=</HashCode>
       <FileName>Views\Produk\V_FormAddProduk.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Produk.V_FormUbahProduk" Collapsed="true">
-    <Position X="15" Y="0.75" Width="1.5" />
+    <Position X="4.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAASAAECAAAACCIABCAEAIggCAIAAAAABAgUA=</HashCode>
+      <HashCode>AAAAAAAAASgAECAAAACCAABCAEAIgkCAIAAAAABAgUA=</HashCode>
       <FileName>Views\Produk\V_FormUbahProduk.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_Produk" Collapsed="true">
-    <Position X="16.75" Y="0.75" Width="1.5" />
+    <Position X="4.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAACAAAAAgCiCAAAACAAAAAgAAAAAAgAAgAIA=</HashCode>
+      <HashCode>AAABAAAAACAAAAAgCiCAAAACAAAAAgAAAAAAAAAgAIA=</HashCode>
       <FileName>Views\Produk\V_Produk.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -106,42 +114,42 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Akun.cardAdmin" Collapsed="true">
-    <Position X="11" Y="3.75" Width="1.5" />
+    <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAAAAACAAAhAACACAAAEiAAAAAAAAAACAAAAQAAA=</HashCode>
       <FileName>Views\Akun\cardAdmin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_Akun" Collapsed="true">
-    <Position X="13" Y="3.75" Width="1.5" />
+    <Position X="9.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ARIAAgAAACAAAIAUYhGAAAECAUBIQAAAAIAQACQDCAA=</HashCode>
       <FileName>Views\Akun\V_Akun.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.V_AllAdmin" Collapsed="true">
-    <Position X="15" Y="3.75" Width="1.5" />
+    <Position X="7.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAASAAEAAAAACAAAACAAAAgAAAIAAAAEAECCA=</HashCode>
       <FileName>Views\Akun\V_AllAdmin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Akun.V_EditAdmin" Collapsed="true">
-    <Position X="16.75" Y="3.75" Width="1.5" />
+    <Position X="10.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACIQAAAAAaAAECAACACCAAECAAAAgACAIAAAAgABgAA=</HashCode>
       <FileName>Views\Akun\V_EditAdmin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Views.Akun.V_TambahAdmin" Collapsed="true">
-    <Position X="18.5" Y="3.75" Width="1.5" />
+    <Position X="12.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAASAAECAAAACCCAACAECCgACAIgAAAACBgAA=</HashCode>
       <FileName>Views\Akun\V_TambahAdmin.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Models.DatabaseWrapper" Collapsed="true">
-    <Position X="4.75" Y="5.5" Width="1.5" />
+    <Position X="3.75" Y="5.25" Width="2" />
     <TypeIdentifier>
       <HashCode>QAAACAAACAAAAAAAEAABAAAAAASQAAIAAAEAAAAAAAA=</HashCode>
       <FileName>Models\DatabaseWrapper.cs</FileName>
@@ -157,7 +165,7 @@
   <Class Name="Republik_Larva.Models.M_Customer" Collapsed="true">
     <Position X="3.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAACAAgIAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>Models\M_Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -171,12 +179,12 @@
   <Class Name="Republik_Larva.Models.M_Transaksi" Collapsed="true">
     <Position X="1.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACgAAEiCBEyAQAAAQQBAAAAAAACAAAAAFAAQAAQI=</HashCode>
+      <HashCode>AAAACgAAEiCBEwAQAAAQQBAAAAAAACAAAAAFAAQAAAI=</HashCode>
       <FileName>Models\M_Transaksi.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="C_Akun" Collapsed="true">
-    <Position X="11" Y="5.25" Width="1.5" />
+  <Class Name="C_Akun">
+    <Position X="11" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gCAAAAAABAQAAAAMAAAAQAQAECACAAAAAAEAABwABCk=</HashCode>
       <FileName>Controller\C_Akun.cs</FileName>
@@ -204,16 +212,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Controller.C_MessageBox" Collapsed="true">
-    <Position X="14" Y="6.75" Width="1.5" />
+    <Position X="14" Y="6.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAIAA=</HashCode>
       <FileName>Controller\C_MessageBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Controller.C_Produk" Collapsed="true">
-    <Position X="18.75" Y="5.25" Width="1.5" />
+    <Position X="19" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAABAACAAAAAAAAQBAAAAAAAIAAAgAAQEAAAAAAAg=</HashCode>
+      <HashCode>ABAAAAAACAAAgAAIAQBAAAAAAAIAAAgABQEAAAAAAAg=</HashCode>
       <FileName>Controller\C_Produk.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -225,9 +233,12 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Republik_Larva.Controller.C_Transaksi" Collapsed="true">
-    <Position X="11.25" Y="6.75" Width="1.5" />
+    <Position X="14.5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>ABQAAIgEAAQwAoQIABBJBAUBQgiAgEQAAAEAAgAAAgw=</HashCode>
+      <HashCode>ABQAAogUAASwAqQIABBJBAUBQgiAgGQAAAEBAgAAAw0=</HashCode>
       <FileName>Controller\C_Transaksi.cs</FileName>
     </TypeIdentifier>
   </Class>

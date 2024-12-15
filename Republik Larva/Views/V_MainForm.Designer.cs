@@ -65,7 +65,7 @@
             btnDashboard.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnDashboard.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Location = new Point(668, 0);
+            btnDashboard.Location = new Point(630, 0);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(243, 107);
             btnDashboard.TabIndex = 2;
@@ -84,7 +84,7 @@
             btnTransaksi.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnTransaksi.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnTransaksi.FlatStyle = FlatStyle.Flat;
-            btnTransaksi.Location = new Point(904, 0);
+            btnTransaksi.Location = new Point(873, 0);
             btnTransaksi.Name = "btnTransaksi";
             btnTransaksi.Size = new Size(243, 107);
             btnTransaksi.TabIndex = 3;
@@ -103,7 +103,7 @@
             btnProduk.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnProduk.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnProduk.FlatStyle = FlatStyle.Flat;
-            btnProduk.Location = new Point(1135, 0);
+            btnProduk.Location = new Point(1116, 0);
             btnProduk.Name = "btnProduk";
             btnProduk.Size = new Size(252, 107);
             btnProduk.TabIndex = 4;
@@ -122,7 +122,7 @@
             btnSendEmail.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnSendEmail.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnSendEmail.FlatStyle = FlatStyle.Flat;
-            btnSendEmail.Location = new Point(1390, 0);
+            btnSendEmail.Location = new Point(1368, 0);
             btnSendEmail.Name = "btnSendEmail";
             btnSendEmail.Size = new Size(252, 107);
             btnSendEmail.TabIndex = 5;
@@ -141,7 +141,7 @@
             btnAkun.FlatAppearance.MouseDownBackColor = Color.Transparent;
             btnAkun.FlatAppearance.MouseOverBackColor = Color.Transparent;
             btnAkun.FlatStyle = FlatStyle.Flat;
-            btnAkun.Location = new Point(1635, 0);
+            btnAkun.Location = new Point(1620, 0);
             btnAkun.Name = "btnAkun";
             btnAkun.Size = new Size(252, 107);
             btnAkun.TabIndex = 6;
