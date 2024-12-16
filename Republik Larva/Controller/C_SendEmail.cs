@@ -20,6 +20,11 @@ namespace Republik_Larva.Controller
             V_SendEmail = new V_SendEmail(this);
             controller.moveView(V_SendEmail);
         }
+        public void resetEmail()
+        {
+            V_SendEmail = new V_SendEmail(this);
+            C_MainForm.moveView(V_SendEmail);
+        }
         public DataTable GetCustomerData()
         {
             try

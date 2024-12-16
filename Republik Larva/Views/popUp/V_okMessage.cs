@@ -14,6 +14,7 @@ namespace Republik_Larva.Views.popUp
     public partial class V_okMessage : Form
     {
         string message;
+        private C_MessageBox controller;
         public V_okMessage(string message)
         {
             InitializeComponent();

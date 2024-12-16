@@ -46,7 +46,7 @@ namespace Republik_Larva.Views
                 smtp.Disconnect(true);
 
                 c_SendEmail.show_message_box("Email berhasil dikirim!");
-                
+                c_SendEmail.resetEmail();
             }
             catch (Exception ex)
             {

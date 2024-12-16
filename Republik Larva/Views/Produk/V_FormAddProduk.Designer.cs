@@ -145,6 +145,7 @@
             Controls.Add(uploadGambar);
             Name = "V_FormAddProduk";
             Size = new Size(1920, 937);
+            Load += V_FormAddProduk_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

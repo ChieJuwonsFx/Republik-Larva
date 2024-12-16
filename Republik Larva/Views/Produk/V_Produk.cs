@@ -93,5 +93,10 @@ namespace Republik_Larva.Views
         {
             btnTambahProduk.BackgroundImage = Properties.Resources.tambahProduk;
         }
+
+        private void pnProduk_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

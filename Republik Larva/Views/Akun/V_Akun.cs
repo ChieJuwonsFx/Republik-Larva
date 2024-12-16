@@ -46,16 +46,13 @@ namespace Republik_Larva.Views
         }
         private void V_Akun_Load(object sender, EventArgs e)
         {
-            if (akun != null)
-            {
-                nama.Text = akun.nama_admin ?? "Nama tidak tersedia";
-                username.Text = akun.username ?? "Username tidak tersedia";
-            }
-            else
-            {
-                nama.Text = "Data akun tidak ditemukan";
-                username.Text = "Data akun tidak ditemukan";
-            }
+            c_Akun.LoadAkunData(this);
+        }
+
+        public void SetAkunData(string namaAdmin, string usernameAdmin)
+        {
+            nama.Text = namaAdmin;
+            username.Text = usernameAdmin;
         }
 
         private void btnTambahAdmin_Click(object sender, EventArgs e)

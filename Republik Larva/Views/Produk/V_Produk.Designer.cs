@@ -41,6 +41,7 @@
             pnProduk.Name = "pnProduk";
             pnProduk.Size = new Size(1720, 578);
             pnProduk.TabIndex = 1;
+            pnProduk.Paint += pnProduk_Paint;
             // 
             // btnTambahProduk
             // 

@@ -107,7 +107,7 @@ namespace Republik_Larva.Controller
                     return;
                 }
 
-                M_Produk.UpdateProduk(produkId, nama, harga, stok, gambar); // Pass produkId here
+                M_Produk.UpdateProduk(produkId, nama, harga, stok, gambar);
                 show_message_box("Produk berhasil diperbarui.");
                 balikProduk();
             }

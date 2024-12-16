@@ -6,6 +6,7 @@ namespace Republik_Larva.Views.Akun
 {
     public partial class cardAdmin : UserControl
     {
+        private C_Akun c_Akun;
         public cardAdmin()
         {
             InitializeComponent();

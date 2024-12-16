@@ -124,6 +124,12 @@ public class C_Akun : C_MessageBox
     }
     public void HapusAdmin(M_Akun akun, cardAdmin kartu)
     {
+        if (akun.admin_id == idAdmin)
+        {
+            show_message_box("Anda tidak dapat menghapus akun yang sedang digunakan.");
+            return;
+        }
+
         bool result = show_confirm_message_box($"Anda yakin ingin menghapus admin {akun.nama_admin}?");
 
         if (result)
@@ -139,15 +145,32 @@ public class C_Akun : C_MessageBox
             }
             else
             {
-                show_message_box("Gagal menghapus admin. Karena admin pernah melayani transaksi");
+                show_message_box("Gagal menghapus admin. Karena admin pernah melayani transaksi.");
             }
         }
     }
+
     public void logout()
     {
         if (show_confirm_message_box("Apakah Anda Yakin?"))
         {
             new V_Login().Show();
+        }
+    }
+    public M_Akun GetAkunData()
+    {
+        return m_Akun; 
+    }
+
+    public void LoadAkunData(V_Akun view)
+    {
+        if (m_Akun != null)
+        {
+            view.SetAkunData(m_Akun.nama_admin, m_Akun.username);
+        }
+        else
+        {
+            view.SetAkunData("Data akun tidak ditemukan", "Data akun tidak ditemukan");
         }
     }
 }
