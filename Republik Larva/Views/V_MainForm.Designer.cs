@@ -45,7 +45,6 @@
             panelLogo.Name = "panelLogo";
             panelLogo.Size = new Size(230, 228);
             panelLogo.TabIndex = 0;
-            panelLogo.Paint += panelLogo_Paint;
             // 
             // panelUtama
             // 
@@ -54,7 +53,6 @@
             panelUtama.Name = "panelUtama";
             panelUtama.Size = new Size(1920, 937);
             panelUtama.TabIndex = 1;
-            panelUtama.Paint += panelUtama_Paint;
             // 
             // btnDashboard
             // 

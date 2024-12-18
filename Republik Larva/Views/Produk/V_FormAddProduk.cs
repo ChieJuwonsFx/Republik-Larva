@@ -90,10 +90,5 @@ namespace Republik_Larva.Views.Produk
         {
             btnSimpan.BackgroundImage = Properties.Resources.simpan;
         }
-
-        private void V_FormAddProduk_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

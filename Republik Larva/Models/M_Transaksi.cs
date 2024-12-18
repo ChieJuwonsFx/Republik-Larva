@@ -15,7 +15,6 @@ namespace Republik_Larva.Models
 
         public int SimpanTransaksi(string statusPembayaran, string metodePembayaran, int totalHarga, int customerId, int adminId)
         {
-            int transaksiId = 0;
             string query = @"
                 INSERT INTO transaksi 
                 (tanggal_transaksi, total_harga, admin_admin_id, customer_customer_id, status_bayar, metode_pembayaran) 
@@ -32,12 +31,7 @@ namespace Republik_Larva.Models
             };
 
             DataTable result = queryExecutor(query, parameters);
-            if (result.Rows.Count > 0)
-            {
-                transaksiId = Convert.ToInt32(result.Rows[0][0]);
-            }
-
-            return transaksiId;
+            return result.Rows.Count > 0 ? Convert.ToInt32(result.Rows[0]["transaksi_id"]) : 0;
         }
 
         public void SimpanDetailTransaksi(int transaksiId, int produkId, int jumlah, int totalHarga)
@@ -58,9 +52,8 @@ namespace Republik_Larva.Models
             commandExecutor(query, parameters);
         }
 
-        public int TambahAtauAmbilCustomer(string NamaCustomer, string email)
+        public int TambahAtauAmbilCustomer(string namaCustomer, string email)
         {
-            int customerId;
             string queryCheck = "SELECT customer_id FROM customer WHERE nama_customer = @nama_customer";
             string queryInsert = @"
                 INSERT INTO customer (nama_customer, email) 
@@ -69,28 +62,24 @@ namespace Republik_Larva.Models
 
             NpgsqlParameter[] parametersCheck = new NpgsqlParameter[]
             {
-                new NpgsqlParameter("@email", email),
-                new NpgsqlParameter("@nama_customer", NamaCustomer)
+                new NpgsqlParameter("@nama_customer", namaCustomer),
+                new NpgsqlParameter("@email", email)
             };
 
             DataTable result = queryExecutor(queryCheck, parametersCheck);
             if (result.Rows.Count > 0)
             {
-                customerId = Convert.ToInt32(result.Rows[0][0]);
+                return Convert.ToInt32(result.Rows[0]["customer_id"]);
             }
-            else
+
+            NpgsqlParameter[] parametersInsert = new NpgsqlParameter[]
             {
-                NpgsqlParameter[] parametersInsert = new NpgsqlParameter[]
-                {
-                    new NpgsqlParameter("@nama_customer", NamaCustomer),
-                    new NpgsqlParameter("@email", email)
-                };
+                new NpgsqlParameter("@nama_customer", namaCustomer),
+                new NpgsqlParameter("@email", email)
+            };
 
-                DataTable insertResult = queryExecutor(queryInsert, parametersInsert);
-                customerId = Convert.ToInt32(insertResult.Rows[0][0]);
-            }
-
-            return customerId;
+            DataTable insertResult = queryExecutor(queryInsert, parametersInsert);
+            return Convert.ToInt32(insertResult.Rows[0]["customer_id"]);
         }
 
         public int GetStokProduk(int produkId)
@@ -117,7 +106,73 @@ namespace Republik_Larva.Models
             commandExecutor(query, parameters);
         }
 
+        public void UpdateStatusLunas(int transaksiId)
+        {
+            string query = @"
+            UPDATE transaksi 
+            SET status_bayar = 'Lunas' 
+            WHERE transaksi_id = @transaksi_id";
 
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", transaksiId)
+            };
+
+            commandExecutor(query, parameters);
+        }
+
+        public void HapusTransaksi(int transaksiId)
+        {
+            DateTime waktuTransaksi = GetWaktuTransaksi(transaksiId);
+            TimeSpan selisihWaktu = DateTime.Now - waktuTransaksi;
+
+            if (selisihWaktu.TotalMinutes < 10)
+            {
+                string queryDetail = "SELECT produk_id_produk, jumlah FROM detail_transaksi WHERE transaksi_transaksi_id = @transaksi_id";
+                NpgsqlParameter[] parametersDetail = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("@transaksi_id", transaksiId)
+                };
+                DataTable detailTransaksi = queryExecutor(queryDetail, parametersDetail);
+
+                foreach (DataRow row in detailTransaksi.Rows)
+                {
+                    int produkId = Convert.ToInt32(row["produk_id_produk"]);
+                    int jumlah = Convert.ToInt32(row["jumlah"]);
+
+                    KurangiStokProduk(produkId, -jumlah); // Mengembalikan stok
+                }
+
+                commandExecutor("DELETE FROM detail_transaksi WHERE transaksi_transaksi_id = @transaksi_id", parametersDetail);
+
+                string query = "DELETE FROM transaksi WHERE transaksi_id = @transaksi_id";
+                NpgsqlParameter[] parameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("@transaksi_id", transaksiId)
+                };
+                commandExecutor(query, parameters);
+            }
+            else
+            {
+                throw new Exception("Transaksi sudah lebih dari 10 menit, tidak dapat dihapus.");
+            }
+        }
+
+        private DateTime GetWaktuTransaksi(int transaksiId)
+        {
+            string query = "SELECT tanggal_transaksi FROM transaksi WHERE transaksi_id = @transaksi_id";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@transaksi_id", transaksiId)
+            };
+            DataTable result = queryExecutor(query, parameters);
+            if (result.Rows.Count > 0)
+            {
+                return Convert.ToDateTime(result.Rows[0]["tanggal_transaksi"]);
+            }
+
+            throw new Exception("Transaksi tidak ditemukan.");
+        }
         public DataTable GetTransaksiById(int transaksiId)
         {
             string query = "SELECT * FROM transaksi WHERE transaksi_id = @transaksi_id";
@@ -304,7 +359,7 @@ namespace Republik_Larva.Models
                 DataTable result = queryExecutor(query, parameters);
                 if (result.Rows.Count > 0)
                 {
-                    return result.Rows[0]["email"].ToString(); 
+                    return result.Rows[0]["email"].ToString();
                 }
                 return string.Empty;
             }
@@ -334,81 +389,28 @@ namespace Republik_Larva.Models
 
             return queryExecutor(query, parameters);
         }
+        public int TransaksiId { get; set; }
+        public DateTime TanggalTransaksi { get; set; }
+        public int TotalHarga { get; set; }
+        public string MetodePembayaran { get; set; }
+        public string StatusBayar { get; set; }
+        public int AdminId { get; set; }
+        public int CustomerId { get; set; }
 
+        public List<DetailTransaksi> Details { get; set; }
 
-        public DateTime GetWaktuTransaksi(int transaksiId)
+        public M_Transaksi()
         {
-            string query = "SELECT tanggal_transaksi FROM transaksi WHERE transaksi_id = @transaksi_id";
-            NpgsqlParameter[] parameters = new NpgsqlParameter[]
-            {
-                new NpgsqlParameter("@transaksi_id", transaksiId)
-            };
-            DataTable result = queryExecutor(query, parameters);
-            if (result.Rows.Count > 0)
-            {
-                return Convert.ToDateTime(result.Rows[0]["tanggal_transaksi"]);
-            }
-            else
-            {
-                throw new Exception("Transaksi tidak ditemukan.");
-            }
-        }
-        public void HapusTransaksi(int transaksiId)
-        {
-            DateTime waktuTransaksi = GetWaktuTransaksi(transaksiId);
-            TimeSpan selisihWaktu = DateTime.Now - waktuTransaksi;
-
-            if (selisihWaktu.TotalMinutes < 10)
-            {
-                string queryDetail = "SELECT produk_id_produk, jumlah FROM detail_transaksi WHERE transaksi_transaksi_id = @transaksi_id";
-                NpgsqlParameter[] parametersDetail = new NpgsqlParameter[]
-                {
-                    new NpgsqlParameter("@transaksi_id", transaksiId)
-                };
-                DataTable detailTransaksi = queryExecutor(queryDetail, parametersDetail);
-
-                foreach (DataRow row in detailTransaksi.Rows)
-                {
-                    int produkId = Convert.ToInt32(row["produk_id_produk"]);
-                    int jumlah = Convert.ToInt32(row["jumlah"]);
-
-                    string queryUpdateStok = "UPDATE produk SET stok = stok + @jumlah WHERE produk_id = @produk_id";
-                    NpgsqlParameter[] parametersUpdateStok = new NpgsqlParameter[]
-                    {
-                        new NpgsqlParameter("@produk_id", produkId),
-                        new NpgsqlParameter("@jumlah", jumlah)
-                    };
-                    commandExecutor(queryUpdateStok, parametersUpdateStok);
-                }
-
-                commandExecutor("DELETE FROM detail_transaksi WHERE transaksi_transaksi_id = @transaksi_id", parametersDetail);
-
-                string query = "DELETE FROM transaksi WHERE transaksi_id = @transaksi_id";
-                NpgsqlParameter[] parameters = new NpgsqlParameter[]
-                {
-                    new NpgsqlParameter("@transaksi_id", transaksiId)
-                };
-                commandExecutor(query, parameters);
-            }
-            else
-            {
-                throw new Exception("Transaksi sudah lebih dari 10 menit, tidak dapat dihapus.");
-            }
-        }
-        public void UpdateStatusLunas(int transaksiId)
-        {
-            string query = @"
-            UPDATE transaksi 
-            SET status_bayar = 'Lunas' 
-            WHERE transaksi_id = @transaksi_id";
-
-            NpgsqlParameter[] parameters = new NpgsqlParameter[]
-            {
-                new NpgsqlParameter("@transaksi_id", NpgsqlTypes.NpgsqlDbType.Integer) { Value = transaksiId }
-            };
-
-            commandExecutor(query, parameters);
+            Details = new List<DetailTransaksi>();
         }
 
+        public class DetailTransaksi
+        {
+            public int ProdukId { get; set; }
+            public string NamaProduk { get; set; }
+            public int Jumlah { get; set; }
+            public int TotalHarga { get; set; }
+            public int HargaSatuan { get; set; }
+        }
     }
 }

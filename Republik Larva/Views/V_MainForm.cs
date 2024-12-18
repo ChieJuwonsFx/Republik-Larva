@@ -12,16 +12,6 @@ namespace Republik_Larva.Views
             mainForm = new C_MainForm(this);
         }
 
-        public void panelUtama_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelLogo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnSendEmail_Click(object sender, EventArgs e)
         {
             mainForm.menu_focus = typeof(V_SendEmail).Name;
